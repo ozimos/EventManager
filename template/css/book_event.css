@@ -1,0 +1,17 @@
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.material-icons.orange600 {
+  color: #FB8C00;
+}
+
+.material-icons.md-36 {
+  font-size: 36px;
+}
