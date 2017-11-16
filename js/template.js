@@ -12,6 +12,7 @@ $(document).ready(function () {
     today: 'Today',
     clear: 'Clear',
     close: 'Ok',
+    min: [true],
     closeOnSelect: false // Close upon selecting a date,
   });
   //reinitialize all the Materialize labels on the form if you are dynamically adding inputs
