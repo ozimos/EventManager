@@ -7,7 +7,7 @@
   <!--Import materialize.css-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
   <!--Import page stylesheets-->
-  <link rel="stylesheet" href="css/signinup.css">
+  <link rel="stylesheet" href="css/template.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -55,11 +55,16 @@
       <div class="row">
         <div class="col l5 s12">
           <form>
-
+            <p class="grey-text text-lighten-1">Required fields are followed by
+              <span class="red-text">*</span>
+            </p>
             <div class="row">
               <div class="input-field col s12">
                 <input placeholder="Email" id="user_name" type="email" class="validate" required pattern="[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}">
-                <label for="user_name">Enter your email address</label>
+                <label for="user_name">Enter your email address
+                  <span class="red-text">*</span>
+
+                </label>
                 <h6 class="grey-text text-lighten-1">Your email address is your username</h6>
               </div>
 
@@ -69,7 +74,10 @@
 
               <div class="input-field col s12">
                 <input id="password" type="password" class="validate" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}">
-                <label for="password">Password </label>
+                <label for="password">Password
+                  <span class="red-text">*</span>
+                  </strong>
+                </label>
 
               </div>
 
