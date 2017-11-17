@@ -104,7 +104,7 @@
                 <div class="col s3 left valign-wrapper ">
                   <button class="btn waves-effect waves-light" id="submit" type="submit">
                     <i class="material-icons right">send</i>
-                    Next Available
+                    Submit
 
                   </button>
 
@@ -115,13 +115,54 @@
           <!-- events center section -->
           <div class="col l6 s12 right">
             <fieldset>
+              <legend class="grey-text text-lighten-1">Select Location</legend>
+              <div class="row">
+                <div class="input-field col l4 s12">
+                  <input type="text" placeholder="Country" id="location_country" list="country_list">
+                  <label for="location_country">Select a Country</label>
+                  <datalist id="country_list">
+                    <option value="Nigeria">
+                      <option value="Antigua">
+                        <option value="Barbados">
+                          <option value="Ghana">
+                            <option value="Cote D'Ivoire">
+                              <option value="Senegal">
+                  </datalist>
+                </div>
+                <div class="input-field col l4 s12">
+                  <input type="text" placeholder="State or Region" id="location_region" list="region_list">
+                  <label for="location_region">Select a State or Region</label>
+                  <datalist id="region_list">
+                    <option value="Abia">
+                      <option value="Bayelsa">
+                        <option value="Cross River">
+                          <option value="Ebonyi">
+                            <option value="Gombe">
+                              <option value="Kaduna">
+                  </datalist>
+                </div>
+                <div class="input-field col l4 s12">
+                  <input type="text" placeholder="Country" id="location_sregion" list="sregion_list">
+                  <label for="location_sregion">Select a Sub-region</label>
+                  <datalist id="sregion_list">
+                    <option value="Badagry">
+                      <option value="Epe">
+                        <option value="Ikeja">
+                          <option value="Alaba">
+                            <option value="Ajegunle">
+                              <option value="Ikorodu">
+                  </datalist>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset>
               <legend class="grey-text text-lighten-1">Select Centers</legend>
               <div class="row">
 
                 <div class="input-field col l5 s12 left">
-                  <input placeholder="Center Name" id="center_list_input" list="center_list" name="center_list_input" type="text">
+                  <input type="text" placeholder="Center Name" id="center_list_input" list="center_list" name="center_list_input" type="text">
                   <label for="center_list_input">Enter a value then select from options</label>
-                  <datalist id="center_list" class="validate icons">
+                  <datalist id="center_list">
                     <option value="Wedding">
                       <option value="Cocktail Party">
                         <option value="Corporate Event">
@@ -145,11 +186,84 @@
                 </div>
 
               </div>
+
             </fieldset>
           </div>
         </div>
       </form>
 
+
+    </div>
+    <div class="row">
+      <div id="qeury_results" class="col l8 s12">
+
+        <table class="striped bordered highlight responsive-table">
+          <caption>Available Bookings</caption>
+          <thead>
+            <tr>
+              <td>SN</td>
+              <td>Center</td>
+              <td>Date Available</td>
+              <td>Location</td>
+              <td>Make Booking</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>King's Landing</td>
+              <td>12/17/2017</td>
+              <td>Badagry</td>
+              <td>
+                <a class="btn waves-effect waves-light left-align" id="Booking1">
+                  <i class="material-icons right">fast forward</i>
+                  Book
+
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Winterfell</td>
+              <td>12/18/2017</td>
+              <td>Ajegunle</td>
+              <td>
+                <a class="btn waves-effect waves-light left-align" id="Booking2">
+                  <i class="material-icons right">fast forward</i>
+                  Book
+
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Casterly Rock</td>
+              <td>12/19/2017</td>
+              <td>Epe</td>
+              <td>
+                <a class="btn waves-effect waves-light left-align" id="Booking3">
+                  <i class="material-icons right">fast forward</i>
+                  Book
+
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Dragonstone</td>
+              <td>12/20/2017</td>
+              <td>Ikorodu</td>
+              <td>
+                <a class="btn waves-effect waves-light left-align" id="Booking4">
+                  <i class="material-icons right">fast forward</i>
+                  Book
+
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </main>
   <footer class="page-footer">
