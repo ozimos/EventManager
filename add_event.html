@@ -29,7 +29,7 @@
               <a href="#">Login/Signup</a>
             </li>
             <li class="disabled">
-              <a href="#">Book Events</a>
+              <a href="#">Add Events</a>
             </li>
             <li class="disabled">
               <a href="#">View Centers</a>
@@ -40,7 +40,7 @@
               <a href="#">Login/Signup</a>
             </li>
             <li class="disabled">
-              <a href="#">Book Events</a>
+              <a href="#">Add Events</a>
             </li>
             <li class="disabled">
               <a href="#">View Centers</a>
@@ -51,7 +51,10 @@
     </div>
   </header>
   <main>
-    <h5 style="text-align: center;" class="grey-text text-lighten-1">Book Event</h5>
+    <div class="row">
+      <h5 style="text-align: center;" class="">Book Event</h5>
+    </div>
+
     <div class="row">
 
       <form id="main_form" class="col s12">
@@ -59,7 +62,7 @@
           <!-- events date section -->
           <div class="col l6 s12 left">
             <fieldset>
-              <legend class="grey-text text-lighten-1">Event Tags</legend>
+              <legend class="">Event Tags</legend>
               <div class="row">
                 <div class="input-field col l6 s12 left">
                   <input placeholder="eg Jay's Wedding" id="event_name" name="event_name" type="text" class="validate" required minlength="2">
@@ -68,7 +71,7 @@
                 <div class="input-field col l5 s12 right">
 
                   <select id="event_type" class="validate icons" multiple required>
-                    <option value="" disabled selected>Select all that apply</option>
+                    <option value="" disabled selected class="">Select all that apply</option>
                     <option value="Wedding" data-icon="images/5.jpg" class="circle">Wedding</option>
                     <option value="Cocktail Party" data-icon="images/eko-convention-centre.jpg" class="circle">Cocktail Party</option>
                     <option value="Coporate Event" data-icon="images\ev2_1343827227102.jpg" class="circle">Corporate Event</option>
@@ -81,7 +84,7 @@
               </div>
             </fieldset>
             <fieldset>
-              <legend class="grey-text text-lighten-1">Event Date</legend>
+              <legend class="">Event Date</legend>
               <div class="row">
                 <div class="input-field col s5 left">
                   <select id="event_duration" class="validate" required>
@@ -115,7 +118,7 @@
           <!-- events center section -->
           <div class="col l6 s12 right">
             <fieldset>
-              <legend class="grey-text text-lighten-1">Select Location</legend>
+              <legend class="">Select Location</legend>
               <div class="row">
                 <div class="input-field col l4 s12">
                   <input type="text" placeholder="Country" id="location_country" list="country_list">
@@ -156,7 +159,7 @@
               </div>
             </fieldset>
             <fieldset>
-              <legend class="grey-text text-lighten-1">Select Centers</legend>
+              <legend class="">Select Centers</legend>
               <div class="row">
 
                 <div class="input-field col l5 s12 left">
@@ -198,7 +201,7 @@
       <div id="qeury_results" class="col l6 s12">
 
         <table class="striped bordered highlight responsive-table">
-          <caption>Available Bookings</caption>
+          <caption class="">Available Bookings</caption>
           <thead>
             <tr>
               <td>SN</td>
@@ -264,107 +267,48 @@
           </tbody>
         </table>
       </div>
-      <div id="booked_view" class="col l6 s12">
+      <div id="event_view" class="col l6 s12">
+        <div class="row">
+          <h5 style="text-align: center;">Your event has been added</h5>
+        </div>
+        <div class="row">
+          <div id="event_text_view" class="col s6 ">
+            <h6>Event Details</h6>
+            <p>Event Id: 012346</p>
+            <p>Event Name: Red Wedding</p>
+            <p>Event Types: Massacre, Slaughter</p>
+            <p>Dates: 12/24/2017 to 12/26/2017</p>
+            <p>Location: Twin Towers, Ajegunle</p>
+          </div>
+          <div id="event_image_view" class=" col s6">
+            <img class="responsive-img" src="images/2fb443_b38a041c293935f52ecb9305df3069c5.webp" alt="Event Image">
 
-        <table class="striped bordered highlight responsive-table">
-          <caption>Your Booked Events</caption>
-          <thead>
-            <tr>
-              <td>SN</td>
-              <td>Center</td>
-              <td>Dates</td>
-              <td>Location</td>
-              <td>Modify</td>
-              <td>Delete</td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>King's Landing</td>
-              <td>12/17/2017</td>
-              <td>Badagry</td>
-              <td>
-                <a class="btn waves-effect waves-light left-align" id="Change1">
-                  <i class="material-icons right">note add</i>
-                  Modify
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s4">
+            <a class="btn waves-effect waves-light" id="Change1">
+              <i class="material-icons right">note add</i>
+              Modify
 
-                </a>
+            </a>
+          </div>
+          <div class="col s4">
+            <a class="btn waves-effect waves-light" id="Change1">
+              <i class="material-icons right">clear</i>
+              Delete
 
-              </td>
-              <td>
-                <a class="btn waves-effect waves-light left-align" id="Delete1">
-                  <i class="material-icons right">clear</i>
-                  Delete
+            </a>
+          </div>
+          <div class="col s4">
+            <a class="btn waves-effect waves-light" id="Change1">
+              <i class="material-icons right">event</i>
+              View All Your Events
 
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Winterfell</td>
-              <td>12/18/2017</td>
-              <td>Ajegunle</td>
-              <td>
-                <a class="btn waves-effect waves-light left-align" id="Change1">
-                  <i class="material-icons right">note add</i>
-                  Modify
+            </a>
+          </div>
+        </div>
 
-                </a>
-
-              </td>
-              <td>
-                <a class="btn waves-effect waves-light left-align" id="Delete1">
-                  <i class="material-icons right">clear</i>
-                  Delete
-
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Casterly Rock</td>
-              <td>12/19/2017</td>
-              <td>Epe</td>
-              <td>
-                <a class="btn waves-effect waves-light left-align" id="Change1">
-                  <i class="material-icons right">note add</i>
-                  Modify
-
-                </a>
-
-              </td>
-              <td>
-                <a class="btn waves-effect waves-light left-align" id="Delete1">
-                  <i class="material-icons right">clear</i>
-                  Delete
-
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>Dragonstone</td>
-              <td>12/20/2017</td>
-              <td>Ikorodu</td>
-              <td>
-                <a class="btn waves-effect waves-light left-align" id="Change1">
-                  <i class="material-icons right">note add</i>
-                  Modify
-
-                </a>
-
-              </td>
-              <td>
-                <a class="btn waves-effect waves-light left-align" id="Delete1">
-                  <i class="material-icons right">clear</i>
-                  Delete
-
-                </a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
       </div>
 
 
