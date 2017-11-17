@@ -15,3 +15,20 @@ main {
 .material-icons.md-36 {
   font-size: 36px;
 }
+
+fieldset {
+  border-width: 0px 1px 1px 0px;
+  border-radius: 20px;
+  margin: 0px;
+  padding: 0px 0px;
+}
+
+legend {
+  text-align: center;
+}
+
+textarea {
+  overflow: hidden;
+  width: 300px;
+  height: 300px;
+}
