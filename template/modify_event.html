@@ -47,7 +47,10 @@
         </li>
         <li class="divider"></li>
         <li>
-          <a href="#">View Event</a>
+          <a href="modify_event.html">Modify Event</a>
+        </li>
+        <li>
+          <a href="delete_event.html">Delete Event</a>
         </li>
 
       </ul>
@@ -58,7 +61,10 @@
         </li>
         <li class="divider"></li>
         <li>
-          <a href="#">View Event</a>
+          <a href="modify_event.html">Modify Event</a>
+        </li>
+        <li>
+          <a href="delete_event.html">Delete Event</a>
         </li>
 
       </ul>
@@ -139,7 +145,21 @@
   </header>
   <main>
     <div id="event_action" class="row">
-      <h5 style="text-align: center;" class="">Modify Event ID: 0012346</h5>
+      <div class="col s4 left">
+        <h5 style="text-align: center;" class="">Modify Event ID: 0012346</h5>
+      </div>
+      <div class="col s4 right">
+        <form action="" method "GET">
+          <div class="input-field inline ">
+            <input id="record_ID" placeholder="#012346" type="text" class="validate">
+            <label for="record_ID">Enter Event ID</label>
+          </div>
+          <button class="btn waves-effect waves-light" id="submit" type="submit">
+            Modify Event
+          </button>
+        </form>
+      </div>
+
     </div>
 
     <div class="row">
