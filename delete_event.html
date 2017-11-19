@@ -106,12 +106,12 @@
             <i class="material-icons">menu</i>
           </a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li class="active">
+            <li>
               <a href="#" class="dropdown-button" data-activates="dropdown-user">User
                 <i class="material-icons right">arrow_drop_down</i>
               </a>
             </li>
-            <li>
+            <li class="active">
               <a href="#" class="dropdown-button" data-activates="dropdown-event">Events
                 <i class="material-icons right">arrow_drop_down</i>
               </a>
@@ -123,12 +123,12 @@
             </li>
           </ul>
           <ul class="side-nav" id="mobile-demo">
-            <li class="active">
+            <li>
               <a href="#" class="dropdown-button" data-activates="dropdown-user2">User
                 <i class="material-icons right">arrow_drop_down</i>
               </a>
             </li>
-            <li>
+            <li class="active">
               <a href="#" class="dropdown-button" data-activates="dropdown-event2">Events
                 <i class="material-icons right">arrow_drop_down</i>
               </a>
@@ -144,122 +144,66 @@
     </div>
   </header>
   <main>
-    <div class="container">
-      <div class="row">
-        <div class="col l5 s12">
-          <form>
-            <p class="">Required fields are followed by
-              <span class="red-text">*</span>
-            </p>
-            <div class="row">
-              <div class="input-field col s6">
-                <input placeholder="First Name" id="first_name" type="text" class="validate" required minlength="2" maxlength="20">
-                <label for="first_name">First Name
-                  <span class="red-text">*</span>
-                </label>
-              </div>
-              <div class="input-field col s6">
-                <input placeholder="Last Name" id="last_name" type="text" class="validate" required minlength="2" maxlength="20">
-                <label for="last_name">Last Name
-                  <span class="red-text">*</span>
-                </label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s12">
-                <input placeholder="Email" id="user_name" type="email" class="validate" required pattern="[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}">
-                <label for="user_name">Enter a valid email address
-                  <span class="red-text">*</span>
-                </label>
-              </div>
+    <div id="event_action" class="row">
+      <div class="col s4 left">
+        <h5 style="text-align: center;" class="">Delete Event ID: 0012346</h5>
+      </div>
+      <div class="col s4 right">
+        <form action="" method "GET">
+          <div class="input-field inline ">
+            <input id="record_ID" placeholder="#012346" type="text" class="validate">
+            <label for="record_ID">Enter Event ID</label>
+          </div>
+          <button class="btn waves-effect waves-light" id="submit" type="submit">
+            Delete Event
+          </button>
+        </form>
+      </div>
 
-            </div>
+    </div>
 
-            <div class="row">
+    <div class="row">
 
-              <div class="input-field col s12">
-                <input id="password" type="password" class="validate" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}">
-                <label for="password">Password
-                  <span class="red-text">*</span>
-                </label>
-                <h6 class="">At least 8 characters long and at least one uppercase, lowercase and special character</h6>
-              </div>
+      <div id="event_view" class="col s12">
+        <div id="event_view_message" class="row">
+          <h5 style="text-align: center;">Event to be deleted</h5>
+        </div>
+        <div class="row">
+          <div id="event_text_view" class="col l6 s12 ">
+            <h6>Event Details</h6>
+            <p>Event ID: 012346</p>
+            <p>Event Name: Red Wedding</p>
+            <p>Event Types: Massacre, Slaughter</p>
+            <p>Dates: 12/24/2017 to 12/26/2017</p>
+            <p>Center Location: Ajegunle</p>
+            <p>Center Name: Twin Towers</p>
+          </div>
+          <div id="event_image_view" class=" col l6 s12">
+            <img class="responsive-img" src="images/2fb443_b38a041c293935f52ecb9305df3069c5.webp" alt="Event Image">
 
+          </div>
+        </div>
+        <div class="row valign-wrapper">
+          <div class="col s5 left">
+            <p>Event will be modifed not deleted</p>
+            <a href="modify_event.html" class="btn waves-effect waves-light" id="Change1">
+              Modify
+            </a>
+          </div>
 
-            </div>
-            <div class="row">
-
-              <div class="input-field col s12">
-                <input id="confirm_password" type="password" class="validate" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}">
-                <label for="password"> Confirm Password
-                  <span class="red-text">*</span>
-                </label>
-
-              </div>
-
-
-            </div>
-
-            <div class="row">
-              <div class="col s3">
-                <button class="btn waves-effect waves-light" type="submit" name="action">Sign Up
-                  <i class="material-icons right">verified user</i>
-                </button>
-              </div>
-
-            </div>
-          </form>
-          <div>
-            <a href="signin.html">
-              <span>Already Signed Up? Click Here to Sign In
-                <i class="material-icons right">verified user</i>
-              </span>
+          <div class="col s5 right">
+            <p>Event will be deleted</p>
+            <a href="#" class="btn waves-effect waves-light" id="Change1">
+              Delete
             </a>
           </div>
         </div>
-        <div class="col l7 s12">
-          <div class="carousel carousel-slider">
-            <a class="carousel-item" href="#one!">
-              <img src="images/2fb443_b38a041c293935f52ecb9305df3069c5.webp">
-            </a>
-            <a class="carousel-item" href="#two!">
-              <img src="images/5.jpg">
-            </a>
-            <a class="carousel-item" href="#three!">
-              <img src="images/eko-convention-centre.jpg">
-            </a>
-            <a class="carousel-item" href="#four!">
-              <img src="images/ev2_1343827227102.jpg">
-            </a>
-            <a class="carousel-item" href="#five!">
-              <img src="images/vllkytdc8qniludqc.3dab3474.jpg">
-            </a>
-          </div>
-        </div>
-
-
-
       </div>
     </div>
+
   </main>
   <footer class="page-footer">
-    <!-- <div class="container">
-        <div class="row">
-          <div class="col l6 s12">
-            <h5 class="white-text">Footer Content</h5>
-            <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
-          </div>
-          <div class="col l4 offset-l2 s12">
-            <h5 class="white-text">Links</h5>
-            <ul>
-              <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
-            </ul>
-          </div>
-        </div>
-      </div> -->
+
     <div class="footer-copyright">
       <div class="container">
         © 2017 Copyright Ozi Tovieye Moses
