@@ -17,19 +17,79 @@
 <body>
   <header>
     <div class="navbar-fixed">
-      <ul id="dropdown-center" class="dropdown-content">
+
+      <ul id="dropdown-user" class="dropdown-content">
+
         <li>
-          <a href="#!">View All Centers</a>
-        </li>
-        <li>
-          <a href="center_events.html">View A Center</a>
+          <a href="signin.html">Sign In</a>
         </li>
         <li class="divider"></li>
         <li>
-          <a href="add_center">Add a Center</a>
+          <a href="signup.html">Sign Up</a>
+        </li>
+
+      </ul>
+      <ul id="dropdown-user2" class="dropdown-content">
+
+        <li>
+          <a href="signin.html">Sign In</a>
+        </li>
+        <li class="divider"></li>
+        <li>
+          <a href="signup.html">Sign Up</a>
+        </li>
+
+      </ul>
+      <ul id="dropdown-event" class="dropdown-content">
+
+        <li>
+          <a href="add_event.html">Add Event</a>
+        </li>
+        <li class="divider"></li>
+        <li>
+          <a href="view_event.html">View Event</a>
+        </li>
+
+      </ul>
+      <ul id="dropdown-event2" class="dropdown-content">
+
+        <li>
+          <a href="add_event.html">Add Event</a>
+        </li>
+        <li class="divider"></li>
+        <li>
+          <a href="view_event.html">View Event</a>
+        </li>
+
+      </ul>
+      <ul id="dropdown-center" class="dropdown-content">
+        <li>
+          <a href="#!">Search Centers</a>
         </li>
         <li>
-          <a href="modify_center">Modify a Center</a>
+          <a href="center_events.html">Center Details and Events</a>
+        </li>
+        <li class="divider"></li>
+        <li>
+          <a href="add_center.html">Add a Center</a>
+        </li>
+        <li>
+          <a href="modify_center.html">Modify a Center</a>
+        </li>
+      </ul>
+      <ul id="dropdown-center2" class="dropdown-content">
+        <li>
+          <a href="#!">Search Centers</a>
+        </li>
+        <li>
+          <a href="center_events.html">Center Details and Events</a>
+        </li>
+        <li class="divider"></li>
+        <li>
+          <a href="add_center.html">Add a Center</a>
+        </li>
+        <li>
+          <a href="modify_center.html">Modify a Center</a>
         </li>
       </ul>
       <nav>
@@ -40,13 +100,17 @@
             <i class="material-icons">menu</i>
           </a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li class="disabled">
-              <a href="#">Username</a>
-            </li>
-            <li class="disabled">
-              <a href="#">Events</a>
-            </li>
             <li class="active">
+              <a href="#" class="dropdown-button" data-activates="dropdown-user">User
+                <i class="material-icons right">arrow_drop_down</i>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="dropdown-button" data-activates="dropdown-event">Events
+                <i class="material-icons right">arrow_drop_down</i>
+              </a>
+            </li>
+            <li>
               <a href="#" class="dropdown-button" data-activates="dropdown-center">Centers
                 <i class="material-icons right">arrow_drop_down</i>
               </a>
@@ -54,13 +118,19 @@
           </ul>
           <ul class="side-nav" id="mobile-demo">
             <li class="active">
-              <a href="#">Username</a>
+              <a href="#" class="dropdown-button" data-activates="dropdown-user2">User
+                <i class="material-icons right">arrow_drop_down</i>
+              </a>
             </li>
-            <li class="disabled">
-              <a href="#">Events</a>
+            <li>
+              <a href="#" class="dropdown-button" data-activates="dropdown-event2">Events
+                <i class="material-icons right">arrow_drop_down</i>
+              </a>
             </li>
-            <li class="disabled">
-              <a href="#">Centers</a>
+            <li>
+              <a href="#" class="dropdown-button" data-activates="dropdown-center2">Centers
+                <i class="material-icons right">arrow_drop_down</i>
+              </a>
             </li>
           </ul>
         </div>
