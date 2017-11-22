@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <!--Import page stylesheets-->
+  <link rel="stylesheet" href="css/template.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <header>
+    <div class="navbar-fixed">
+      <div>
+        <ul id="dropdown-user" class="dropdown-content">
+
+          <li>
+            <a href="signin.html">Sign In</a>
+          </li>
+          <li class="divider"></li>
+          <li>
+            <a href="signup.html">Sign Up</a>
+          </li>
+
+        </ul>
+        <ul id="dropdown-user2" class="dropdown-content">
+
+          <li>
+            <a href="signin.html">Sign In</a>
+          </li>
+          <li class="divider"></li>
+          <li>
+            <a href="signup.html">Sign Up</a>
+          </li>
+
+        </ul>
+        <ul id="dropdown-event" class="dropdown-content">
+
+          <li>
+            <a href="add_event.html">Add Event</a>
+          </li>
+          <li class="divider"></li>
+          <li>
+            <a href="search_event.html">Search Events</a>
+          </li>
+
+
+
+        </ul>
+        <ul id="dropdown-event2" class="dropdown-content">
+
+          <li>
+            <a href="add_event.html">Add Event</a>
+
+          </li>
+          <li class="divider"></li>
+          <li>
+            <a href="search_event.html">Search Events</a>
+          </li>
+
+
+        </ul>
+        <ul id="dropdown-center" class="dropdown-content">
+
+          <li>
+            <a href="add_center.html">Add a Center</a>
+          </li>
+          <li class="divider"></li>
+          <li>
+            <a href="search_center.html">Search Centers</a>
+          </li>
+        </ul>
+        <ul id="dropdown-center2" class="dropdown-content">
+          <li>
+            <a href="add_center.html">Add a Center</a>
+          </li>
+          <li class="divider"></li>
+          <li>
+            <a href="search_center.html">Search Centers</a>
+          </li>
+        </ul>
+      </div>
+      <nav>
+        <div class="nav-wrapper">
+          <a href="index.html" class="brand-logo">
+            <i class="material-icons md-36 orange600">event</i>Event Manager</a>
+          <a href="#" data-activates="mobile-demo" class="button-collapse right">
+            <i class="material-icons">menu</i>
+          </a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li>
+              <a href="#" class="dropdown-button" data-activates="dropdown-user">SignIn/SignUp
+                <i class="material-icons right">arrow_drop_down</i>
+              </a>
+            </li>
+            <li class="active">
+              <a href="#" class="dropdown-button" data-activates="dropdown-event">Events
+                <i class="material-icons right">arrow_drop_down</i>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="dropdown-button" data-activates="dropdown-center">Centers
+                <i class="material-icons right">arrow_drop_down</i>
+              </a>
+            </li>
+            <li>
+              <a href="#">Guest</a>
+            </li>
+          </ul>
+          <ul class="side-nav" id="mobile-demo">
+            <li>
+              <a href="#" class="dropdown-button" data-activates="dropdown-user2">SignIn/SignUp
+                <i class="material-icons right">arrow_drop_down</i>
+              </a>
+            </li>
+            <li class="active">
+              <a href="#" class="dropdown-button" data-activates="dropdown-event2">Events
+                <i class="material-icons right">arrow_drop_down</i>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="dropdown-button" data-activates="dropdown-center2">Centers
+                <i class="material-icons right">arrow_drop_down</i>
+              </a>
+            </li>
+            <li>
+              <a href="#">Guest</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <div id="event_action" class="row">
+      <h5 style="text-align: center;" class="">Search Events</h5>
+    </div>
+
+    <div class="row">
+
+      <form id="main_form" class="col l6 offset-l3 s12">
+        <fieldset>
+
+          <div class="row valign-wrapper">
+
+            <div class="input-field col l5 s12 left">
+              <input type="text" placeholder="Event ID" id="center_list_input" name="center_list_input" type="text">
+
+            </div>
+            <div class="col s4 left valign-wrapper ">
+              <button class="btn waves-effect waves-light" id="submit2" type="submit">
+                Submit
+              </button>
+            </div>
+
+          </div>
+
+        </fieldset>
+
+        <!-- location section -->
+
+
+      </form>
+
+
+    </div>
+    <div class="row">
+      <div class="col l6 offset-l3 s12">
+        <div class="card">
+          <div class="card-image">
+            <img src="images/2fb443_b38a041c293935f52ecb9305df3069c5.webp" alt="Event Image">
+            <span class="card-title">Event Details</span>
+          </div>
+          <div class="card-content">
+            <h6>Event ID: 012346</h6>
+            <h6>Event Name: Twin Towers</h6>
+            <h6>Event Types: Wedding, Birthday</h6>
+            <h6>Event Dates: 100000</h6>
+            <h6>Center ID: 012346</h6>
+            <h6>Center Location: Ajegunle</h6>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col s4 left">
+            <a href="modify_event.html" class="btn waves-effect waves-light" id="Modify">
+
+              Modify
+            </a>
+          </div>
+          <div class="col s4 right">
+            <a href="#modal1" class="btn waves-effect waves-light modal-trigger" id="Next">
+              Delete
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <h4>Your event has been deleted</h4>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+      </div>
+    </div>
+  </main>
+  <footer class="page-footer">
+
+    <div class="footer-copyright">
+      <div class="row">
+        <div class="col s12">
+          © 2017 Copyright Ozi Tovieye Moses
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <!--Import jQuery before materialize.js-->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  <script type="text/javascript" src="js/template.js"></script>
+</body>
+
+</html>
