@@ -33,7 +33,7 @@ textarea {
   height: 300px;
 }
 
-button.btn, a.btn {
+button.btn, a.btn, div.btn {
   font-size: 10px;
   height: 30px;
   width: auto;

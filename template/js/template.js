@@ -17,6 +17,7 @@ $(document).ready(function () {
   });
   $("div").addClass("grey-text text-lighten-1")
   $(".dropdown-button").dropdown();
+  $('.modal').modal();
   $("#add_centers").click(function () {
     let center = $("#center_list_input").val();
     let old = new Set($("#added_centers").val().split(','));
