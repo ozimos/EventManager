@@ -94,17 +94,17 @@
             <i class="material-icons">menu</i>
           </a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li class="active">
+            <li>
               <a href="#" class="dropdown-button" data-activates="dropdown-user">SignIn/SignUp
                 <i class="material-icons right">arrow_drop_down</i>
               </a>
             </li>
-            <li>
+            <li >
               <a href="#" class="dropdown-button" data-activates="dropdown-event">Events
                 <i class="material-icons right">arrow_drop_down</i>
               </a>
             </li>
-            <li>
+            <li class="active">
               <a href="#" class="dropdown-button" data-activates="dropdown-center">Centers
                 <i class="material-icons right">arrow_drop_down</i>
               </a>
@@ -114,17 +114,17 @@
             </li>
           </ul>
           <ul class="side-nav" id="mobile-demo">
-            <li class="active">
+            <li>
               <a href="#" class="dropdown-button" data-activates="dropdown-user2">SignIn/SignUp
                 <i class="material-icons right">arrow_drop_down</i>
               </a>
             </li>
-            <li>
+            <li class="active">
               <a href="#" class="dropdown-button" data-activates="dropdown-event2">Events
                 <i class="material-icons right">arrow_drop_down</i>
               </a>
             </li>
-            <li>
+            <li class="active">
               <a href="#" class="dropdown-button" data-activates="dropdown-center2">Centers
                 <i class="material-icons right">arrow_drop_down</i>
               </a>
@@ -138,24 +138,73 @@
     </div>
   </header>
   <main>
-    <div class="container">
+    <div id="event_action" class="row">
+      <h5 style="text-align: center;" class="">Search Centers</h5>
+    </div>
 
-      <div id="center_text_view" class="row">
-        <div class="col l6 offset-l3 s12">
-          <div class="card">
-            <div class="card-image">
-              <img src="images/2fb443_b38a041c293935f52ecb9305df3069c5.webp" alt="Event Image">
+    <div class="row">
+
+      <form id="main_form" class="col l6 offset-l3 s12">
+        <fieldset>
+
+          <div class="row valign-wrapper">
+
+            <div class="input-field col l5 s12 left">
+              <input type="text" placeholder="Center ID" id="center_list_input" name="center_list_input" type="text">
 
             </div>
-            <div class="card-content">
-              <h6>Book Your Events</h6>
-              <h6>At the Best Centers</h6>
-              <h6>For the Best Prices</h6>
+            <div class="col s4 left valign-wrapper ">
+              <button class="btn waves-effect waves-light" id="submit2" type="submit">
+                Submit
+              </button>
             </div>
 
           </div>
+
+        </fieldset>
+
+        <!-- location section -->
+
+
+      </form>
+
+
+    </div>
+    <div class="row">
+      <div class="col l6 offset-l3 s12">
+        <div class="card">
+          <div class="card-image">
+            <img src="images/2fb443_b38a041c293935f52ecb9305df3069c5.webp" alt="Event Image">
+            <span class="card-title">Center Details</span>
+          </div>
+          <div class="card-content">
+            <h6>Center ID: 012346</h6>
+            <h6>Center Name: Twin Towers</h6>
+            <h6>Center Types: Wedding, Birthday</h6>
+            <h6>Center Cost: 100000</h6>
+            <h6>Center Capacity: 1000</h6>
+            <h6>Center Amenities: Bar, Pool</h6>
+            <h6>Center ID: 012346</h6>
+            <h6>Center Location: Ajegunle</h6>
+          </div>
+
         </div>
+        <div class="row">
+            <div class="col s4 left">
+              <a href="modify_center.html" class="btn waves-effect waves-light" id="modify">
+
+                Modify
+              </a>
+            </div>
+            <div class="col s4 right">
+                <a href="center_events.html" class="btn waves-effect waves-light" id="view-events">
+
+                  View Events
+                </a>
+              </div>
+          </div>
       </div>
+
     </div>
   </main>
   <footer class="page-footer">
