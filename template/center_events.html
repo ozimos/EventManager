@@ -107,8 +107,8 @@
             <i class="material-icons">menu</i>
           </a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li>
-              <a href="#" class="dropdown-button" data-activates="dropdown-user">User
+            <li class="active">
+              <a href="#" class="dropdown-button" data-activates="dropdown-user">SignIn/SignUp
                 <i class="material-icons right">arrow_drop_down</i>
               </a>
             </li>
@@ -117,15 +117,18 @@
                 <i class="material-icons right">arrow_drop_down</i>
               </a>
             </li>
-            <li class="active">
+            <li>
               <a href="#" class="dropdown-button" data-activates="dropdown-center">Centers
                 <i class="material-icons right">arrow_drop_down</i>
               </a>
             </li>
+            <li>
+              <a href="#">Guest</a>
+            </li>
           </ul>
           <ul class="side-nav" id="mobile-demo">
-            <li>
-              <a href="#" class="dropdown-button" data-activates="dropdown-user2">User
+            <li class="active">
+              <a href="#" class="dropdown-button" data-activates="dropdown-user2">SignIn/SignUp
                 <i class="material-icons right">arrow_drop_down</i>
               </a>
             </li>
@@ -134,10 +137,13 @@
                 <i class="material-icons right">arrow_drop_down</i>
               </a>
             </li>
-            <li class="active">
+            <li>
               <a href="#" class="dropdown-button" data-activates="dropdown-center2">Centers
                 <i class="material-icons right">arrow_drop_down</i>
               </a>
+            </li>
+            <li>
+              <a href="#">Guest</a>
             </li>
           </ul>
         </div>
@@ -145,13 +151,29 @@
     </div>
   </header>
   <main>
-    <div id="center_action" class="row">
-      <h5 style="text-align: center;" class="">Center #012346</h5>
+    <div id="center_text_view" class="row">
+      <div class="col l6 offset-l3 s12">
+        <div class="card">
+          <div class="card-image">
+            <img src="images/2fb443_b38a041c293935f52ecb9305df3069c5.webp" alt="Event Image">>
+            <span class="card-title">Center Details</span>
+          </div>
+          <div class="card-content">
+            <h6>Center ID: 012346</h6>
+            <h6>Center Name: Twin Towers</h6>
+            <h6>Event Types: Wedding, Birthday</h6>
+            <h6>Center Cost: 100000</h6>
+            <h6>Center Amenities: Bar, Pool</h6>
+            <h6>Center Capacity: 200</h6>
+            <h6>Center Location: Ajegunle</h6>
+          </div>
+
+        </div>
+      </div>
     </div>
 
-
-    <div class="row">
-      <div id="qeury_results" class="col l6 s12 right">
+    <div id="qeury_results" class="row">
+      <div class="col l6 offset-l3 s12">
         <div class="row">
           <div class="col s12">
             <table class="striped bordered highlight responsive-table">
@@ -247,8 +269,9 @@
               </tbody>
             </table>
           </div>
-
         </div>
+
+
         <div class="row">
           <div class="col s4 left">
             <a class="btn waves-effect waves-light" id="Previous">
@@ -263,37 +286,19 @@
             </a>
           </div>
         </div>
-
-      </div>
-      <div id="center_view" class="col l6 s12 left">
-
-
-        <div class="row">
-          <div id="center_text_view" class="col  l6 s12 ">
-            <h6>Center Details</h6>
-            <p>Center ID: 012346</p>
-            <p>Center Name: Twin Towers</p>
-            <p>Event Types: Wedding, Birthday</p>
-            <p>Center Cost: 100000</p>
-            <p>Center Amenities: Bar, Pool</p>
-            <p>Center Capacity: 200</p>
-            <p>Center Location: Ajegunle</p>
-          </div>
-          <div id="center_image_view" class=" col  l6 s12">
-            <img class="responsive-img" src="images/2fb443_b38a041c293935f52ecb9305df3069c5.webp" alt="Event Image">
-
-          </div>
-        </div>
-
       </div>
     </div>
+
 
   </main>
   <footer class="page-footer">
 
     <div class="footer-copyright">
-      <div class="container">
-        © 2017 Copyright Ozi Tovieye Moses
+      <div class="row">
+        <div class="col s12">
+          © 2017 Copyright Ozi Tovieye Moses
+        </div>
+
       </div>
     </div>
   </footer>
