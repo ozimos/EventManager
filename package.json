@@ -24,10 +24,13 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-airbnb": "^2.4.0",
     "babel-register": "^6.26.0",
+    "body-parser": "^1.18.2",
     "chai": "^4.1.2",
+    "express": "^4.16.2",
     "http-server": "^0.10.0",
     "httpserver": "^0.3.0",
     "mocha": "^4.0.1",
+    "morgan": "^1.9.0",
     "nodemon": "^1.12.1"
   },
   "devDependencies": {
