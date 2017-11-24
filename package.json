@@ -4,8 +4,9 @@
   "description": "A full stack app allowing users to schedule and manage events at different facilities Users can add, change and delete events Users can perform above actions against facilities. Users can view facilities based on various criteria such as amenities, availability etc Administrators can add facilities",
   "main": "index.js",
   "scripts": {
-    "start:dev": "nodemon --watch server --exec babel-node -- server/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:dev": "nodemon --exec babel-node -- ./index.js",
+    "build": "babel src -d dist",
+    "test": "mocha --require babel-register --require babel-polyfill --recursive test/appTest.js"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
     "babel-cli": "^6.26.0",
     "babel-polyfill": "^6.26.0",
     "babel-preset-airbnb": "^2.4.0",
+    "babel-preset-latest": "^6.24.1",
     "babel-register": "^6.26.0",
     "body-parser": "^1.18.2",
     "chai": "^4.1.2",
