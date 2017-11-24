@@ -5,6 +5,7 @@ import userRoute from './routes/apiRoutes';
 const app = express();
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/api/v1/', userRoute);
 
 app.get('/', (req, res) => {
