@@ -1,22 +1,13 @@
+// Dependencies
 import express from 'express';
-import {
-  centerControllers,
-  centerRoutes
-} from '../controllers/centers';
+import centerController from '../controllers/centers';
+import eventController from '../controllers/events';
 
-import {
-  eventControllers,
-  eventRoutes
-} from '../controllers/events';
+const router = express.Router();
 
+// Routes
+router.route('/centers')
+  .get(centerController.getAllCenters)
+  .post(centerController.postCenter);
 
-const userRoutes = express.Router();
-
-userRoutes.use('/centers', centerRoutes);
-// userRoutes.use('/events', eventRoutes);
-
-userRoutes.get('/', res => res.json({
-  errors: false
-}));
-
-export default userRoutes;
+export default router;
