@@ -1,37 +1,19 @@
 import express from 'express';
+import {
+  centers
+} from '../dummy/data';
 
-const router = express.Router();
- router.use('events',  import events from 'events')
-export router;
-const centers = [{
-  centerId: 1,
-  centerName: 'Muson Center',
-  centerCost: 100000,
-  centerCapacity: 1000,
-  centerImage: '',
-  centerLocation: {
-    country: 'Nigeria',
-    state: 'Lagos',
-    lga: 'Ikorodu'
-  },
-  centerAmenities: ['Pool', 'Bar', 'Theater',],
-  centerEventType: ['Cocktail', 'Birthday', 'Wedding']
+const centerRoutes = express.Router();
+centerRoutes.get('/', res => res.json({
+  centers,
+  errors: false
+}));
 
-},
 
-{
-  centerId: 2,
-  centerName: 'The Dome',
-  centerCost: 200000,
-  centerCapacity: 5000,
-  centerImage: 'dome.jpg',
-  centerLocation: {
-    country: 'Nigeria',
-    state: 'Lagos',
-    lga: 'VI'
-  },
-  centerAmenities: ['Pool', 'Bar'],
-  centerEventType: ['Cocktail', 'Birthday', 'Wedding']
+class centerController {}
+// export {
+//   centerController,
+//   centerRoutes
+// };
 
-}
-];
+export default centerRoutes;

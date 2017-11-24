@@ -1,14 +1,22 @@
 import express from 'express';
+import {
+  centerControllers,
+  centerRoutes
+} from '../controllers/centers';
 
-export const userRoutes {
+import {
+  eventControllers,
+  eventRoutes
+} from '../controllers/events';
 
 
-  const router = express.Router();
+const userRoutes = express.Router();
 
-  router.get('/', (res, req) => {
-    return res.json({
-      centers,
-      errors: false
-    })
-  })
-};
+userRoutes.use('/centers', centerRoutes);
+// userRoutes.use('/events', eventRoutes);
+
+userRoutes.get('/', res => res.json({
+  errors: false
+}));
+
+export default userRoutes;
