@@ -1,11 +1,11 @@
-#### Pull request shows commits on branch UI-Templates to be merged into branch develop, equest confirmatio that LFA Feedback has been implemented.
+#### What does this PR do?
 
-#### Demonstrates UI templates writen in HTML, CSS and Materialize for an event manager app
+#### Description of Task to be completed?
 
-#### manual test method - NA
+#### How should this be manually tested?
 
-#### background context - implemented LFA feedback
+#### Any background context you want to provide?
 
-#### pivotal tracker stories - #153009105
+#### What are the relevant pivotal tracker stories? (If applicable)
 
-#### Screenshots - NA
+#### Screenshots (If applicable)
