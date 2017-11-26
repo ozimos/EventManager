@@ -116,28 +116,3 @@ export default class centerController {
     });
   }
 
-  /**
-   *
-   *
-   * Delete an Event
-   * @param {obj} req
-   * @param {obj} res
-   * @returns {any} success
-   * @memberof centerController
-   */
-  static deleteCenter(req, res) {
-    for (let i = 0; i < centers.length; i++) {
-      if (centers[i].id === parseInt(req.params.id, 10)) {
-        centers.splice(i, 1);
-        return res.json({
-          message: 'Center Deleted',
-          error: false
-        });
-      }
-    }
-    return res.status(404).json({
-      message: 'Center not Found',
-      error: true
-    });
-  }
-}

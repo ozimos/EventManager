@@ -20,10 +20,10 @@ export default class eventController {
   /**
    *
    *
-   *  Get a single center
+   *  Get a single event
    * @param {obj} req
    * @param {obj} res
-   * @returns {any} A single center
+   * @returns {any} A single event
    * @memberof eventController
    */
   static getSingleEvent(req, res) {
@@ -36,7 +36,7 @@ export default class eventController {
       }
     }
     return res.status(404).json({
-      message: 'Center not Found',
+      message: 'Event not Found',
       error: true
     });
   }
@@ -44,13 +44,13 @@ export default class eventController {
   /**
    *
    *
-   * Creates a new center
+   * Creates a new event
    * @param {obj} req
    * @param {obj} res
    * @returns {any} success, all events
    * @memberof eventController
    */
-  static postCenter(req, res) {
+  static postEvent(req, res) {
     if ((!req.body.name) || (!req.body.location) || (!req.body.facilities)) {
       return res.json({
         message: events,
@@ -80,13 +80,13 @@ export default class eventController {
   /**
    *
    *
-   *  Update a center
+   *  Update a Event
    * @param {obj} req
    * @param {obj} res
    * @returns {any} sucess, all events
    * @memberof eventController
    */
-  static updateCenter(req, res) {
+  static updateEvent(req, res) {
     for (let i = 0; i < events.length; i++) {
       if (events[i].id === parseInt(req.params.id, 10)) {
         events[i].name = req.body.name || events[i].name;
@@ -102,7 +102,7 @@ export default class eventController {
       }
     }
     return res.status(404).json({
-      message: 'Center not Found',
+      message: 'Event not Found',
       error: true
     });
   }
@@ -116,18 +116,18 @@ export default class eventController {
    * @returns {any} success
    * @memberof eventController
    */
-  static deleteCenter(req, res) {
+  static deleteEvent(req, res) {
     for (let i = 0; i < events.length; i++) {
       if (events[i].id === parseInt(req.params.id, 10)) {
         events.splice(i, 1);
         return res.json({
-          message: 'Center Deleted',
+          message: 'Event Deleted',
           error: false
         });
       }
     }
     return res.status(404).json({
-      message: 'Center not Found',
+      message: 'Event not Found',
       error: true
     });
   }
