@@ -1,4 +1,4 @@
-import events from '../dummy/events';
+import events from '../models/data';
 
 export default class eventController {
   /**

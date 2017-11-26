@@ -1,4 +1,6 @@
-import centers from '../dummy/centers';
+import {
+  centers
+} from '../models/data';
 
 export default class centerController {
   /**
@@ -51,23 +53,28 @@ export default class centerController {
    * @memberof centerController
    */
   static postCenter(req, res) {
-    const {
-      body
-    } = req;
-    if ((!body.name) || (!body.cost) || (!body.capacity) || (!body.image) || (!body.location) || (!body.amenities) || (!body.eventType)) {
+    const formFields = ['name', 'cost', 'capacity', 'image', 'country', 'state', 'lga', 'amenities', 'eventType'];
+
+
+    if (!formFields.every(element => Object.keys(req.body).includes(element))) {
       return res.json({
         message: centers,
-        error: true
+        error: true,
+        required: Object.keys(req.body)
       });
     }
     const newId = centers.length + 1;
-    const name = body.name;
-    const cost = body.cost;
-    const capacity = body.capacity;
-    const image = body.image;
-    const location = body.location;
-    const amenities = body.amenities;
-    const eventType = body.eventType;
+    const {
+      name,
+      image,
+      country,
+      state,
+      lga,
+      amenities,
+      eventType
+    } = req.body;
+    const cost = parseInt(req.body.cost, 10);
+    const capacity = parseInt(req.body.capacity, 10);
 
     centers.push({
       id: newId,
@@ -75,7 +82,11 @@ export default class centerController {
       cost,
       capacity,
       image,
-      location,
+      location: {
+        country,
+        state,
+        lga
+      },
       amenities,
       eventType
     });
@@ -96,7 +107,7 @@ export default class centerController {
    * @memberof centerController
    */
   static updateCenter(req, res) {
-    for (let i = 0; i < centers.length; i++) {
+    for (let i = 0; i < centers.length; i + 1) {
       if (centers[i].id === parseInt(req.params.id, 10)) {
         centers[i].name = req.body.name || centers[i].name;
         centers[i].location = req.body.location || centers[i].location;
@@ -115,4 +126,4 @@ export default class centerController {
       error: true
     });
   }
-
+}
