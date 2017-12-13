@@ -29,7 +29,7 @@ export default class centerController {
    * @memberof centerController
    */
   static getSingleCenter(req, res) {
-    for (let i = 0; i < centers.length; i++) {
+    for (let i = 0; i < centers.length; i += 1) {
       if (centers[i].id === parseInt(req.params.id, 10)) {
         return res.json({
           message: centers[i],
@@ -57,7 +57,9 @@ export default class centerController {
 
 
     if (!formFields.every(element => Object.keys(req.body).includes(element))) {
+      // return error if req body does not carry every field in formFields
       return res.json({
+
         message: centers,
         error: true,
         required: Object.keys(req.body)
@@ -66,7 +68,6 @@ export default class centerController {
     const newId = centers.length + 1;
     const {
       name,
-      image,
       country,
       state,
       lga,
@@ -81,7 +82,6 @@ export default class centerController {
       name,
       cost,
       capacity,
-      image,
       location: {
         country,
         state,
@@ -107,12 +107,42 @@ export default class centerController {
    * @memberof centerController
    */
   static updateCenter(req, res) {
-    for (let i = 0; i < centers.length; i + 1) {
-      if (centers[i].id === parseInt(req.params.id, 10)) {
-        centers[i].name = req.body.name || centers[i].name;
-        centers[i].location = req.body.location || centers[i].location;
-        centers[i].facilities = req.body.facilities || centers[i].facilities;
-        centers[i].description = req.body.description || centers[i].description;
+    // loop start
+    for (let i = 0; i < centers.length; i += 1) {
+      const center = centers[i];
+      if (center.id === parseInt(req.params.id, 10)) {
+        // Destructuring assignment to extract req.body fields
+        const {
+          country,
+          state,
+          lga,
+          cost,
+          capacity,
+          ...clone
+        } = req.body;
+
+        if (country) {
+          center.location.country = country;
+        }
+        if (state) {
+          center.location.state = state;
+        }
+        if (lga) {
+          center.location.lga = lga;
+        }
+
+        if (cost) {
+          center.cost = parseInt(cost, 10);
+        }
+        if (capacity) {
+          center.capacity = parseInt(capacity, 10);
+        }
+
+        Object.keys(clone).forEach((element) => {
+          center[element] = clone[element];
+          return element;
+        });
+
 
         return res.json({
           message: 'Success',
@@ -121,6 +151,7 @@ export default class centerController {
         });
       }
     }
+    // loop end
     return res.status(404).json({
       message: 'Center not Found',
       error: true

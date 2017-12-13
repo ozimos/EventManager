@@ -3,7 +3,6 @@ export const centers = [{
   name: 'Muson Center',
   cost: 100000,
   capacity: 1000,
-  image: '',
   location: {
     country: 'Nigeria',
     state: 'Lagos',
@@ -19,7 +18,6 @@ export const centers = [{
   name: 'The Dome',
   cost: 200000,
   capacity: 5000,
-  image: 'dome.jpg',
   location: {
     country: 'Nigeria',
     state: 'Lagos',

@@ -32,6 +32,7 @@
     "express": "^4.16.2",
     "http-server": "^0.10.0",
     "httpserver": "^0.3.0",
+    "method-override": "^2.3.10",
     "mocha": "^4.0.1",
     "morgan": "^1.9.0",
     "multer": "^1.3.0",
