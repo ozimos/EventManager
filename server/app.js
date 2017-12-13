@@ -1,11 +1,23 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import methodOverride from 'method-override';
+
+
 import userRoute from './routes/apiRoutes';
 
 const app = express();
 
+
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(methodOverride((req) => {
+  if (req.param.id) {
+    return 'PUT';
+  }
+}));
+
 app.use('/api/v1/', userRoute);
 
 app.get('/', (req, res) => {

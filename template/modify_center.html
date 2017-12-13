@@ -140,25 +140,25 @@
   <main>
     <div class="row" id="center_action">
 
-      <h5 style="text-align: center;" class="">Modify Center</h5>
+      <h5 style="text-align: center;" class="">Modify Center    -centerid 2</h5>
 
     </div>
 
     <div class="row">
 
-      <form id="main_form" class="col l6 offset-l3 s12">
+      <form action="http://localhost:3000/api/v1/centers/2" method="POST" id="main_form" class="col l6 offset-l3 s12">
 
 
         <fieldset>
           <div class="row">
             <div class="input-field col l6 s12 left">
-              <input placeholder="Muson Center" id="center_name" name="center_name" type="text" class="validate" required minlength="2">
+              <input placeholder="Center Name" id="center_name" name="name" type="text" class="validate" minlength="2">
 
             </div>
             <div class="input-field col l5 s12 right">
 
-              <select id="center_type" class="validate icons" multiple required>
-                <option value="" disabled selected class="">Wedding</option>
+              <select name="eventType" id="eventType" class="validate icons" multiple>
+                <option value="" disabled selected class="">Event Type</option>
                 <option value="Wedding" data-icon="images/5.jpg" class="circle">Wedding</option>
                 <option value="Cocktail Party" data-icon="images/eko-convention-centre.jpg" class="circle">Cocktail Party</option>
                 <option value="Corporate Event" data-icon="images\ev2_1343827227102.jpg" class="circle">Corporate Event</option>
@@ -174,18 +174,18 @@
 
           <div class="row">
             <div class="input-field col s3 left">
-              <input placeholder="100000" id="center_cost" name="center_cost" type="number" class="validate" required minlength="5">
+              <input placeholder="Cost" id="center_cost" name="cost" type="number" class="validate" minlength="5">
 
             </div>
             <div class="input-field col s3 right">
-              <input placeholder="1000" id="center_capacity" name="center_capacity" type="number" class="validate" required
+              <input placeholder="Capacity" id="center_capacity" name="capacity" type="number" class="validate" required
                 minlength="3">
 
             </div>
             <div class="input-field col l5 s12 right">
 
-              <select id="center_amenities" class="validate icons" multiple required>
-                <option value="" disabled selected class="">Pool</option>
+              <select name="amenities" class="validate icons" multiple>
+                <option value="" disabled selected class="">Amenities</option>
                 <option value="Bar" data-icon="images/5.jpg" class="circle">Bar</option>
                 <option value="Pool" data-icon="images/eko-convention-centre.jpg" class="circle">Pool</option>
                 <option value="Theater" data-icon="images\ev2_1343827227102.jpg" class="circle">Theater</option>
@@ -202,7 +202,7 @@
 
           <div class="row">
             <div class="input-field col l4 s12">
-              <input type="text" placeholder="Nigeria" id="location_country" list="country_list">
+              <input type="text" placeholder="Country" name="country" id="location_country" list="country_list">
 
               <datalist id="country_list">
                 <option value="Nigeria">
@@ -214,7 +214,7 @@
               </datalist>
             </div>
             <div class="input-field col l4 s12">
-              <input type="text" placeholder="Lagos" id="location_region" list="region_list">
+              <input type="text" placeholder="State" name="state" id="location_region" list="region_list">
 
               <datalist id="region_list">
                 <option value="Abia">
@@ -226,7 +226,7 @@
               </datalist>
             </div>
             <div class="input-field col l4 s12">
-              <input type="text" placeholder="Ikorodu" id="location_sregion" list="sregion_list">
+              <input type="text" placeholder="LGA" name="lga" id="location_sregion" list="sregion_list">
 
               <datalist id="sregion_list">
                 <option value="Badagry">
@@ -259,12 +259,19 @@
           <!-- submit buttons -->
           <div class="row">
 
-            <div class="col s4 left valign-wrapper ">
+            <!-- <div class="col s4 left valign-wrapper ">
               <button data-target="modal1" class="btn waves-effect waves-light modal-trigger" id="submit2" type="submit">
 
                 Modify Center
               </button>
+            </div> -->
+            <div class="col s4 left valign-wrapper ">
+              <button class="btn waves-effect waves-light " id="submit2" type="submit">
+
+                Modify Center
+              </button>
             </div>
+
           </div>
 
         </fieldset>
@@ -281,7 +288,7 @@
     <!-- Modal Structure -->
     <div id="modal1" class="modal">
       <div class="modal-content">
-        <h4>Your center has been added</h4>
+        <h4>Your center has been modified</h4>
       </div>
       <div class="modal-footer">
         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>

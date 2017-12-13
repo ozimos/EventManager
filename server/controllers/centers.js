@@ -1,4 +1,6 @@
-import centers from '../dummy/centers';
+import {
+  centers
+} from '../models/data';
 
 export default class centerController {
   /**
@@ -27,7 +29,7 @@ export default class centerController {
    * @memberof centerController
    */
   static getSingleCenter(req, res) {
-    for (let i = 0; i < centers.length; i++) {
+    for (let i = 0; i < centers.length; i += 1) {
       if (centers[i].id === parseInt(req.params.id, 10)) {
         return res.json({
           message: centers[i],
@@ -51,31 +53,40 @@ export default class centerController {
    * @memberof centerController
    */
   static postCenter(req, res) {
-    const {
-      body
-    } = req;
-    if ((!body.name) || (!body.cost) || (!body.capacity) || (!body.image) || (!body.location) || (!body.amenities) || (!body.eventType)) {
+    const formFields = ['name', 'cost', 'capacity', 'country', 'state', 'lga', 'amenities', 'eventType'];
+
+
+    if (!formFields.every(element => Object.keys(req.body).includes(element))) {
+      // return error if req body does not carry every field in formFields
       return res.json({
+
         message: centers,
-        error: true
+        error: true,
+        required: formFields
       });
     }
     const newId = centers.length + 1;
-    const name = body.name;
-    const cost = body.cost;
-    const capacity = body.capacity;
-    const image = body.image;
-    const location = body.location;
-    const amenities = body.amenities;
-    const eventType = body.eventType;
+    const {
+      name,
+      country,
+      state,
+      lga,
+      amenities,
+      eventType
+    } = req.body;
+    const cost = parseInt(req.body.cost, 10);
+    const capacity = parseInt(req.body.capacity, 10);
 
     centers.push({
       id: newId,
       name,
       cost,
       capacity,
-      image,
-      location,
+      location: {
+        country,
+        state,
+        lga
+      },
       amenities,
       eventType
     });
@@ -96,12 +107,44 @@ export default class centerController {
    * @memberof centerController
    */
   static updateCenter(req, res) {
-    for (let i = 0; i < centers.length; i++) {
+    for (let i = 0; i < centers.length; i += 1) {
       if (centers[i].id === parseInt(req.params.id, 10)) {
-        centers[i].name = req.body.name || centers[i].name;
-        centers[i].location = req.body.location || centers[i].location;
-        centers[i].facilities = req.body.facilities || centers[i].facilities;
-        centers[i].description = req.body.description || centers[i].description;
+        // Destructuring assignment to extract req.body fields
+        const {
+          country,
+          state,
+          lga,
+          cost,
+          capacity,
+          ...clone
+        } = req.body;
+        // group location fields into single object
+        const location = {
+          country,
+          state,
+          lga
+        };
+
+        const numItems = {
+          cost,
+          capacity
+        };
+
+        Object.keys(location).forEach((item) => {
+          if (item) {
+            centers[i].location[item] = item;
+          }
+        });
+
+        Object.keys(numItems).forEach((item) => {
+          if (item) {
+            centers[i][item] = parseInt(item, 10);
+          }
+        });
+
+        Object.keys(clone).forEach((element) => {
+          centers[i][element] = clone[element];
+        });
 
         return res.json({
           message: 'Success',
@@ -110,31 +153,7 @@ export default class centerController {
         });
       }
     }
-    return res.status(404).json({
-      message: 'Center not Found',
-      error: true
-    });
-  }
 
-  /**
-   *
-   *
-   * Delete an Event
-   * @param {obj} req
-   * @param {obj} res
-   * @returns {any} success
-   * @memberof centerController
-   */
-  static deleteCenter(req, res) {
-    for (let i = 0; i < centers.length; i++) {
-      if (centers[i].id === parseInt(req.params.id, 10)) {
-        centers.splice(i, 1);
-        return res.json({
-          message: 'Center Deleted',
-          error: false
-        });
-      }
-    }
     return res.status(404).json({
       message: 'Center not Found',
       error: true
