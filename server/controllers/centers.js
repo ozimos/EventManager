@@ -53,7 +53,7 @@ export default class centerController {
    * @memberof centerController
    */
   static postCenter(req, res) {
-    const formFields = ['name', 'cost', 'capacity', 'country', 'state', 'lga', 'amenities', 'eventType'];
+    const formFields = ['name', 'description', 'cost', 'capacity', 'country', 'state', 'lga', 'amenities', 'eventTypes'];
 
 
     if (!formFields.every(element => Object.keys(req.body).includes(element))) {
@@ -68,11 +68,12 @@ export default class centerController {
     const newId = centers.length + 1;
     const {
       name,
+      description,
       country,
       state,
       lga,
       amenities,
-      eventType
+      eventTypes
     } = req.body;
     const cost = parseInt(req.body.cost, 10);
     const capacity = parseInt(req.body.capacity, 10);
@@ -81,6 +82,7 @@ export default class centerController {
       id: newId,
       name,
       cost,
+      description,
       capacity,
       location: {
         country,
@@ -88,7 +90,7 @@ export default class centerController {
         lga
       },
       amenities,
-      eventType
+      eventTypes
     });
     return res.json({
       message: 'success',
@@ -116,7 +118,7 @@ export default class centerController {
           lga,
           cost,
           capacity,
-          ...clone
+          ...rest
         } = req.body;
         // group location fields into single object
         const location = {
@@ -131,19 +133,19 @@ export default class centerController {
         };
 
         Object.keys(location).forEach((item) => {
-          if (item) {
-            centers[i].location[item] = item;
+          if (location[item]) {
+            centers[i].location[item] = location[item];
           }
         });
 
         Object.keys(numItems).forEach((item) => {
-          if (item) {
-            centers[i][item] = parseInt(item, 10);
+          if (numItems[item]) {
+            centers[i][item] = parseInt(numItems[item], 10);
           }
         });
 
-        Object.keys(clone).forEach((element) => {
-          centers[i][element] = clone[element];
+        Object.keys(rest).forEach((element) => {
+          centers[i][element] = rest[element];
         });
 
         return res.json({

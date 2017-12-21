@@ -1,4 +1,6 @@
-import events from '../models/data';
+import {
+  events
+} from '../models/data';
 
 export default class eventController {
   /**
@@ -27,7 +29,7 @@ export default class eventController {
    * @memberof eventController
    */
   static getSingleEvent(req, res) {
-    for (let i = 0; i < events.length; i++) {
+    for (let i = 0; i < events.length; i += 1) {
       if (events[i].id === parseInt(req.params.id, 10)) {
         return res.json({
           message: events[i],
@@ -51,24 +53,39 @@ export default class eventController {
    * @memberof eventController
    */
   static postEvent(req, res) {
-    if ((!req.body.name) || (!req.body.location) || (!req.body.facilities)) {
+    const formFields = ['name', 'type', 'centerID', 'duration', 'startDate', 'estimatedAttendance'];
+
+    if (!formFields.every(element => Object.keys(req.body).includes(element))) {
+      // return error if req body does not carry every field in formFields
       return res.json({
+
         message: events,
-        error: true
+        error: true,
+        required: formFields
       });
     }
-    const newId = events.length + 1;
-    const name = req.body.name;
-    const location = req.body.location;
-    const facilities = req.body.facilities;
-    const description = req.body.description;
+    let newId = events.length + 1;
+    if (events[events.length - 1].id === newId) {
+      newId += 1;
+    }
+    const {
+      name,
+      type,
+    } = req.body;
+
+    const startDate = new Date(req.body.startDate);
+    const duration = parseInt(req.body.duration, 10);
+    const centerID = parseInt(req.body.centerID, 10);
+    const estimatedAttendance = parseInt(req.body.estimatedAttendance, 10);
 
     events.push({
       id: newId,
       name,
-      location,
-      facilities,
-      description
+      type,
+      centerID,
+      duration,
+      startDate,
+      estimatedAttendance
     });
     return res.json({
       message: 'success',
@@ -80,19 +97,43 @@ export default class eventController {
   /**
    *
    *
-   *  Update a Event
+   *  Update an Event
    * @param {obj} req
    * @param {obj} res
    * @returns {any} sucess, all events
    * @memberof eventController
    */
   static updateEvent(req, res) {
-    for (let i = 0; i < events.length; i++) {
+    for (let i = 0; i < events.length; i += 1) {
       if (events[i].id === parseInt(req.params.id, 10)) {
-        events[i].name = req.body.name || events[i].name;
-        events[i].location = req.body.location || events[i].location;
-        events[i].facilities = req.body.facilities || events[i].facilities;
-        events[i].description = req.body.description || events[i].description;
+        // Destructuring assignment to extract req.body fields
+        const {
+          centerID,
+          duration,
+          startDate,
+          estimatedAttendance,
+          ...rest
+        } = req.body;
+
+        const numItems = {
+          centerID,
+          duration,
+          estimatedAttendance
+        };
+
+        Object.keys(numItems).forEach((item) => {
+          if (numItems[item]) {
+            events[i][item] = parseInt(numItems[item], 10);
+          }
+        });
+        Object.keys(rest).forEach((element) => {
+          events[i][element] = rest[element];
+        });
+
+        if (startDate) {
+          events[i].startDate = new Date(startDate);
+        }
+
 
         return res.json({
           message: 'Success',
@@ -117,7 +158,7 @@ export default class eventController {
    * @memberof eventController
    */
   static deleteEvent(req, res) {
-    for (let i = 0; i < events.length; i++) {
+    for (let i = 0; i < events.length; i += 1) {
       if (events[i].id === parseInt(req.params.id, 10)) {
         events.splice(i, 1);
         return res.json({
