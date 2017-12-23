@@ -1,14 +1,19 @@
 // Dependencies
 import express from 'express';
+import {
+  celebrate,
+  errors
+} from 'celebrate';
 import centerController from '../controllers/centers';
 import eventController from '../controllers/events';
+import schemas from '../validators/schemas';
 
 const router = express.Router();
 
 // Routes
 router.route('/centers')
   .get(centerController.getAllCenters)
-  .post(centerController.postCenter);
+  .post(celebrate(schemas.postCenterSchema), centerController.postCenter);
 
 router.route('/centers/:id')
   .get(centerController.getSingleCenter)
@@ -16,7 +21,7 @@ router.route('/centers/:id')
 
 router.route('/events')
   .get(eventController.getAllEvents)
-  .post(eventController.postEvent);
+  .post(celebrate(schemas.postEventSchema), eventController.postEvent);
 
 router.route('/events/:id')
   .get(eventController.getSingleEvent)

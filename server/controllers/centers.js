@@ -2,7 +2,7 @@ import {
   centers
 } from '../models/data';
 
-export default class centerController {
+export default {
   /**
    *
    *
@@ -12,12 +12,12 @@ export default class centerController {
    * @returns {any} all centers
    * @memberof centerController
    */
-  static getAllCenters(req, res) {
+  getAllCenters(req, res) {
     return res.json({
       centers,
       error: false
     });
-  }
+  },
 
   /**
    *
@@ -28,7 +28,7 @@ export default class centerController {
    * @returns {any} A single center
    * @memberof centerController
    */
-  static getSingleCenter(req, res) {
+  getSingleCenter(req, res) {
     for (let i = 0; i < centers.length; i += 1) {
       if (centers[i].id === parseInt(req.params.id, 10)) {
         return res.json({
@@ -41,7 +41,7 @@ export default class centerController {
       message: 'Center not Found',
       error: true
     });
-  }
+  },
 
   /**
    *
@@ -52,7 +52,7 @@ export default class centerController {
    * @returns {any} success, all centers
    * @memberof centerController
    */
-  static postCenter(req, res) {
+  postCenter(req, res) {
     const formFields = ['name', 'description', 'cost', 'capacity', 'country', 'state', 'lga', 'amenities', 'eventTypes'];
 
 
@@ -97,7 +97,7 @@ export default class centerController {
       error: false,
       centers
     });
-  }
+  },
 
   /**
    *
@@ -108,7 +108,7 @@ export default class centerController {
    * @returns {any} sucess, all centers
    * @memberof centerController
    */
-  static updateCenter(req, res) {
+  updateCenter(req, res) {
     for (let i = 0; i < centers.length; i += 1) {
       if (centers[i].id === parseInt(req.params.id, 10)) {
         // Destructuring assignment to extract req.body fields
@@ -161,4 +161,4 @@ export default class centerController {
       error: true
     });
   }
-}
+};

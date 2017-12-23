@@ -2,7 +2,7 @@ import {
   events
 } from '../models/data';
 
-export default class eventController {
+export default {
   /**
    *
    *
@@ -12,12 +12,12 @@ export default class eventController {
    * @returns {any} all events
    * @memberof eventController
    */
-  static getAllEvents(req, res) {
+  getAllEvents(req, res) {
     return res.json({
       events,
       error: false
     });
-  }
+  },
 
   /**
    *
@@ -28,7 +28,7 @@ export default class eventController {
    * @returns {any} A single event
    * @memberof eventController
    */
-  static getSingleEvent(req, res) {
+  getSingleEvent(req, res) {
     for (let i = 0; i < events.length; i += 1) {
       if (events[i].id === parseInt(req.params.id, 10)) {
         return res.json({
@@ -41,7 +41,7 @@ export default class eventController {
       message: 'Event not Found',
       error: true
     });
-  }
+  },
 
   /**
    *
@@ -52,8 +52,8 @@ export default class eventController {
    * @returns {any} success, all events
    * @memberof eventController
    */
-  static postEvent(req, res) {
-    const formFields = ['name', 'type', 'centerID', 'duration', 'startDate', 'estimatedAttendance'];
+  postEvent(req, res) {
+    const formFields = ['name', 'type', 'centerId', 'duration', 'startDate', 'estimatedAttendance'];
 
     if (!formFields.every(element => Object.keys(req.body).includes(element))) {
       // return error if req body does not carry every field in formFields
@@ -75,14 +75,14 @@ export default class eventController {
 
     const startDate = new Date(req.body.startDate);
     const duration = parseInt(req.body.duration, 10);
-    const centerID = parseInt(req.body.centerID, 10);
+    const centerId = parseInt(req.body.centerId, 10);
     const estimatedAttendance = parseInt(req.body.estimatedAttendance, 10);
 
     events.push({
       id: newId,
       name,
       type,
-      centerID,
+      centerId,
       duration,
       startDate,
       estimatedAttendance
@@ -92,7 +92,7 @@ export default class eventController {
       error: false,
       events
     });
-  }
+  },
 
   /**
    *
@@ -103,12 +103,12 @@ export default class eventController {
    * @returns {any} sucess, all events
    * @memberof eventController
    */
-  static updateEvent(req, res) {
+  updateEvent(req, res) {
     for (let i = 0; i < events.length; i += 1) {
       if (events[i].id === parseInt(req.params.id, 10)) {
         // Destructuring assignment to extract req.body fields
         const {
-          centerID,
+          centerId,
           duration,
           startDate,
           estimatedAttendance,
@@ -116,7 +116,7 @@ export default class eventController {
         } = req.body;
 
         const numItems = {
-          centerID,
+          centerId,
           duration,
           estimatedAttendance
         };
@@ -146,7 +146,7 @@ export default class eventController {
       message: 'Event not Found',
       error: true
     });
-  }
+  },
 
   /**
    *
@@ -157,7 +157,7 @@ export default class eventController {
    * @returns {any} success
    * @memberof eventController
    */
-  static deleteEvent(req, res) {
+  deleteEvent(req, res) {
     for (let i = 0; i < events.length; i += 1) {
       if (events[i].id === parseInt(req.params.id, 10)) {
         events.splice(i, 1);
@@ -172,4 +172,4 @@ export default class eventController {
       error: true
     });
   }
-}
+};
