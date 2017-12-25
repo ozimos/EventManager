@@ -1,6 +1,7 @@
 export const centers = [{
   id: 1,
   name: 'Muson Center',
+  description: 'a  beautiful and spacious edifice situated in a scenic location',
   cost: 100000,
   capacity: 1000,
   location: {
@@ -16,6 +17,7 @@ export const centers = [{
 {
   id: 2,
   name: 'The Dome',
+  description: 'a  beautiful and spacious edifice situated in a scenic location',
   cost: 200000,
   capacity: 5000,
   location: {
@@ -33,23 +35,20 @@ export const centers = [{
 export const events = [{
   id: 1,
   name: "Jason's Birthday",
-  cost: 100000,
-  capacity: 1000,
-  dates: ['15 / 12 / 2017', '16 / 12 / 2017'],
-  centerId: 2,
-  eventType: ['Cocktail', 'Birthday', 'Wedding']
+  type: ['Cocktail', 'Birthday', 'Wedding'],
+  centerID: 100,
+  duration: 1,
+  startDate: '2017-12-15',
+  estimatedAttendance: 1000,
 },
 
 {
   id: 2,
-  name: 'The Dome',
-  cost: 200000,
-  capacity: 5000,
-  dates: ['17 / 12 / 2017', '18 / 12 / 2017'],
-
-  centerId: 1,
-  eventType: ['Cocktail', 'Wedding']
-
+  name: 'Award Night',
+  type: ['Cocktail', 'Conference'],
+  centerID: 200,
+  duration: 2,
+  startDate: '2017-12-17',
+  estimatedAttendance: 5000,
 }
 ];
-

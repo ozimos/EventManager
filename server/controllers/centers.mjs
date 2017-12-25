@@ -1,8 +1,8 @@
 import {
   centers
-} from '../models/data';
+} from '../models/data.mjs';
 
-export default class centerController {
+export default {
   /**
    *
    *
@@ -12,12 +12,12 @@ export default class centerController {
    * @returns {any} all centers
    * @memberof centerController
    */
-  static getAllCenters(req, res) {
+  getAllCenters(req, res) {
     return res.json({
       centers,
       error: false
     });
-  }
+  },
 
   /**
    *
@@ -28,7 +28,7 @@ export default class centerController {
    * @returns {any} A single center
    * @memberof centerController
    */
-  static getSingleCenter(req, res) {
+  getSingleCenter(req, res) {
     for (let i = 0; i < centers.length; i += 1) {
       if (centers[i].id === parseInt(req.params.id, 10)) {
         return res.json({
@@ -41,7 +41,7 @@ export default class centerController {
       message: 'Center not Found',
       error: true
     });
-  }
+  },
 
   /**
    *
@@ -52,8 +52,8 @@ export default class centerController {
    * @returns {any} success, all centers
    * @memberof centerController
    */
-  static postCenter(req, res) {
-    const formFields = ['name', 'cost', 'capacity', 'country', 'state', 'lga', 'amenities', 'eventType'];
+  postCenter(req, res) {
+    const formFields = ['name', 'description', 'cost', 'capacity', 'country', 'state', 'lga', 'amenities', 'eventTypes'];
 
 
     if (!formFields.every(element => Object.keys(req.body).includes(element))) {
@@ -68,11 +68,12 @@ export default class centerController {
     const newId = centers.length + 1;
     const {
       name,
+      description,
       country,
       state,
       lga,
       amenities,
-      eventType
+      eventTypes
     } = req.body;
     const cost = parseInt(req.body.cost, 10);
     const capacity = parseInt(req.body.capacity, 10);
@@ -81,6 +82,7 @@ export default class centerController {
       id: newId,
       name,
       cost,
+      description,
       capacity,
       location: {
         country,
@@ -88,14 +90,14 @@ export default class centerController {
         lga
       },
       amenities,
-      eventType
+      eventTypes
     });
     return res.json({
       message: 'success',
       error: false,
       centers
     });
-  }
+  },
 
   /**
    *
@@ -106,7 +108,7 @@ export default class centerController {
    * @returns {any} sucess, all centers
    * @memberof centerController
    */
-  static updateCenter(req, res) {
+  updateCenter(req, res) {
     for (let i = 0; i < centers.length; i += 1) {
       if (centers[i].id === parseInt(req.params.id, 10)) {
         // Destructuring assignment to extract req.body fields
@@ -116,7 +118,7 @@ export default class centerController {
           lga,
           cost,
           capacity,
-          ...clone
+          ...rest
         } = req.body;
         // group location fields into single object
         const location = {
@@ -131,19 +133,19 @@ export default class centerController {
         };
 
         Object.keys(location).forEach((item) => {
-          if (item) {
-            centers[i].location[item] = item;
+          if (location[item]) {
+            centers[i].location[item] = location[item];
           }
         });
 
         Object.keys(numItems).forEach((item) => {
-          if (item) {
-            centers[i][item] = parseInt(item, 10);
+          if (numItems[item]) {
+            centers[i][item] = parseInt(numItems[item], 10);
           }
         });
 
-        Object.keys(clone).forEach((element) => {
-          centers[i][element] = clone[element];
+        Object.keys(rest).forEach((element) => {
+          centers[i][element] = rest[element];
         });
 
         return res.json({
@@ -159,4 +161,4 @@ export default class centerController {
       error: true
     });
   }
-}
+};
