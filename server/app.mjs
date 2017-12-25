@@ -3,7 +3,7 @@ import bodyParser from 'body-parser';
 // import methodOverride from 'method-override';
 
 
-import userRoute from './routes/apiRoutes';
+import userRoute from './routes/apiRoutes.mjs';
 
 const app = express();
 

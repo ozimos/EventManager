@@ -1,8 +1,6 @@
-import {
-  Joi
-} from 'joi';
+import Joi from 'joi';
 //  for fields that return arrays
-// const arraySchema = Joi.array().items(Joi.string().required()).unique();
+const arraySchema = Joi.array().items(Joi.string().required()).unique();
 
 const updateEvent = Joi.object({
   name: Joi.string(),
