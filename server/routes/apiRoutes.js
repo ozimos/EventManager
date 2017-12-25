@@ -1,32 +1,32 @@
 // Dependencies
 import express from 'express';
-import {
-  celebrate,
-  errors
-} from 'celebrate';
+import Validator from 'express-joi-validation';
+
 import centerController from '../controllers/centers';
 import eventController from '../controllers/events';
 import schemas from '../validators/schemas';
 
 const router = express.Router();
+const validator = Validator({});
 
 // Routes
 router.route('/centers')
   .get(centerController.getAllCenters)
-  .post(celebrate(schemas.postCenterSchema), centerController.postCenter);
+  .post(validator.body(schemas.postCenter), centerController.postCenter);
 
 router.route('/centers/:id')
-  .get(centerController.getSingleCenter)
-  .put(centerController.updateCenter);
+  .get(validator.param(schemas.param), centerController.getSingleCenter)
+  .put(validator.param(schemas.param), validator.body(schemas.updateCenter), centerController.updateCenter);
 
 router.route('/events')
   .get(eventController.getAllEvents)
-  .post(celebrate(schemas.postEventSchema), eventController.postEvent);
+  .post(validator.body(schemas.postEvent), eventController.postEvent);
 
 router.route('/events/:id')
-  .get(eventController.getSingleEvent)
-  .put(eventController.updateEvent)
-  .delete(eventController.deleteEvent);
+  .get(validator.param(schemas.param), eventController.getSingleEvent)
+  .put(validator.param(schemas.param), validator.body(schemas.updateEvent), eventController.updateEvent)
+  .delete(validator.param(schemas.param), eventController.deleteEvent);
+
 
 // Return router
 export default router;
