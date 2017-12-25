@@ -4,7 +4,7 @@ const arraySchema = Joi.array().items(Joi.string().required()).unique();
 
 const updateEvent = Joi.object({
   name: Joi.string(),
-  type: Joi.alternatives().try(Joi.string()),
+  type: Joi.alternatives().try(arraySchema, Joi.string()),
   centerId: Joi.string().regex(/^[0-9a-fA-F]$/),
   duration: Joi.number().integer(),
   startDate: Joi.date(),
@@ -23,7 +23,7 @@ const updateCenter = Joi.object({
 });
 
 const param = Joi.object({
-  param: Joi.string().regex(/^[0-9a-fA-F]$/)
+  id: Joi.number().integer().required()
 });
 
 export default {

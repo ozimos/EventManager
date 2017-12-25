@@ -1,6 +1,6 @@
 import {
   events
-} from '../models/data';
+} from '../models/data.mjs';
 
 export default {
   /**
