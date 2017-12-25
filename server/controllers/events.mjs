@@ -5,7 +5,6 @@ import {
 export default {
   /**
    *
-   *
    * Get all events
    * @param {obj} req
    * @param {obj} res
@@ -21,7 +20,6 @@ export default {
 
   /**
    *
-   *
    *  Get a single event
    * @param {obj} req
    * @param {obj} res
@@ -30,7 +28,7 @@ export default {
    */
   getSingleEvent(req, res) {
     for (let i = 0; i < events.length; i += 1) {
-      if (events[i].id === parseInt(req.params.id, 10)) {
+      if (events[i].id === req.params.id) {
         return res.json({
           message: events[i],
           error: false
@@ -45,7 +43,6 @@ export default {
 
   /**
    *
-   *
    * Creates a new event
    * @param {obj} req
    * @param {obj} res
@@ -53,39 +50,13 @@ export default {
    * @memberof eventController
    */
   postEvent(req, res) {
-    const formFields = ['name', 'type', 'centerId', 'duration', 'startDate', 'estimatedAttendance'];
-
-    if (!formFields.every(element => Object.keys(req.body).includes(element))) {
-      // return error if req body does not carry every field in formFields
-      return res.json({
-
-        message: events,
-        error: true,
-        required: formFields
-      });
-    }
     let newId = events.length + 1;
     if (events[events.length - 1].id === newId) {
       newId += 1;
     }
-    const {
-      name,
-      type,
-    } = req.body;
-
-    const startDate = new Date(req.body.startDate);
-    const duration = parseInt(req.body.duration, 10);
-    const centerId = parseInt(req.body.centerId, 10);
-    const estimatedAttendance = parseInt(req.body.estimatedAttendance, 10);
-
     events.push({
       id: newId,
-      name,
-      type,
-      centerId,
-      duration,
-      startDate,
-      estimatedAttendance
+      ...req.body
     });
     return res.json({
       message: 'success',
@@ -96,7 +67,6 @@ export default {
 
   /**
    *
-   *
    *  Update an Event
    * @param {obj} req
    * @param {obj} res
@@ -105,35 +75,10 @@ export default {
    */
   updateEvent(req, res) {
     for (let i = 0; i < events.length; i += 1) {
-      if (events[i].id === parseInt(req.params.id, 10)) {
-        // Destructuring assignment to extract req.body fields
-        const {
-          centerId,
-          duration,
-          startDate,
-          estimatedAttendance,
-          ...rest
-        } = req.body;
-
-        const numItems = {
-          centerId,
-          duration,
-          estimatedAttendance
-        };
-
-        Object.keys(numItems).forEach((item) => {
-          if (numItems[item]) {
-            events[i][item] = parseInt(numItems[item], 10);
-          }
+      if (events[i].id === req.params.id) {
+        Object.keys(req.body).forEach((element) => {
+          events[i][element] = req.body[element];
         });
-        Object.keys(rest).forEach((element) => {
-          events[i][element] = rest[element];
-        });
-
-        if (startDate) {
-          events[i].startDate = new Date(startDate);
-        }
-
 
         return res.json({
           message: 'Success',
@@ -150,7 +95,6 @@ export default {
 
   /**
    *
-   *
    * Delete an Event
    * @param {obj} req
    * @param {obj} res
@@ -159,7 +103,7 @@ export default {
    */
   deleteEvent(req, res) {
     for (let i = 0; i < events.length; i += 1) {
-      if (events[i].id === parseInt(req.params.id, 10)) {
+      if (events[i].id === req.params.id) {
         events.splice(i, 1);
         return res.json({
           message: 'Event Deleted',
