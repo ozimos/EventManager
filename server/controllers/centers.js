@@ -1,6 +1,6 @@
 import {
   centers
-} from '../models/data.mjs';
+} from '../models/data.js';
 
 export default {
   /**

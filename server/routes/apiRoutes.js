@@ -2,9 +2,9 @@
 import express from 'express';
 import Validator from 'express-joi-validation';
 
-import centerController from '../controllers/centers.mjs';
-import eventController from '../controllers/events.mjs';
-import schemas from '../validators/schemas.mjs';
+import centerController from '../controllers/centers.js';
+import eventController from '../controllers/events.js';
+import schemas from '../validators/schemas.js';
 
 const router = express.Router();
 const validator = Validator({});

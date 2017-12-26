@@ -2,12 +2,13 @@
   "name": "eventsmanager",
   "version": "1.0.0",
   "description": "A full stack app allowing users to schedule and manage events at different facilities Users can add, change and delete events Users can perform above actions against facilities. Users can view facilities based on various criteria such as amenities, availability etc Administrators can add facilities",
-  "main": "server/app.mjs",
+  "main": "server/app.js",
   "scripts": {
-    "start": "nodemon --watch server --experimental-modules server/app.mjs",
-    "start-babel": "nodemon --watch server --exec node_modules/.bin/babel-node server/app.mjs",
+    "start": "nodemon --watch server -r @std/esm server/app.js",
+    "start-babel": "nodemon --watch server --exec node_modules/.bin/babel-node server/app.js",
     "build": "babel server -d dest",
-    "test": "mocha --import @babel/register --import @babel/polyfill --recursive test/appTest.mjs "
+    "postbuild": "nodemon --watch dest dest/app.js",
+    "test": "mocha --require @std/esm --@babel/register --require @std/esm --@babel/polyfill --recursive test/appTest.js "
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
   },
   "homepage": "https://github.com/ozimos/EventsManager#readme",
   "dependencies": {
+    "@std/esm": "^0.18.0",
     "body-parser": "^1.18.2",
     "chai": "^4.1.2",
     "express": "^4.16.2",
@@ -30,7 +32,7 @@
     "joi": "^13.0.2",
     "mocha": "^4.0.1",
     "multer": "^1.3.0",
-    "nodemon": "^1.12.1"
+    "nodemon": "^1.14.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.36",
@@ -41,8 +43,9 @@
     "@babel/preset-env": "^7.0.0-beta.36",
     "@babel/register": "^7.0.0-beta.36",
     "babel-preset-airbnb": "^2.4.0",
-    "eslint": "^4.9.0",
+    "eslint": "^4.14.0",
     "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.7.0"
-  }
+    "eslint-plugin-import": "^2.8.0"
+  },
+  "@std/esm": "cjs"
 }
