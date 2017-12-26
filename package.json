@@ -2,11 +2,12 @@
   "name": "eventsmanager",
   "version": "1.0.0",
   "description": "A full stack app allowing users to schedule and manage events at different facilities Users can add, change and delete events Users can perform above actions against facilities. Users can view facilities based on various criteria such as amenities, availability etc Administrators can add facilities",
-  "main": "index.js",
+  "main": "server/app.mjs",
   "scripts": {
     "start": "nodemon --watch server --experimental-modules server/app.mjs",
-    "build": "babel src -d dist",
-    "test": "mocha --require babel-register --require babel-polyfill --recursive test/appTest.js "
+    "start-babel": "nodemon --watch server --exec node_modules/.bin/babel-node server/app.mjs",
+    "build": "babel server -d dest",
+    "test": "mocha --import @babel/register --import @babel/polyfill --recursive test/appTest.mjs "
   },
   "repository": {
     "type": "git",
@@ -23,7 +24,6 @@
   "homepage": "https://github.com/ozimos/EventsManager#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
-    "celebrate": "^7.0.4",
     "chai": "^4.1.2",
     "express": "^4.16.2",
     "express-joi-validation": "^0.2.1",
@@ -33,11 +33,14 @@
     "nodemon": "^1.12.1"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-polyfill": "^6.26.0",
+    "@babel/cli": "^7.0.0-beta.36",
+    "@babel/core": "^7.0.0-beta.36",
+    "@babel/node": "^7.0.0-beta.36",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.36",
+    "@babel/polyfill": "^7.0.0-beta.36",
+    "@babel/preset-env": "^7.0.0-beta.36",
+    "@babel/register": "^7.0.0-beta.36",
     "babel-preset-airbnb": "^2.4.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-register": "^6.26.0",
     "eslint": "^4.9.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.7.0"
