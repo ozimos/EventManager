@@ -1,8 +1,9 @@
 {
   "presets": [
     ["@babel/preset-env", {
-      "spec": true
+      "spec": true,
+      "shippedProposals": true,
+      "exclude": ["transform-regenerator", "transform-async-to-generator", "proposal-async-generator-functions"]
     }]
-  ],
-  "plugins": ["@babel/plugin-proposal-object-rest-spread"]
+  ]
 }

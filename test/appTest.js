@@ -1,8 +1,16 @@
-import {
-  assert
-} from 'chai';
+import { expect } from 'chai';
+import supertest from 'supertest';
+import app from './server/app.js';
 
-import isSubset from '../server/controllers/helpers';
+const request = supertest(app);
+const rootURL = '/api';
+const centerUrl = `${rootURL}/v1/centers`;
+const centerDetailUrl = `${rootURL}/v1/centers/1`;
+const editCenterUrl = `${rootURL}/v1/centers/1`;
+const addCenterUrl = `${rootURL}/v1/centers`;
+const addEventUrl = `${rootURL}/v1/events`;
+const editEventUrl = `${rootURL}/v1/events/1`;
+
 
 describe('Test isSubset function, first array argument is subset of second array arggument', () => {
   const arr3 = [3, 2, 1];
