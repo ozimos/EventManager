@@ -8,7 +8,7 @@
     "start-babel": "nodemon --watch server --exec node_modules/.bin/babel-node server/app.js",
     "build": "babel server -d dist",
     "postbuild": "nodemon --watch dist dist/app.js",
-    "test": "mocha --require @std/esm --@babel/register --require @std/esm --@babel/polyfill"
+    "test": "mocha --require @babel/register --require @babel/polyfill"
   },
   "repository": {
     "type": "git",
@@ -32,21 +32,20 @@
     "@std/esm": "^0.18.0",
     "babel-loader": "^7.1.2",
     "body-parser": "^1.18.2",
-    "chai": "^4.1.2",
     "express": "^4.16.2",
     "express-joi-validation": "^0.2.1",
     "joi": "^13.0.2",
-    "mocha": "^4.0.1",
     "nodemon": "^1.14.3",
     "supertest": "^3.0.0"
   },
   "devDependencies": {
     "@babel/node": "^7.0.0-beta.36",
-    "babel-preset-airbnb": "^2.4.0",
+    "chai": "^4.1.2",
     "cross-env": "^5.1.3",
     "eslint": "^4.14.0",
     "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.8.0"
+    "eslint-plugin-import": "^2.8.0",
+    "mocha": "^4.0.1"
   },
   "@std/esm": "cjs"
 }

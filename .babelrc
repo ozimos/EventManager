@@ -3,6 +3,9 @@
     ["@babel/preset-env", {
       "spec": true,
       "shippedProposals": true,
+      "targets": {
+        "node": 6.0
+      },
       "exclude": ["transform-regenerator", "transform-async-to-generator", "proposal-async-generator-functions"]
     }]
   ]

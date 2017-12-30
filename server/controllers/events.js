@@ -1,6 +1,4 @@
-import {
-  events
-} from '../models/data.js';
+import events from '../models/events.js';
 
 export default {
   /**
@@ -13,6 +11,7 @@ export default {
    */
   getAllEvents(req, res) {
     return res.json({
+      message: 'Success',
       events,
       error: false
     });
@@ -30,7 +29,8 @@ export default {
     for (let i = 0; i < events.length; i += 1) {
       if (events[i].id === req.params.id) {
         return res.json({
-          message: events[i],
+          message: 'Success',
+          event: events[i],
           error: false
         });
       }
@@ -59,9 +59,9 @@ export default {
       ...req.body
     });
     return res.json({
-      message: 'success',
+      message: 'Success',
+      events,
       error: false,
-      events
     });
   },
 
@@ -70,7 +70,7 @@ export default {
    *  Update an Event
    * @param {obj} req
    * @param {obj} res
-   * @returns {any} sucess, all events
+   * @returns {any} success,  event
    * @memberof eventController
    */
   updateEvent(req, res) {
@@ -82,8 +82,8 @@ export default {
 
         return res.json({
           message: 'Success',
+          event: events[i],
           error: false,
-          events
         });
       }
     }

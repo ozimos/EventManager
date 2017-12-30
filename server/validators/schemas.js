@@ -5,9 +5,9 @@ const arraySchema = Joi.array().items(Joi.string().required()).unique();
 const updateEvent = Joi.object({
   name: Joi.string(),
   type: Joi.alternatives().try(arraySchema, Joi.string()),
-  centerId: Joi.string().regex(/^[0-9a-fA-F]$/),
+  centerId: Joi.number().integer(),
   duration: Joi.number().integer(),
-  startDate: Joi.date(),
+  startDate: Joi.date().iso().timestamp('javascript'),
   estimatedAttendance: Joi.number().integer()
 });
 const updateCenter = Joi.object({

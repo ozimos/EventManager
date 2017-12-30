@@ -25,10 +25,10 @@ const newCenter = {
   eventType: ['Cocktail', 'Birthday']
 };
 
-const getRequest = request.get();
-const putRequest = request.put();
-const postRequest = request.post();
-const deleteRequest = request.delete();
+// const getRequest = request.get();
+// const putRequest = request.put();
+// const postRequest = request.post();
+// const deleteRequest = request.delete();
 
 /**
  * Generates new tests with a template
@@ -39,54 +39,39 @@ const deleteRequest = request.delete();
  * @param {string} key
  *  @returns {function} mocha test suite
  */
-const templateTest = function generateTest(title, method, url, payload, key) {
-  let reqMethod;
-  switch (method) {
-    case 'delete':
-      reqMethod = request.delete(url);
-      break;
-    case 'put':
-      reqMethod = request.put(url);
-      break;
-    case 'post':
-      reqMethod = request.post(url);
-      break;
-    case 'get':
-    default:
-      reqMethod = request.get(url);
-  }
-
-  return () => {
-    describe(title, () => {
-      it('return 200 for successful', (done) => {
-        reqMethod
-          .send(payload)
-          .expect(200, done);
-      });
-      it('response should be json', (done) => {
-        reqMethod
-          .send(payload)
-          .expect('Content-Type', /json/, done);
-      });
-      it('response should be an object', (done) => {
-        reqMethod
-          .send(payload)
-          .end((err, res) => {
-            chaiExpect(res.json).to.be.an('object');
-            done();
-          });
-      });
-      it(`response should have keys: ${key} and error`, (done) => {
-        reqMethod
-          .send(payload)
-          .end((err, res) => {
-            chaiExpect(res.json).to.include.all.keys(`${key}`, 'error');
-            done();
-          });
-      });
-    });
-  };
-};
+// const templateTest = function generateTest(title, method, url, payload, key) {
+//   return () => {
+//     describe(title, () => {
+//       it('return 200 for successful', (done) => {
+//         method.bind(null, url)
+//           .send(payload)
+//           .expect(200, done);
+//       });
+//       it('response should be json', (done) => {
+//         method.bind(null, url)
+//           .send(payload)
+//           .expect('Content-Type', /json/, done);
+//       });
+//       it('response should be an object', (done) => {
+//         method.bind(null, url)
+//           .send(payload)
+//           .end((err, res) => {
+//             chaiExpect(res.json).to.be.an('object');
+//             done();
+//           });
+//       });
+//       it('response should have required keys', (done) => {
+//         method.bind(null, url)
+//           .send(payload)
+//           .end((err, res) => {
+//             chaiExpect(res).to.include.all.keys('message', 'centers');
+//          chaiExpect(res).to.not.have.all.keys('message', 'center');
+//             done();
+//           });
+//       });
+//     });
+//   };
+// };
 
 
 describe('API Integration Tests', () => {
@@ -102,14 +87,15 @@ describe('API Integration Tests', () => {
     it('response should be an object', (done) => {
       request.get(centersUrl)
         .end((err, res) => {
-          chaiExpect(res.json).to.be.an('object');
+          chaiExpect(res).to.be.an('object');
           done();
         });
     });
     it('response should have required keys', (done) => {
       request.get(centersUrl)
         .end((err, res) => {
-          chaiExpect(res.json).to.include.all.keys('message', 'centers', 'error');
+          chaiExpect(res).to.not.have.all.keys('message', 'center');
+          chaiExpect(res).to.include.all.keys('message', 'centers');
           done();
         });
     });
@@ -126,14 +112,15 @@ describe('API Integration Tests', () => {
     it('response should be an object', (done) => {
       request.get(centerIdUrl)
         .end((err, res) => {
-          chaiExpect(res.json).to.be.an('object');
+          chaiExpect(res).to.be.an('object');
           done();
         });
     });
     it('response should have required keys', (done) => {
       request.get(centerIdUrl)
         .end((err, res) => {
-          chaiExpect(res.json).to.include.all.keys('message', 'center', 'error');
+          chaiExpect(res).to.not.have.all.keys('message', 'center');
+          chaiExpect(res).to.include.all.keys('message', 'center');
           done();
         });
     });
@@ -162,7 +149,7 @@ describe('API Integration Tests', () => {
           state: 'Abuja',
         })
         .end((err, res) => {
-          chaiExpect(res.json).to.be.an('object');
+          chaiExpect(res).to.be.an('object');
           done();
         });
     });
@@ -173,11 +160,12 @@ describe('API Integration Tests', () => {
           state: 'Abuja',
         })
         .end((err, res) => {
-          chaiExpect(res.json).to.include.all.keys('message', 'center', 'error');
+          chaiExpect(res).to.not.have.all.keys('message', 'center');
+          chaiExpect(res).to.include.all.keys('message', 'center');
           done();
         });
     });
   });
 });
 
-templateTest('Add center', 'post', centerIdUrl, newCenter, 'center');
+// templateTest('Add center', postRequest, centersUrl, newCenter, 'center');
