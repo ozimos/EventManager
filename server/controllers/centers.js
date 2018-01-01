@@ -57,7 +57,7 @@ export default {
     });
     return res.json({
       message: 'success',
-      center: centers[newId - 1],
+      center: centers[centers.length  - 1],
       error: false,
     });
   },

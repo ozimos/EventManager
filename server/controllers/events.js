@@ -60,7 +60,7 @@ export default {
     });
     return res.json({
       message: 'Success',
-      events,
+      event: events[events.length - 1],
       error: false,
     });
   },

@@ -2,14 +2,21 @@ import chai from 'chai';
 import supertest from 'supertest';
 import app from '../server/app.js';
 
+
 const chaiExpect = chai.expect;
 const request = supertest(app);
+
+// endpoint urls
 const rootURL = '/api/v1';
 const centersUrl = `${rootURL}/centers`;
 const centerIdUrl = `${rootURL}/centers/1`;
 const eventsUrl = `${rootURL}/events`;
 const eventsIdUrl = `${rootURL}/events/1`;
-
+// sample data for test
+const changeCenter = {
+  name: 'Codex Alexera',
+  state: 'Abuja',
+};
 const newCenter = {
   name: 'Baranduil',
   description: 'a  dark and dank castle shrouded in gloom',
@@ -19,7 +26,22 @@ const newCenter = {
   state: 'Lagos',
   lga: 'Oshodi',
   amenities: ['Pool', 'Bar'],
-  eventTypes: ['Cocktail', 'Birthday']
+  eventType: ['Cocktail', 'Birthday']
+};
+
+const changeEvent = {
+  name: 'Academy',
+  type: ['Dinner'],
+  startDate: '2018-01-17',
+};
+
+const newEvent = {
+  name: 'ZAL',
+  type: ['Cocktail', 'Dinner'],
+  centerId: 200,
+  duration: 2,
+  startDate: '2017-12-17',
+  estimatedAttendance: 5000,
 };
 
 /**
@@ -66,94 +88,17 @@ const templateTest = function generateTest(title, method, url, payload, key) {
 
 
 describe('API Integration Tests', () => {
-  describe('Get All Centers', () => {
-    it('return 200 for successful', (done) => {
-      request.get(centersUrl)
-        .expect(200, done);
-    });
-    it('response should be json', (done) => {
-      request.get(centersUrl)
-        .expect('Content-Type', /json/, done);
-    });
-    it('response should be an object', (done) => {
-      request.get(centersUrl)
-        .end((err, res) => {
-          chaiExpect(res).to.be.an('object');
-          done();
-        });
-    });
-    it('response should have required keys', (done) => {
-      request.get(centersUrl)
-        .end((err, res) => {
-          chaiExpect(res.body).to.include.all.keys('message', 'centers');
-          done();
-        });
-    });
-  });
-  describe('Get Center Details', () => {
-    it('return 200 for successful', (done) => {
-      request.get(centerIdUrl)
-        .expect(200, done);
-    });
-    it('response should be json', (done) => {
-      request.get(centerIdUrl)
-        .expect('Content-Type', /json/, done);
-    });
-    it('response should be an object', (done) => {
-      request.get(centerIdUrl)
-        .end((err, res) => {
-          chaiExpect(res).to.be.an('object');
-          done();
-        });
-    });
-    it('response should have required keys', (done) => {
-      request.get(centerIdUrl)
-        .end((err, res) => {
-          chaiExpect(res.body).to.include.all.keys('message', 'center');
-          done();
-        });
-    });
-  });
-  describe('Modify Center Details', () => {
-    it('return 200 for successful', (done) => {
-      request.put(centerIdUrl)
-        .send({
-          name: 'Codex Alexera',
-          state: 'Abuja',
-        })
-        .expect(200, done);
-    });
-    it('response should be json', (done) => {
-      request.put(centerIdUrl)
-        .send({
-          name: 'Codex Alexera',
-          state: 'Abuja',
-        })
-        .expect('Content-Type', /json/, done);
-    });
-    it('response should be an object', (done) => {
-      request.put(centerIdUrl)
-        .send({
-          name: 'Codex Alexera',
-          state: 'Abuja',
-        })
-        .end((err, res) => {
-          chaiExpect(res).to.be.an('object');
-          done();
-        });
-    });
-    it('response should have required keys', (done) => {
-      request.put(centerIdUrl)
-        .send({
-          name: 'Codex Alexera',
-          state: 'Abuja',
-        })
-        .end((err, res) => {
-          chaiExpect(res.body).to.include.all.keys('message', 'center');
-          done();
-        });
-    });
+  describe('Centers Endpoint Tests', () => {
+    templateTest('Get All Centers', 'get', centersUrl, null, 'centers');
+    templateTest('Get Center Details', 'get', centerIdUrl, null, 'center');
+    templateTest('Modify Center Details', 'put', centerIdUrl, changeCenter, 'center');
+    templateTest('Add Center', 'post', centersUrl, newCenter, 'center');
   });
 
-  templateTest('Add center', 'post', centersUrl, newCenter, 'center');
+  describe('Events Endpoint Tests', () => {
+    templateTest('Get All Events', 'get', eventsUrl, null, 'events');
+    templateTest('Get Event Details', 'get', eventsIdUrl, null, 'event');
+    templateTest('Modify Event Details', 'put', eventsIdUrl, changeEvent, 'event');
+    templateTest('Add Event', 'post', eventsUrl, newEvent, 'event');
+  });
 });

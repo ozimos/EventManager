@@ -19,7 +19,7 @@ const updateCenter = Joi.object({
   state: Joi.string(),
   lga: Joi.string(),
   amenities: Joi.alternatives().try(arraySchema, Joi.string()),
-  eventTypes: Joi.alternatives().try(arraySchema, Joi.string()),
+  eventType: Joi.alternatives().try(arraySchema, Joi.string()),
 });
 
 const param = Joi.object({
