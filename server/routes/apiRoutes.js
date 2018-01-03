@@ -31,7 +31,10 @@ router.route('/centers')
 
 router.route('/centers/:id')
   .get(validator.params(schemas.param), centerController.getSingleCenter)
-  .put(validator.params(schemas.param), validator.body(schemas.updateCenter), centerController.updateCenter);
+  .put(
+    validator.params(schemas.param), validator.body(schemas.updateCenter),
+    centerController.updateCenter
+  );
 
 router.route('/events')
   .get(eventController.getAllEvents)
@@ -39,8 +42,13 @@ router.route('/events')
 
 router.route('/events/:id')
   .get(validator.params(schemas.param), eventController.getSingleEvent)
-  .put(validator.params(schemas.param), validator.body(schemas.updateEvent), eventController.updateEvent)
-  .delete(validator.params(schemas.param), eventController.deleteEvent);
+  .put(
+    validator.params(schemas.param), validator.body(schemas.updateEvent),
+    eventController.updateEvent
+  ).delete(
+    validator.params(schemas.param),
+    eventController.deleteEvent
+  );
 
 // Custom Express Error handler
 // router.use((err, req, res, next) => {

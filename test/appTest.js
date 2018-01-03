@@ -51,10 +51,11 @@ const newEvent = {
  * @param {string} url
  * @param {object} payload
  * @param {string} key
+ * @param {string} type
  *  @returns {function} mocha test suite
  */
 
-const templateTest = function generateTest(title, method, url, payload, key) {
+const templateTest = function generateTest(title, method, url, payload, key, type) {
   describe(title, () => {
     const postRequest = request[method].bind(request, url);
     it('return 200 for successful', (done) => {
@@ -67,19 +68,19 @@ const templateTest = function generateTest(title, method, url, payload, key) {
         .send(payload)
         .expect('Content-Type', /json/, done);
     });
-    it('response should be an object', (done) => {
-      postRequest()
-        .send(payload)
-        .end((err, res) => {
-          chaiExpect(res.body).to.be.an('object');
-          done();
-        });
-    });
     it('response should have required keys', (done) => {
       postRequest()
         .send(payload)
         .end((err, res) => {
           chaiExpect(res.body).to.include.all.keys('message', key, 'error');
+          done();
+        });
+    });
+    it('response should be an object', (done) => {
+      postRequest()
+        .send(payload)
+        .end((err, res) => {
+          chaiExpect(res.body[key]).to.be.an(type);
           done();
         });
     });
@@ -89,16 +90,16 @@ const templateTest = function generateTest(title, method, url, payload, key) {
 
 describe('API Integration Tests', () => {
   describe('Centers Endpoint Tests', () => {
-    templateTest('Get All Centers', 'get', centersUrl, null, 'centers');
-    templateTest('Get Center Details', 'get', centerIdUrl, null, 'center');
-    templateTest('Modify Center Details', 'put', centerIdUrl, changeCenter, 'center');
-    templateTest('Add Center', 'post', centersUrl, newCenter, 'center');
+    templateTest('Get All Centers', 'get', centersUrl, null, 'centers', 'array');
+    templateTest('Get Center Details', 'get', centerIdUrl, null, 'center', 'object');
+    templateTest('Modify Center Details', 'put', centerIdUrl, changeCenter, 'center', 'object');
+    templateTest('Add Center', 'post', centersUrl, newCenter, 'center', 'object');
   });
 
   describe('Events Endpoint Tests', () => {
-    templateTest('Get All Events', 'get', eventsUrl, null, 'events');
-    templateTest('Get Event Details', 'get', eventsIdUrl, null, 'event');
-    templateTest('Modify Event Details', 'put', eventsIdUrl, changeEvent, 'event');
-    templateTest('Add Event', 'post', eventsUrl, newEvent, 'event');
+    templateTest('Get All Events', 'get', eventsUrl, null, 'events', 'array');
+    templateTest('Get Event Details', 'get', eventsIdUrl, null, 'event', 'object');
+    templateTest('Modify Event Details', 'put', eventsIdUrl, changeEvent, 'event', 'object');
+    templateTest('Add Event', 'post', eventsUrl, newEvent, 'event', 'object');
   });
 });
