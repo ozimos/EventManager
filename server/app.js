@@ -23,9 +23,12 @@ app.use(methodOverride((req) => {
 app.use('/api/v1/', userRoute);
 
 app.get('/', (req, res) => {
-  res.send('working');
+  res.send('Welcome To Event manager API!!!');
 });
 
+/* eslint no-console: off */
 app.listen(3000, () => {
   console.log('API is running on port 3000');
 });
+
+export default app;

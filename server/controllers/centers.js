@@ -1,6 +1,4 @@
-import {
-  centers
-} from '../models/data.js';
+import centers from '../models/centers.js';
 
 export default {
   /**
@@ -13,8 +11,9 @@ export default {
    */
   getAllCenters(req, res) {
     return res.json({
+      message: 'Success',
       centers,
-      error: false
+      error: false,
     });
   },
 
@@ -30,14 +29,15 @@ export default {
     for (let i = 0; i < centers.length; i += 1) {
       if (centers[i].id === req.params.id) {
         return res.json({
-          message: centers[i],
-          error: false
+          message: 'Success',
+          center: centers[i],
+          error: false,
         });
       }
     }
     return res.status(404).json({
       message: 'Center not Found',
-      error: true
+      error: true,
     });
   },
 
@@ -57,8 +57,8 @@ export default {
     });
     return res.json({
       message: 'success',
+      center: centers[centers.length  - 1],
       error: false,
-      centers
     });
   },
 
@@ -99,8 +99,8 @@ export default {
 
         return res.json({
           message: 'Success',
+          center: centers[i],
           error: false,
-          centers
         });
       }
     }
