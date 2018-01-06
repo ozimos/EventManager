@@ -66,9 +66,8 @@ context('Validation with Joi schemas', () => {
       type: ['Cocktail', 'Birthday', 'Wedding'],
       centerId: 100,
       duration: 1,
-      // call new Date with string arguments
-      // behaviour on different platforms varies when called with integer arguments list
-      startDate: new Date('2017-12-15'),
+      // use Date.UTC to avoid problems due to different timezones on  local machines
+      startDate: new Date(new Date(Date.UTC(2017, 11, 15))),
       estimatedAttendance: 1000,
     };
     it('throws error when some required fields are not in request body', () => {
@@ -143,7 +142,7 @@ context('Validation with Joi schemas', () => {
       name: "Jason's Birthday",
       type: ['Birthday', 'Wedding'],
       centerId: 100,
-      startDate: new Date(2017, 11, 16, 1)
+      startDate: new Date(Date.UTC(2017, 11, 16))
     };
 
     it('does not throw error when request body is empty', () => {
