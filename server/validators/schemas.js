@@ -7,7 +7,7 @@ const updateEvent = Joi.object({
   type: Joi.alternatives().try(arraySchema, Joi.string()),
   centerId: Joi.number().integer(),
   duration: Joi.number().integer(),
-  startDate: Joi.date().iso().timestamp('javascript'),
+  startDate: Joi.date().iso(),
   estimatedAttendance: Joi.number().integer()
 });
 const updateCenter = Joi.object({

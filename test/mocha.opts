@@ -1,2 +1,2 @@
--R spec
 -r @std/esm
+--exit
