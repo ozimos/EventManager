@@ -66,7 +66,9 @@ context('Validation with Joi schemas', () => {
       type: ['Cocktail', 'Birthday', 'Wedding'],
       centerId: 100,
       duration: 1,
-      startDate: new Date(2017, 11, 15, 1),
+      // call new Date with string arguments
+      // behaviour on different platforms varies when called with integer arguments list
+      startDate: new Date('2017-12-15'),
       estimatedAttendance: 1000,
     };
     it('throws error when some required fields are not in request body', () => {
