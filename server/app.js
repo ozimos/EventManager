@@ -6,7 +6,7 @@ import bodyParser from 'body-parser';
 import userRoute from './routes/apiRoutes.js';
 
 const app = express();
-
+const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -27,8 +27,8 @@ app.get('/', (req, res) => {
 });
 
 /* eslint no-console: off */
-app.listen(3000, () => {
-  console.log('API is running on port 3000');
+app.listen(PORT, () => {
+  console.log(`API is running on port ${PORT}`);
 });
 
 export default app;
