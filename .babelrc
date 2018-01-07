@@ -9,10 +9,5 @@
       "exclude": ["transform-regenerator", "transform-async-to-generator", "proposal-async-generator-functions"]
     }]
   ],
-  "env": {
-    "test": {
-      "plugins": ["istanbul"]
-    }
-  },
   "sourceMaps": "inline"
 }
