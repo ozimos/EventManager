@@ -30,7 +30,6 @@
     "@babel/cli": "^7.0.0-beta.36",
     "@babel/core": "^7.0.0-beta.36",
     "@babel/node": "^7.0.0-beta.36",
-    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.36",
     "@babel/preset-env": "^7.0.0-beta.36",
     "@std/esm": "^0.18.0",
     "babel-loader": "^7.1.2",
