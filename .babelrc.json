@@ -9,10 +9,10 @@
       "exclude": ["transform-regenerator", "transform-async-to-generator", "proposal-async-generator-functions"]
     }]
   ],
-  "env": {
-    "test": {
-      "plugins": ["istanbul"]
-    }
-  },
+  "plugins": [
+    ["@babel/plugin-proposal-object-rest-spread", {
+      "useBuiltIns": true
+    }]
+  ],
   "sourceMaps": "inline"
 }
