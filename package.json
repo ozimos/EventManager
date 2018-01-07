@@ -2,10 +2,14 @@
   "name": "eventsmanager",
   "version": "1.0.0",
   "description": "A full stack app allowing users to schedule and manage events at different facilities Users can add, change and delete events Users can perform above actions against facilities. Users can view facilities based on various criteria such as amenities, availability etc Administrators can add facilities",
+  "engines": {
+    "node": "9.3.0"
+  },
   "main": "index.js",
   "scripts": {
     "start": "node -r @std/esm server/app.js",
-    "start2": "node dist/app.js",
+    "start2": "node index.js",
+    "start3": "node dist/app.js",
     "start-dev": "nodemon --watch server -r @std/esm server/app.js",
     "start-babel": "nodemon --watch server --exec node_modules/.bin/babel-node server/app.js",
     "build": "babel server -d dist",
