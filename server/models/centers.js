@@ -1,32 +1,40 @@
-export default [{
-  id: 1,
-  name: 'Muson Center',
-  description: 'a  beautiful and spacious edifice situated in a scenic location',
-  cost: 100000,
-  capacity: 1000,
-  location: {
-    country: 'Nigeria',
-    state: 'Lagos',
-    lga: 'Ikorodu'
+
+export default (sequelize, DataTypes) => {
+  const centers = sequelize.define('centers', {
+    name: {
+      types: DataTypes.STRING,
+      allowNull: false,
+    },
+    description: {
+      types: DataTypes.STRING,
+      allowNull: false,
+    },
+  cost: {
+    types: DataTypes.INTEGER,
+    allowNull: false,
   },
-  amenities: ['Pool', 'Bar', 'Theater'],
-  eventType: ['Cocktail', 'Birthday', 'Wedding']
+  capacity: Joi.number().integer(),
+  country: Joi.string(),
+  state: Joi.string(),
+  lga: Joi.string(),
+  amenities: Joi.alternatives().try(arraySchema, Joi.string()),
+  eventType: Joi.alternatives().try(arraySchema, Joi.string()),
+    location: DataTypes.STRING,
+    capacity: {
+      types: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    cost: {
+      types: DataTypes.INTEGER,
+      allowNull: false,
+    },
+  });
 
-},
-
-{
-  id: 2,
-  name: 'The Dome',
-  description: 'a  beautiful and spacious edifice situated in a scenic location',
-  cost: 200000,
-  capacity: 5000,
-  location: {
-    country: 'Nigeria',
-    state: 'Lagos',
-    lga: 'VI'
-  },
-  amenities: ['Pool', 'Bar'],
-  eventType: ['Cocktail', 'Birthday', 'Wedding']
-
-}
-];
+  // Associates with user table
+  centers.associate = (models) => {
+    centers.belongsTo(models.Users, {
+      foreignKey: 'userId',
+    });
+  };
+  return centers;
+};
