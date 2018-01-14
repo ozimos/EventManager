@@ -1,27 +1,67 @@
-'use strict';
-module.exports = {
+
+export default {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('centers', {
+    queryInterface.createTable('Centers', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        default: Sequelize.INTEGER,
       },
-      title: {
-        type: Sequelize.STRING
+      userId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Users',
+          key: 'id',
+          as: 'userId',
+        },
+      },
+      name: {
+        types: Sequelize.STRING,
+        allowNull: false,
+      },
+      description: {
+        types: Sequelize.STRING,
+        allowNull: false,
+      },
+      cost: {
+        types: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      capacity: {
+        types: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      country: {
+        types: Sequelize.STRING,
+        allowNull: false,
+      },
+      state: {
+        types: Sequelize.STRING,
+        allowNull: false,
+      },
+      lga: {
+        types: Sequelize.STRING,
+        allowNull: false,
+      },
+      amenities: {
+        types: Sequelize.ARRAY(Sequelize.STRING),
+        allowNull: false,
+      },
+      eventType: {
+        types: Sequelize.ARRAY(Sequelize.STRING),
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
-  down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('centers');
-  }
+  down: queryInterface => queryInterface.dropTable('Centers'),
 };

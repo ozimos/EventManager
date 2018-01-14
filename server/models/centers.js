@@ -1,40 +1,52 @@
-
-export default (sequelize, DataTypes) => {
-  const centers = sequelize.define('centers', {
+export default (sequelize, Sequelize) => {
+  const Centers = sequelize.define('centers', {
     name: {
-      types: DataTypes.STRING,
+      types: Sequelize.STRING,
       allowNull: false,
     },
     description: {
-      types: DataTypes.STRING,
-      allowNull: false,
-    },
-  cost: {
-    types: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  capacity: Joi.number().integer(),
-  country: Joi.string(),
-  state: Joi.string(),
-  lga: Joi.string(),
-  amenities: Joi.alternatives().try(arraySchema, Joi.string()),
-  eventType: Joi.alternatives().try(arraySchema, Joi.string()),
-    location: DataTypes.STRING,
-    capacity: {
-      types: DataTypes.INTEGER,
+      types: Sequelize.STRING,
       allowNull: false,
     },
     cost: {
-      types: DataTypes.INTEGER,
+      types: Sequelize.INTEGER,
       allowNull: false,
     },
+    capacity: {
+      types: Sequelize.INTEGER,
+      allowNull: false,
+    },
+    country: {
+      types: Sequelize.STRING,
+      allowNull: false,
+    },
+    state: {
+      types: Sequelize.STRING,
+      allowNull: false,
+    },
+    lga: {
+      types: Sequelize.STRING,
+      allowNull: false,
+    },
+    amenities: {
+      types: Sequelize.ARRAY(Sequelize.STRING),
+      allowNull: false,
+    },
+    eventType: {
+      types: Sequelize.ARRAY(Sequelize.STRING),
+      allowNull: false,
+    },
+
   });
 
   // Associates with user table
-  centers.associate = (models) => {
-    centers.belongsTo(models.Users, {
-      foreignKey: 'userId',
-    });
+  Centers.associate = (models) => {
+    Centers.belongsTo(models.Users);
   };
-  return centers;
+  // Relations
+  Centers.associate = (models) => {
+    // 1 to many with Events
+    Centers.hasMany(models.Events);
+  };
+  return Centers;
 };

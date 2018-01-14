@@ -1,27 +1,59 @@
-'use strict';
-module.exports = {
+
+export default {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('events', {
+    queryInterface.createTable('Events', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        default: Sequelize.INTEGER,
+      },
+      userId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Users',
+          key: 'id',
+          as: 'userId',
+        },
+      },
+      centerId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Centers',
+          key: 'id',
+          as: 'centerId',
+        },
       },
       name: {
-        type: Sequelize.STRING
+        types: Sequelize.STRING,
+        allowNull: false,
+      },
+      type: {
+        types: Sequelize.ARRAY(Sequelize.STRING),
+        allowNull: false,
+      },
+      duration: {
+        types: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      startDate: {
+        types: Sequelize.DATEONLY,
+        allowNull: false,
+      },
+      estimatedAttendance: {
+        types: Sequelize.INTEGER,
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
-  down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('events');
-  }
+  down: queryInterface => queryInterface.dropTable('Events'),
 };
