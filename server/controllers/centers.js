@@ -73,28 +73,8 @@ export default {
   updateCenter(req, res) {
     for (let i = 0; i < centers.length; i += 1) {
       if (centers[i].id === req.params.id) {
-        // Destructuring assignment to extract req.body fields
-        const {
-          country,
-          state,
-          lga,
-          ...rest
-        } = req.body;
-        // group location fields into single object
-        const location = {
-          country,
-          state,
-          lga
-        };
-
-        Object.keys(location).forEach((item) => {
-          if (location[item]) {
-            centers[i].location[item] = location[item];
-          }
-        });
-
-        Object.keys(rest).forEach((element) => {
-          centers[i][element] = rest[element];
+        Object.keys(req.body).forEach((element) => {
+          centers[i][element] = req.body[element];
         });
 
         return res.json({
