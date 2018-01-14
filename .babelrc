@@ -9,5 +9,8 @@
       "exclude": ["transform-regenerator", "transform-async-to-generator", "proposal-async-generator-functions"]
     }]
   ],
+  "plugins": [
+    "add-module-exports"
+],
   "sourceMaps": "inline"
 }

@@ -1,39 +1,39 @@
 export default (sequelize, Sequelize) => {
   const Centers = sequelize.define('centers', {
     name: {
-      types: Sequelize.STRING,
+      type: Sequelize.STRING,
       allowNull: false,
     },
     description: {
-      types: Sequelize.STRING,
+      type: Sequelize.STRING,
       allowNull: false,
     },
     cost: {
-      types: Sequelize.INTEGER,
+      type: Sequelize.INTEGER,
       allowNull: false,
     },
     capacity: {
-      types: Sequelize.INTEGER,
+      type: Sequelize.INTEGER,
       allowNull: false,
     },
     country: {
-      types: Sequelize.STRING,
+      type: Sequelize.STRING,
       allowNull: false,
     },
     state: {
-      types: Sequelize.STRING,
+      type: Sequelize.STRING,
       allowNull: false,
     },
     lga: {
-      types: Sequelize.STRING,
+      type: Sequelize.STRING,
       allowNull: false,
     },
     amenities: {
-      types: Sequelize.ARRAY(Sequelize.STRING),
+      type: Sequelize.ARRAY(Sequelize.STRING),
       allowNull: false,
     },
     eventType: {
-      types: Sequelize.ARRAY(Sequelize.STRING),
+      type: Sequelize.ARRAY(Sequelize.STRING),
       allowNull: false,
     },
 

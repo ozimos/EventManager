@@ -26,23 +26,23 @@ export default {
         },
       },
       name: {
-        types: Sequelize.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       type: {
-        types: Sequelize.ARRAY(Sequelize.STRING),
+        type: Sequelize.ARRAY(Sequelize.STRING),
         allowNull: false,
       },
       duration: {
-        types: Sequelize.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
       },
       startDate: {
-        types: Sequelize.DATEONLY,
+        type: Sequelize.DATEONLY,
         allowNull: false,
       },
       estimatedAttendance: {
-        types: Sequelize.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
       },
       createdAt: {
