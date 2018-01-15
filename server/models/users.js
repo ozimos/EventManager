@@ -1,39 +1,47 @@
-export default (sequelize, Sequelize) => {
+export default (sequelize, DataTypes) => {
   const Users = sequelize.define('users', {
-    fullname: {
-      type: Sequelize.STRING,
+    firstName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    lastName: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
     username: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
       unique: true,
     },
     email: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
       unique: true,
+      validate: {
+        isEmail: {
+          msg: 'Invalid Email Address'
+        }
+      }
     },
     password: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     isAdmin: {
-      type: Sequelize.BOOLEAN,
+      type: DataTypes.BOOLEAN,
       default: false,
     },
   });
 
   // Relations
   Users.associate = (models) => {
-    // 1 to many with Events
-    Users.hasMany(models.Events);
-  };
-
-  // Relations
-  Users.associate = (models) => {
-    // 1 to many with Centers
-    Users.hasMany(models.Centers);
+    Users.hasMany(models.Events, {
+      foreignKey: 'userId',
+      onDelete: 'CASCADE'
+    });
+    Users.hasMany(models.Centers, {
+      foreignKey: 'userId',
+    });
   };
 
   return Users;

@@ -8,9 +8,12 @@ export default {
         primaryKey: true,
         unique: true,
         type: Sequelize.INTEGER,
-        default: Sequelize.INTEGER,
       },
-      fullname: {
+      firstName: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      lastName: {
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -21,6 +24,7 @@ export default {
       },
       email: {
         type: Sequelize.STRING,
+        isEmail: true,
         allowNull: false,
         unique: true,
       },

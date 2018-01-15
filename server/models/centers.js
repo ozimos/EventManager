@@ -1,52 +1,54 @@
-export default (sequelize, Sequelize) => {
+export default (sequelize, DataTypes) => {
   const Centers = sequelize.define('centers', {
     name: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     description: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     cost: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     capacity: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     country: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     state: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     lga: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     amenities: {
-      type: Sequelize.ARRAY(Sequelize.STRING),
+      type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: false,
     },
     eventType: {
-      type: Sequelize.ARRAY(Sequelize.STRING),
+      type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: false,
     },
 
   });
 
-  // Associates with user table
-  Centers.associate = (models) => {
-    Centers.belongsTo(models.Users);
-  };
   // Relations
   Centers.associate = (models) => {
-    // 1 to many with Events
-    Centers.hasMany(models.Events);
+    Centers.hasMany(models.Events, {
+      foreignKey: 'centerId',
+      onDelete: 'CASCADE'
+    });
+    Centers.belongsTo(models.Users, {
+      foreignKey: 'userId',
+    });
   };
+
   return Centers;
 };

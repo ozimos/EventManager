@@ -1,35 +1,38 @@
-export default (sequelize, Sequelize) => {
+export default (sequelize, DataTypes) => {
   const Events = sequelize.define('events', {
     name: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     type: {
-      type: Sequelize.ARRAY(Sequelize.STRING),
+      type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: false,
     },
     duration: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     startDate: {
-      type: Sequelize.DATEONLY,
+      type: DataTypes.DATEONLY,
       allowNull: false,
     },
     estimatedAttendance: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
   });
 
-  // Associates with user table
+  // Associates with user  and center tables
   Events.associate = (models) => {
-    Events.belongsTo(models.Users);
+    Events.belongsTo(models.Users, {
+      foreignKey: 'userId',
+      onDelete: 'CASCADE'
+    });
+    Events.belongsTo(models.Centers, {
+      foreignKey: 'centerId',
+      onDelete: 'CASCADE'
+    });
   };
-  // Associates with center table
 
-  Events.associate = (models) => {
-    Events.belongsTo(models.Centers);
-  };
   return Events;
 };

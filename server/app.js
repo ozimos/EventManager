@@ -2,7 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import logger from 'morgan';
 
-import userRoute from './routes/apiRoutes.js';
+import apiRoutes from './routes/apiRoutes.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -20,7 +20,7 @@ app.use(methodOverride((req) => {
   }
 }));
  */
-app.use('/api/v1/', userRoute);
+app.use('/api/v1/', apiRoutes);
 
 app.get('/', (req, res) => {
   res.send('Welcome To Event manager API!!!');
