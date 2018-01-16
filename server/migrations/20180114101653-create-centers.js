@@ -7,7 +7,6 @@ export default {
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
-        default: Sequelize.INTEGER,
       },
       userId: {
         type: Sequelize.INTEGER,
@@ -20,6 +19,7 @@ export default {
       name: {
         type: Sequelize.STRING,
         allowNull: false,
+        unique: 'compositeIndex'
       },
       description: {
         type: Sequelize.STRING,
@@ -36,10 +36,12 @@ export default {
       country: {
         type: Sequelize.STRING,
         allowNull: false,
+        unique: 'compositeIndex'
       },
       state: {
         type: Sequelize.STRING,
         allowNull: false,
+        unique: 'compositeIndex'
       },
       lga: {
         type: Sequelize.STRING,

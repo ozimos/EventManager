@@ -1,93 +1,110 @@
-import centers from '../models/centers.js';
+const defaultResponse = (data, statusCode = 200) => ({
+  data,
+  statusCode,
+});
 
-export default {
+const errorResponse = (message, statusCode = 400) => defaultResponse({
+  error: message,
+  status: statusCode,
+}, statusCode);
+
+/**
+ *
+ *
+ * @class CenterController
+ */
+class CenterController {
   /**
-   *
-   * Get All Centers
-   * @param {obj} req
-   * @param {obj} res
-   * @returns {any} all centers
-   * @memberof centerController
+   * Creates an instance of Center.
+   * @param {any} Centers
+   * @memberof Center
    */
-  getAllCenters(req, res) {
-    return res.json({
-      message: 'Success',
-      centers,
-      error: false,
-    });
-  },
-
-  /**
-   *
-   *  Get a single center
-   * @param {obj} req
-   * @param {obj} res
-   * @returns {any} A single center
-   * @memberof centerController
-   */
-  getSingleCenter(req, res) {
-    for (let i = 0; i < centers.length; i += 1) {
-      if (centers[i].id === req.params.id) {
-        return res.json({
-          message: 'Success',
-          center: centers[i],
-          error: false,
-        });
-      }
-    }
-    return res.status(404).json({
-      message: 'Center not Found',
-      error: true,
-    });
-  },
-
-  /**
-   *
-   * Creates a new center
-   * @param {obj} req
-   * @param {obj} res
-   * @returns {any} success, all centers
-   * @memberof centerController
-   */
-  postCenter(req, res) {
-    const newId = centers.length + 1;
-    centers.push({
-      id: newId,
-      ...req.body
-    });
-    return res.json({
-      message: 'success',
-      center: centers[centers.length - 1],
-      error: false,
-    });
-  },
-
-  /**
-   *
-   *  Update a center
-   * @param {obj} req
-   * @param {obj} res
-   * @returns {any} sucess, all centers
-   * @memberof centerController
-   */
-  updateCenter(req, res) {
-    for (let i = 0; i < centers.length; i += 1) {
-      if (centers[i].id === req.params.id) {
-        Object.keys(req.body).forEach((element) => {
-          centers[i][element] = req.body[element];
-        });
-
-        return res.json({
-          message: 'Success',
-          center: centers[i],
-          error: false,
-        });
-      }
-    }
-
-    return res.status(404).json({
-      message: 'Center not Found',
-      error: true
-    });
+  constructor(Centers) {
+    this.Centers = Centers;
   }
-};
+  // CREATE
+  /**
+   *
+   * @param {any} req
+   * @returns {instance} Centers
+   * @memberof Center
+   */
+  createCenter(req) {
+    return this.Centers
+      .create({
+        ...req.body
+      })
+      .then(center => defaultResponse(center, 201))
+      .catch(error => errorResponse(error.message));
+  }
+  // READ MANY
+  /**
+   *
+   * @returns {instance} Centers
+   * @memberof CenterController
+   */
+  getAllCenters() {
+    return this.Centers
+      .all()
+      .then((centers) => {
+        if (centers.length > 0) {
+          return defaultResponse(centers);
+        }
+        return errorResponse('no centers available', 404);
+      })
+      .catch(error => errorResponse(error.message));
+  }
+
+  // READ ONE
+  /**
+   *
+   *
+   * @param {any} params
+   * @returns {instance} Centers
+   * @memberof CenterController
+   */
+  getCenterById(params) {
+    return this.Centers.findOne({
+      where: params,
+    })
+      .then((center) => {
+        if (!center) {
+          return errorResponse('Center not found', 404);
+        }
+        return defaultResponse(center);
+      })
+      .catch(error => errorResponse(error.message));
+  }
+  /**
+   *
+   *
+   * @param {any} data
+   * @param {any} params
+   * @returns {instance} Centers
+   * @memberof CenterController
+   */
+  updateCenter(data, params) {
+    return this.Centers.update(data, {
+      where: params,
+    })
+      .then(center => defaultResponse(center))
+      .catch(error => errorResponse(error.message, 422));
+  }
+  /**
+   *
+   *
+   * @param {any} params
+   * @returns {instance} Centers
+   * @memberof CenterController
+   */
+  deleteCenter(params) {
+    return this.Centers
+      .destroy({
+        where: params,
+      })
+      .then(result => defaultResponse(result, 204))
+      .catch(error => errorResponse(error.message, 422));
+  }
+}
+
+export default CenterController;

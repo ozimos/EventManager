@@ -3,6 +3,7 @@ export default (sequelize, DataTypes) => {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: 'compositeIndex'
     },
     description: {
       type: DataTypes.STRING,
@@ -19,14 +20,17 @@ export default (sequelize, DataTypes) => {
     country: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: 'compositeIndex'
     },
     state: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: 'compositeIndex'
     },
     lga: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: 'compositeIndex'
     },
     amenities: {
       type: DataTypes.ARRAY(DataTypes.STRING),
@@ -43,7 +47,6 @@ export default (sequelize, DataTypes) => {
   Centers.associate = (models) => {
     Centers.hasMany(models.Events, {
       foreignKey: 'centerId',
-      onDelete: 'CASCADE'
     });
     Centers.belongsTo(models.Users, {
       foreignKey: 'userId',

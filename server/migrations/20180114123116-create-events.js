@@ -7,10 +7,10 @@ export default {
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
-        default: Sequelize.INTEGER,
       },
       userId: {
         type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
         references: {
           model: 'Users',
           key: 'id',
@@ -19,6 +19,7 @@ export default {
       },
       centerId: {
         type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
         references: {
           model: 'Centers',
           key: 'id',
