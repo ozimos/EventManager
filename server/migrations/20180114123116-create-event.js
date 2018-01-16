@@ -1,7 +1,7 @@
 
 export default {
   up: (queryInterface, Sequelize) => {
-    queryInterface.createTable('Events', {
+    queryInterface.createTable('Event', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -12,7 +12,7 @@ export default {
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
         references: {
-          model: 'Users',
+          model: 'User',
           key: 'id',
           as: 'userId',
         },
@@ -21,7 +21,7 @@ export default {
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
         references: {
-          model: 'Centers',
+          model: 'Center',
           key: 'id',
           as: 'centerId',
         },
@@ -56,5 +56,5 @@ export default {
       },
     });
   },
-  down: queryInterface => queryInterface.dropTable('Events'),
+  down: queryInterface => queryInterface.dropTable('Event'),
 };

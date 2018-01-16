@@ -1,7 +1,7 @@
 
 export default {
   up: (queryInterface, Sequelize) => {
-    queryInterface.createTable('Centers', {
+    queryInterface.createTable('Center', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -11,7 +11,7 @@ export default {
       userId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Users',
+          model: 'User',
           key: 'id',
           as: 'userId',
         },
@@ -65,5 +65,5 @@ export default {
       },
     });
   },
-  down: queryInterface => queryInterface.dropTable('Centers'),
+  down: queryInterface => queryInterface.dropTable('Center'),
 };

@@ -2,7 +2,7 @@
 import fs from 'fs';
 import path from 'path';
 import Sequelize from 'sequelize';
-import configs from '../config/babelHook.js';
+import configs from '../config/config.js';
 
 const basename = path.basename(module.filename);
 const env = process.env.NODE_ENV || 'development';
