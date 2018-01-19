@@ -45,10 +45,10 @@ export default (sequelize, DataTypes) => {
 
   // Relations
   Center.associate = (models) => {
-    Center.hasMany(models.Events, {
+    Center.hasMany(models.event, {
       foreignKey: 'centerId',
     });
-    Center.belongsTo(models.Users, {
+    Center.belongsTo(models.user, {
       foreignKey: 'userId',
     });
   };

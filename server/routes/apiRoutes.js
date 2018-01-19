@@ -2,68 +2,48 @@
 import express from 'express';
 import Validator from 'express-joi-validation';
 
-import centerController from '../controllers/centers.js';
-import eventController from '../controllers/events.js';
+import Controller from '../controllers/controller.js';
+import UserController from '../controllers/userController.js';
 import schemas from '../validators/schemas.js';
-
-// options to pass to Validator in line 20 to setup custom error messages
-// and extra joi options. check joi and express-joi docs for options
-// also uncomment lines 43+
-
-// const joiOpts = {
-//   convert: true
-// allowUnknown: false
-// abortEarly: false
-// };
-
-// const options = {
-//   passError: true,
-//   joi: joiOpts
-// };
+import {
+  User,
+  center,
+  event
+} from '../models/index.js';
 
 const router = express.Router();
 const validator = Validator({});
+const centerController = new Controller(center);
+const eventController = new Controller(event);
+const userController = new UserController(User);
 
-// Routes
+// Param validation for all Routes
+router.param('id', validator.params(schemas.param));
+
+// Center Routes
 router.route('/centers')
-  .get(centerController.getAllCenters)
-  .post(validator.body(schemas.postCenter), centerController.postCenter);
+  .get(centerController.getAllRows)
+  .post(validator.body(schemas.postCenter), centerController.createRow);
 
 router.route('/centers/:id')
-  .get(validator.params(schemas.param), centerController.getSingleCenter)
-  .put(
-    validator.params(schemas.param), validator.body(schemas.updateCenter),
-    centerController.updateCenter
-  );
+  .get(centerController.getRowById)
+  .put(validator.body(schemas.updateCenter), centerController.updateRow);
 
+// Event Routes
 router.route('/events')
-  .get(eventController.getAllEvents)
-  .post(validator.body(schemas.postEvent), eventController.postEvent);
+  .get(eventController.getAllRows)
+  .post(validator.body(schemas.postEvent), eventController.createRow);
 
 router.route('/events/:id')
-  .get(validator.params(schemas.param), eventController.getSingleEvent)
-  .put(
-    validator.params(schemas.param), validator.body(schemas.updateEvent),
-    eventController.updateEvent
-  ).delete(
-    validator.params(schemas.param),
-    eventController.deleteEvent
-  );
+  .get(eventController.getRowById)
+  .put(validator.body(schemas.updateEvent), eventController.updateRow)
+  .delete(eventController.deleteRow);
 
-// Custom Express Error handler
-// router.use((err, req, res, next) => {
-//   if (err.error.isJoi) {
-//     // we had a joi error, let's return a custom 400 json response
-//     res.status(400).json({
-//       type: err.type, // will be "query" here, but could be "headers", "body", or "params"
-//       message: err.error.toString()
-//     });
-//   } else {
-//     // pass on to another error handler
-//     next(err);
-//   }
-// });
+// User Routes
 
+router.post('/users', validator.body(schemas.postUsers), userController.signup);
+
+router.post('/users/login', userController.login);
 
 // Return router
 export default router;

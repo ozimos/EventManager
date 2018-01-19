@@ -11,11 +11,6 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    username: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -26,7 +21,7 @@ export default (sequelize, DataTypes) => {
         }
       }
     },
-    password: {
+    passwordHash: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -38,10 +33,10 @@ export default (sequelize, DataTypes) => {
 
   // Relations
   User.associate = (models) => {
-    User.hasMany(models.Events, {
+    User.hasMany(models.event, {
       foreignKey: 'userId',
     });
-    User.hasMany(models.Centers, {
+    User.hasMany(models.center, {
       foreignKey: 'userId',
     });
   };

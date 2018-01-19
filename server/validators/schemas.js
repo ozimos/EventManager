@@ -21,7 +21,15 @@ const updateCenter = Joi.object({
   amenities: Joi.alternatives().try(arraySchema, Joi.string()),
   eventType: Joi.alternatives().try(arraySchema, Joi.string()),
 });
-
+const postUsers = Joi.object({
+  firstName: Joi.string(),
+  lastName: Joi.string(),
+  email: Joi.string().email(),
+  password: Joi.string(),
+  isAdmin: Joi.boolean(),
+}).options({
+  presence: 'required'
+});
 const param = Joi.object({
   id: Joi.number().integer().required()
 });
@@ -35,5 +43,6 @@ export default {
   postCenter: updateCenter.options({
     presence: 'required'
   }),
+  postUsers,
   param
 };

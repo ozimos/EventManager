@@ -24,11 +24,11 @@ export default (sequelize, DataTypes) => {
 
   // Associates with user  and center tables
   Event.associate = (models) => {
-    Event.belongsTo(models.Users, {
+    Event.belongsTo(models.user, {
       foreignKey: 'userId',
       onDelete: 'CASCADE'
     });
-    Event.belongsTo(models.Centers, {
+    Event.belongsTo(models.center, {
       foreignKey: 'centerId',
       onDelete: 'CASCADE'
     });

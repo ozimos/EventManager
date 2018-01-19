@@ -17,18 +17,13 @@ export default {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      username: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        unique: true,
-      },
       email: {
         type: Sequelize.STRING,
         isEmail: true,
         allowNull: false,
         unique: true,
       },
-      password: {
+      passwordHash: {
         type: Sequelize.STRING,
         allowNull: false,
       },
