@@ -5,17 +5,13 @@ import Validator from 'express-joi-validation';
 import Controller from '../controllers/controller.js';
 import UserController from '../controllers/userController.js';
 import schemas from '../validators/schemas.js';
-import {
-  User,
-  center,
-  event
-} from '../models/index.js';
+import db from '../models/index.js';
 
 const router = express.Router();
 const validator = Validator({});
-const centerController = new Controller(center);
-const eventController = new Controller(event);
-const userController = new UserController(User);
+const centerController = new Controller(db.Center);
+const eventController = new Controller(db.Event);
+const userController = new UserController(db.User);
 
 // Param validation for all Routes
 router.param('id', validator.params(schemas.param));

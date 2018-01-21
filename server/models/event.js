@@ -1,5 +1,5 @@
 export default (sequelize, DataTypes) => {
-  const Event = sequelize.define('event', {
+  const Event = sequelize.define('Event', {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -24,11 +24,11 @@ export default (sequelize, DataTypes) => {
 
   // Associates with user  and center tables
   Event.associate = (models) => {
-    Event.belongsTo(models.user, {
+    Event.belongsTo(models.User, {
       foreignKey: 'userId',
       onDelete: 'CASCADE'
     });
-    Event.belongsTo(models.center, {
+    Event.belongsTo(models.Center, {
       foreignKey: 'centerId',
       onDelete: 'CASCADE'
     });

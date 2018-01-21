@@ -1,5 +1,5 @@
 export default (sequelize, DataTypes) => {
-  const Center = sequelize.define('center', {
+  const Center = sequelize.define('Center', {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -45,10 +45,10 @@ export default (sequelize, DataTypes) => {
 
   // Relations
   Center.associate = (models) => {
-    Center.hasMany(models.event, {
+    Center.hasMany(models.Event, {
       foreignKey: 'centerId',
     });
-    Center.belongsTo(models.user, {
+    Center.belongsTo(models.User, {
       foreignKey: 'userId',
     });
   };

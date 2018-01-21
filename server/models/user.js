@@ -2,7 +2,7 @@
 // which is consumed in a module that actually imports Sequelize
 // and calls the sequelize.import method. This method accepts function arguments
 export default (sequelize, DataTypes) => {
-  const User = sequelize.define('user', {
+  const User = sequelize.define('User', {
     firstName: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -33,10 +33,10 @@ export default (sequelize, DataTypes) => {
 
   // Relations
   User.associate = (models) => {
-    User.hasMany(models.event, {
+    User.hasMany(models.Event, {
       foreignKey: 'userId',
     });
-    User.hasMany(models.center, {
+    User.hasMany(models.Center, {
       foreignKey: 'userId',
     });
   };
