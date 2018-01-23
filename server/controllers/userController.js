@@ -1,9 +1,6 @@
 import bcrypt from 'bcryptjs';
-import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 import Controller from './controller';
-
-dotenv.config();
 
 /**
  *

@@ -15,14 +15,6 @@ if (config.use_env_variable) {
 } else {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
-// Test the connection
-/* eslint no-console: off */
-sequelize
-  .authenticate()
-  .then(() => {
-    console.log('Connection has been established successfully.');
-  })
-  .catch(err => console.error('Unable to connect to the database:', err));
 
 // Load Models
 fs
@@ -42,9 +34,5 @@ Object.keys(db).forEach((modelName) => {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
-
-db.sequelize.sync();
-// This will run .sync() only if database name ends with '_test'
-// db.sequelize.sync({ force: true, match: /_test$/ });
 
 export default db;

@@ -7,14 +7,14 @@
   },
   "main": "index.js",
   "scripts": {
-    "start": "node -r @std/esm server/app.js",
+    "start": "node -r @std/esm server/bin/www.js",
     "start2": "node index.js",
-    "start3": "node dist/app.js",
-    "start-dev": "nodemon --watch server -r @std/esm server/app.js",
-    "start-babel": "nodemon --watch server --exec node_modules/.bin/babel-node server/app.js",
+    "start3": "node dist/bin/www.js",
+    "start-dev": "nodemon --watch server -r @std/esm server/bin/www.js",
+    "start-babel": "nodemon --watch server --exec node_modules/.bin/babel-node server/bin/www.js",
     "build": "babel server -d dist",
-    "postbuild": "nodemon --watch dist dist/app.js",
-    "test": "nyc mocha",
+    "postbuild": "nodemon --watch dist dist/bin/www.js",
+    "test": "cross-env NODE_ENV=test && nyc --reporter=html --reporter=text mocha",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
