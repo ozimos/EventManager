@@ -1,6 +1,3 @@
-// use DataTypes instead of Sequelize because module exports a function
-// which is consumed in a module that actually imports Sequelize
-// and calls the sequelize.import method. This method accepts function arguments
 export default (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     firstName: {

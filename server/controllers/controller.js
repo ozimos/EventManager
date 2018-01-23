@@ -22,7 +22,7 @@ class Controller {
    * @memberof Controller
    */
   createRow(req, res) {
-    return this.Model
+    this.Model
       .create(req.body)
       .then(row => res.status(201).json(row))
       .catch(error => res.status(400).send(error.message));
@@ -36,13 +36,14 @@ class Controller {
    * @memberof Controller
    */
   getAllRows(req, res) {
-    return this.Model
+    this.Model
       .findAll()
       .then((rows) => {
         if (rows.length > 0) {
-          return res.status(200).json(rows);
+          res.status(200).json(rows);
+        } else {
+          res.status(404).send('no rows available');
         }
-        return res.status(404).send('no rows available');
       })
       .catch(error => res.status(400).send(error.message));
   }
@@ -55,12 +56,13 @@ class Controller {
    * @memberof Controller
    */
   getRowById(req, res) {
-    return this.Model.findById(req.params)
+    this.Model.findById(req.params)
       .then((rows) => {
         if (!rows) {
-          return res.status(404).send('Event not found');
+          res.status(404).send('Event not found');
+        } else {
+          res.status(200).json(rows);
         }
-        return res.status(200).json(rows);
       })
       .catch(error => res.status(400).send(error.message));
   }
@@ -73,7 +75,7 @@ class Controller {
    * @memberof Controller
    */
   updateRow(req, res) {
-    return this.Model.update(req.body, {
+    this.Model.update(req.body, {
       where: {
         id: req.params
       },
@@ -91,7 +93,7 @@ class Controller {
    * @memberof Controller
    */
   deleteRow(req, res) {
-    return this.Model
+    this.Model
       .destroy({
         where: {
           id: req.params

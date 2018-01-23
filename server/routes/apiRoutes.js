@@ -4,7 +4,7 @@ import Validator from 'express-joi-validation';
 
 import Controller from '../controllers/controller.js';
 import UserController from '../controllers/userController.js';
-import schemas from '../validators/schemas.js';
+import schemas from '../middleware/validationSchemas.js';
 import db from '../models/index.js';
 
 const router = express.Router();
@@ -37,7 +37,7 @@ router.route('/events/:id')
 
 // User Routes
 
-router.post('/users', validator.body(schemas.postUsers), userController.signup);
+router.post('/users', validator.body(schemas.postUsers), userController.signUp, userController.createRow);
 
 router.post('/users/login', userController.login);
 
