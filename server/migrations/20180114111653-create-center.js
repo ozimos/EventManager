@@ -1,15 +1,13 @@
-
 export default {
   up: (queryInterface, Sequelize) => {
     queryInterface.createTable('Centers', {
       id: {
-        allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
       },
       userId: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
         references: {
           model: 'Users',
           key: 'id',
@@ -19,7 +17,6 @@ export default {
       name: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: 'compositeIndex'
       },
       description: {
         type: Sequelize.STRING,
@@ -36,12 +33,10 @@ export default {
       country: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: 'compositeIndex'
       },
       state: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: 'compositeIndex'
       },
       lga: {
         type: Sequelize.STRING,
@@ -64,6 +59,16 @@ export default {
         type: Sequelize.DATE,
       },
     });
+    // {
+    // corresponds to composite unique keys syntax for sequelize.define (models)
+    // that syntax does not work in queryInterface.createTable (migrations)
+    //  (sequelize issue #8269)
+    // uniqueKeys: {
+    //   Centers_unique: {
+    //     fields: ['name', 'country', 'state', 'lga']
+    //   }
+    // }
+    // }
   },
   down: queryInterface => queryInterface.dropTable('Centers'),
 };

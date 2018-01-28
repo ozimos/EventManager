@@ -1,15 +1,13 @@
-
 export default {
   up: (queryInterface, Sequelize) => {
     queryInterface.createTable('Events', {
       id: {
-        allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
       },
       userId: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
         onDelete: 'CASCADE',
         references: {
           model: 'Users',
@@ -18,7 +16,7 @@ export default {
         },
       },
       centerId: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
         onDelete: 'CASCADE',
         references: {
           model: 'Centers',
@@ -34,12 +32,16 @@ export default {
         type: Sequelize.ARRAY(Sequelize.STRING),
         allowNull: false,
       },
-      duration: {
+      numOfDays: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
       startDate: {
         type: Sequelize.DATEONLY,
+        allowNull: false,
+      },
+      dates: {
+        type: Sequelize.RANGE(Sequelize.DATEONLY),
         allowNull: false,
       },
       estimatedAttendance: {
