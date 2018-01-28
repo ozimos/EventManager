@@ -1,5 +1,10 @@
 export default (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
+    id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true,
+    },
     firstName: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -11,12 +16,7 @@ export default (sequelize, DataTypes) => {
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
-      validate: {
-        isEmail: {
-          msg: 'Invalid Email Address'
-        }
-      }
+      unique: 'email'
     },
     passwordHash: {
       type: DataTypes.STRING,

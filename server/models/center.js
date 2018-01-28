@@ -1,9 +1,14 @@
 export default (sequelize, DataTypes) => {
   const Center = sequelize.define('Center', {
+    id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true,
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: 'compositeIndex'
+      unique: 'Centers_unique'
     },
     description: {
       type: DataTypes.STRING,
@@ -20,17 +25,17 @@ export default (sequelize, DataTypes) => {
     country: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: 'compositeIndex'
+      unique: 'Centers_unique'
     },
     state: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: 'compositeIndex'
+      unique: 'Centers_unique'
     },
     lga: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: 'compositeIndex'
+      unique: 'Centers_unique'
     },
     amenities: {
       type: DataTypes.ARRAY(DataTypes.STRING),

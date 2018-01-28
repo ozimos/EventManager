@@ -5,9 +5,13 @@ const arraySchema = Joi.array().items(Joi.string().required()).unique();
 const updateEvent = Joi.object({
   name: Joi.string(),
   type: Joi.alternatives().try(arraySchema, Joi.string()),
-  centerId: Joi.number().integer(),
-  duration: Joi.number().integer(),
-  startDate: Joi.date().iso(),
+  centerId: Joi.string().guid({
+    version: [
+      'uuidv4'
+    ]
+  }),
+  numOfDays: Joi.number().integer().greater(0),
+  startDate: Joi.date().iso().min('now'),
   estimatedAttendance: Joi.number().integer()
 });
 const updateCenter = Joi.object({
@@ -31,7 +35,11 @@ const postUsers = Joi.object({
   presence: 'required'
 });
 const param = Joi.object({
-  id: Joi.number().integer().required()
+  id: Joi.string().guid({
+    version: [
+      'uuidv4'
+    ]
+  })
 });
 
 export default {

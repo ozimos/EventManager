@@ -28,7 +28,7 @@ class UserController extends Controller {
             message: 'Account does not exist! Visit /api/v1/users/signup and register.',
           });
         } else {
-          bcrypt.compare(req.body.password, response.dataValues.passwordHash, (err, isCorrect) => {
+          bcrypt.compare(req.body.password, response.passwordHash, (err, isCorrect) => {
             if (isCorrect) {
               const payloader = {
                 isAdmin: this.Model.isAdmin,
@@ -68,7 +68,7 @@ class UserController extends Controller {
    * @returns {obj} HTTP Response
    * @memberof UserController
    */
-  signUp(req, res, next) {
+  signUp(req, res) {
     this.Model.findAll({
       where: {
         email: req.body.email,
@@ -85,7 +85,7 @@ class UserController extends Controller {
           });
         });
         delete req.body.password;
-        next();
+        this.createRow(req, res);
       }
     });
   }

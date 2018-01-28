@@ -16,6 +16,21 @@ class Controller {
   /**
    *
    *
+   * @static
+   * @param {object} instance
+   * @param {String} method
+   * @returns {function} Express middleware
+   * @memberof Controller
+   */
+  static select(instance, method) {
+    return (req, res) => {
+      instance[method](req, res);
+    };
+  }
+
+  /**
+   *
+   *
    * @param {any} req
    * @param {any} res
    * @returns {obj} HTTP Response
@@ -25,7 +40,7 @@ class Controller {
     this.Model
       .create(req.body)
       .then(row => res.status(201).json(row))
-      .catch(error => res.status(400).send(error.message));
+      .catch(error => res.status(400).send(error));
   }
   /**
    *
@@ -42,10 +57,10 @@ class Controller {
         if (rows.length > 0) {
           res.status(200).json(rows);
         } else {
-          res.status(404).send('no rows available');
+          res.status(404).send('no records available');
         }
       })
-      .catch(error => res.status(400).send(error.message));
+      .catch(error => res.status(400).send(error));
   }
   /**
    *
@@ -56,7 +71,7 @@ class Controller {
    * @memberof Controller
    */
   getRowById(req, res) {
-    this.Model.findById(req.params)
+    this.Model.findById(req.params.id)
       .then((rows) => {
         if (!rows) {
           res.status(404).send('Event not found');
@@ -64,7 +79,7 @@ class Controller {
           res.status(200).json(rows);
         }
       })
-      .catch(error => res.status(400).send(error.message));
+      .catch(error => res.status(400).send(error));
   }
   /**
    *
@@ -77,12 +92,12 @@ class Controller {
   updateRow(req, res) {
     this.Model.update(req.body, {
       where: {
-        id: req.params
+        id: req.params.id
       },
       returning: true
     })
       .then(rows => res.status(200).json(rows))
-      .catch(error => res.status(422).send(error.message));
+      .catch(error => res.status(422).send(error));
   }
   /**
    *
@@ -96,11 +111,11 @@ class Controller {
     this.Model
       .destroy({
         where: {
-          id: req.params
+          id: req.params.id
         },
       })
-      .then(result => res.status(204).json(result))
-      .catch(error => res.status(422).send(error.message));
+      .then(result => res.status(200).send(`${result} record deleted`))
+      .catch(error => res.status(422).send(error));
   }
 }
 

@@ -1,5 +1,10 @@
 export default (sequelize, DataTypes) => {
-  const Event = sequelize.define('Event', {
+  const EventModel = sequelize.define('Event', {
+    id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true,
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -8,12 +13,16 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: false,
     },
-    duration: {
+    numOfDays: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
     startDate: {
       type: DataTypes.DATEONLY,
+      allowNull: false,
+    },
+    dates: {
+      type: DataTypes.RANGE(DataTypes.DATEONLY),
       allowNull: false,
     },
     estimatedAttendance: {
@@ -22,17 +31,18 @@ export default (sequelize, DataTypes) => {
     },
   });
 
+
   // Associates with user  and center tables
-  Event.associate = (models) => {
-    Event.belongsTo(models.User, {
+  EventModel.associate = (models) => {
+    EventModel.belongsTo(models.User, {
       foreignKey: 'userId',
       onDelete: 'CASCADE'
     });
-    Event.belongsTo(models.Center, {
+    EventModel.belongsTo(models.Center, {
       foreignKey: 'centerId',
       onDelete: 'CASCADE'
     });
   };
 
-  return Event;
+  return EventModel;
 };
