@@ -1,6 +1,11 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import Sequelize from 'sequelize';
 import Controller from './controller';
+
+const {
+  Op
+} = Sequelize;
 
 /**
  *
@@ -17,11 +22,18 @@ class UserController extends Controller {
    * @memberof UserController
    */
   login(req, res) {
-    // check if user is in db
+    // get user details from db
     this.Model
       .findOne({
         where: {
-          email: req.body.email,
+          [Op.or]: [
+            {
+              email: req.body.email
+            },
+            {
+              userName: req.body.userName
+            }
+          ]
         },
       }).then((response) => {
         if (!response) {
@@ -58,12 +70,20 @@ class UserController extends Controller {
     // check if email is available
     this.Model.findOne({
       where: {
-        email: req.body.email,
+        [Op.or]: [
+          {
+            email: req.body.email
+          },
+          {
+            userName: req.body.userName
+          }
+        ]
       },
     }).then((response) => {
       if (response) {
+        const duplicate = response.userName === req.body.userName ? 'userName' : 'email';
         res.status(406).send({
-          message: 'Email has been used',
+          message: `${duplicate} has been used`,
         });
       } else {
         // create hash of password

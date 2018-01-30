@@ -18,12 +18,14 @@ export default class IsUser {
    * @memberof authenticate
    */
   static verify(req, res, next) {
-    const token = req.headers['x-access-token'];;
-    if (!token) {
+    const bearerHeader = req.headers.authorization;
+    if (typeof bearerHeader === 'undefined') {
       res.status(401).send({
         message: 'No token provided.'
       });
     } else {
+      const bearer = bearerHeader.split(' ');
+      const token = bearer[1];
       jwt.verify(token, process.env.TOKEN_PASSWORD, (err, decoded) => {
         if (err) {
           res.status(403).json({
@@ -31,6 +33,7 @@ export default class IsUser {
           });
         } else {
           req.decoded = decoded;
+          req.body.userId = decoded.id;
         }
       });
       next();
