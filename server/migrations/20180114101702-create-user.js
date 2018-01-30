@@ -2,9 +2,14 @@ export default {
   up: (queryInterface, Sequelize) =>
     queryInterface.createTable('Users', {
       id: {
-        primaryKey: true,
         type: Sequelize.UUID,
+        primaryKey: true,
         defaultValue: Sequelize.UUIDV4,
+      },
+      userName: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: 'userName'
       },
       firstName: {
         type: Sequelize.STRING,
@@ -25,7 +30,7 @@ export default {
       },
       isAdmin: {
         type: Sequelize.BOOLEAN,
-        default: false,
+        defaultValue: false,
       },
       createdAt: {
         allowNull: false,

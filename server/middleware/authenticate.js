@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken';
  * @export
  * @class authenticate
  */
-export default class authenticate {
+export default class IsUser {
   /**
    *
    *
@@ -18,16 +18,13 @@ export default class authenticate {
    * @memberof authenticate
    */
   static verify(req, res, next) {
-    const bearerHeader = req.headers.authorization;
-    if (typeof bearerHeader === 'undefined') {
-      res.status(403).json({
-        message: 'Unauthorized Action'
+    const token = req.headers['x-access-token'];;
+    if (!token) {
+      res.status(401).send({
+        message: 'No token provided.'
       });
     } else {
-      const bearer = bearerHeader.split(' ');
-      const bearerToken = bearer[1];
-      req.token = bearerToken;
-      jwt.verify(req.token, process.env.TOKEN_PASSWORD, (err, decoded) => {
+      jwt.verify(token, process.env.TOKEN_PASSWORD, (err, decoded) => {
         if (err) {
           res.status(403).json({
             message: err.message
@@ -39,6 +36,7 @@ export default class authenticate {
       next();
     }
   }
+
   /**
    *
    *

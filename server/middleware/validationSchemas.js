@@ -10,7 +10,7 @@ const updateEvent = Joi.object({
       'uuidv4'
     ]
   }),
-  numOfDays: Joi.number().integer().greater(0),
+  numOfDays: Joi.number().integer().min(1).max(4),
   startDate: Joi.date().iso().min('now'),
   estimatedAttendance: Joi.number().integer()
 });
@@ -25,14 +25,19 @@ const updateCenter = Joi.object({
   amenities: Joi.alternatives().try(arraySchema, Joi.string()),
   eventType: Joi.alternatives().try(arraySchema, Joi.string()),
 });
+const login = Joi.object({
+  userName: Joi.string().email().required(),
+  email: Joi.string().email().required(),
+  password: Joi.string().required()
+}).xor('userName', 'email:');
 const postUsers = Joi.object({
-  firstName: Joi.string(),
-  lastName: Joi.string(),
-  email: Joi.string().email(),
-  password: Joi.string(),
+  userName: Joi.string().required(),
+  firstName: Joi.string().required(),
+  lastName: Joi.string().required(),
+  email: Joi.string().email().required(),
+  password: Joi.ref('confirmPassword'),
+  confirmPassword: Joi.string().strip().required(),
   isAdmin: Joi.boolean(),
-}).options({
-  presence: 'required'
 });
 const param = Joi.object({
   id: Joi.string().guid({
@@ -52,5 +57,6 @@ export default {
     presence: 'required'
   }),
   postUsers,
+  login,
   param
 };

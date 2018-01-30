@@ -2,8 +2,13 @@ export default (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     id: {
       type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
+      defaultValue: DataTypes.UUIDV4,
+    },
+    userName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: 'userName'
     },
     firstName: {
       type: DataTypes.STRING,
@@ -24,7 +29,7 @@ export default (sequelize, DataTypes) => {
     },
     isAdmin: {
       type: DataTypes.BOOLEAN,
-      default: false,
+      defaultValue: false,
     },
   });
 
