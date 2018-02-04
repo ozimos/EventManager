@@ -58,6 +58,12 @@ export default {
         allowNull: false,
         type: Sequelize.DATE,
       },
+    }, {
+      uniqueKeys: {
+        Centers_unique: {
+          fields: ['name', 'country', 'state', 'lga']
+        }
+      }
     });
   },
   down: queryInterface => queryInterface.dropTable('Centers'),
