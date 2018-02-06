@@ -29,7 +29,7 @@ class EventController extends Controller {
     finishDate.setUTCDate(finishDate.getUTCDate() + numOfDays);
     const dates = [startDate, finishDate];
     req.body.dates = dates;
-    this.checkAvailability(dates, centerId)
+    this.checkAvailability(dates, centerId, null)
       .then((result) => {
         if (result) {
           res.status(400).send(`Center is already booked from ${result.dates[0].getUTCMonth()} ${result.dates[0].getUTCDate()}  to ${result.dates[1].getUTCMonth()} ${result.dates[1].getUTCDate()} . Please select a different range of day(s)`);
@@ -54,6 +54,9 @@ class EventController extends Controller {
    * @memberof Controller
    */
   updateRow(req, res) {
+    const {
+      id
+    } = req.params;
     // extract availability metrics
     let {
       numOfDays,
@@ -67,7 +70,7 @@ class EventController extends Controller {
       // get availability data from db for non updating metrics
 
       this.Model
-        .findById(req.params.id).then((event) => {
+        .findById(id).then((event) => {
           numOfDays = numOfDays || event.numOfDays;
           startDate = startDate || event.startDate;
           centerId = centerId || event.centerId;
@@ -75,7 +78,7 @@ class EventController extends Controller {
           finishDate.setUTCDate(finishDate.getUTCDate() + numOfDays);
           const dates = [startDate, finishDate];
           req.body.dates = dates;
-          this.checkAvailability(dates, centerId)
+          this.checkAvailability(dates, centerId, id)
             .then((result) => {
               if (result) {
                 res.status(400).send(`Center is already booked from ${result.dates[0].getUTCMonth()} ${result.dates[0].getUTCDate()}  to ${result.dates[1].getUTCMonth()} ${result.dates[1].getUTCDate()} . Please select a different range of day(s)`);
@@ -97,12 +100,14 @@ class EventController extends Controller {
    *
    * @param {any} dates
    * @param {any} centerId
+   * @param {any} id
    * @returns {obj} Promise Event resolves to event instance or null
    * @memberof Controller
    */
   checkAvailability(
     dates,
-    centerId
+    centerId,
+    id
   ) {
     return this.Model
       .findOne({
@@ -110,6 +115,9 @@ class EventController extends Controller {
           centerId,
           dates: {
             [Op.overlap]: dates
+          },
+          id: {
+            [Op.not]: id
           }
         }
       });

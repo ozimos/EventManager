@@ -26,13 +26,12 @@ class UserController extends Controller {
     this.Model
       .findOne({
         where: {
-          [Op.or]: [
-            {
-              email: req.body.email
-            },
-            {
-              userName: req.body.userName
-            }
+          [Op.or]: [{
+            email: req.body.email
+          },
+          {
+            userName: req.body.userName
+          }
           ]
         },
       }).then((response) => {
@@ -70,13 +69,12 @@ class UserController extends Controller {
     // check if email is available
     this.Model.findOne({
       where: {
-        [Op.or]: [
-          {
-            email: req.body.email
-          },
-          {
-            userName: req.body.userName
-          }
+        [Op.or]: [{
+          email: req.body.email
+        },
+        {
+          userName: req.body.userName
+        }
         ]
       },
     }).then((response) => {
@@ -92,12 +90,15 @@ class UserController extends Controller {
         // remove plaintext password from record to write to db
         delete req.body.password;
         // create user in db
-        this.Model.create(req.body).then((row) => {
+        this.Model.create(req.body).then(row =>
           // send response with token to client
-          UserController.sendResponseWIthToken(row, res, 'Signup Successful');
-        }).catch(error => res.status(400).send({
-          message: error,
-        }));
+          UserController.sendResponseWIthToken(row, res, 'Signup Successful'))
+          .catch(error => res.status(400).send({
+            message: {
+              signUp: 'this is where the error happens',
+              logIn: error.message
+            }
+          }));
       }
     }).catch(error => res.status(400).send({
       message: error,
@@ -117,7 +118,8 @@ class UserController extends Controller {
     // remove password info
     row.passwordHash = 'censored';
 
-    const message = extraMessage ? [extraMessage] : [];
+    const message = {};
+    message.signUp = extraMessage;
     const payloader = {
       isAdmin: row.isAdmin,
       id: row.id,
@@ -126,7 +128,7 @@ class UserController extends Controller {
       expiresIn: '1h'
     });
     if (token) {
-      message.push('Login Successful');
+      message.logIn = 'Login Successful';
       res.status(200).send({
         row,
         message,

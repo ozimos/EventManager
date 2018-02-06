@@ -39,7 +39,9 @@ class Controller {
   createRow(req, res) {
     this.Model
       .create(req.body)
-      .then(row => res.status(201).json(row))
+      .then(row => res.status(200).json({
+        row
+      }))
       .catch(error => res.status(400).send(error));
   }
   /**
@@ -55,7 +57,7 @@ class Controller {
       .findAll()
       .then((rows) => {
         if (rows.length > 0) {
-          res.status(200).json(rows);
+          res.status(200).json({ rows });
         } else {
           res.status(404).send('no records available');
         }
@@ -72,11 +74,11 @@ class Controller {
    */
   getRowById(req, res) {
     this.Model.findById(req.params.id)
-      .then((rows) => {
-        if (!rows) {
+      .then((row) => {
+        if (!row) {
           res.status(404).send('Event not found');
         } else {
-          res.status(200).json(rows);
+          res.status(200).json({ row });
         }
       })
       .catch(error => res.status(400).send(error));
@@ -96,7 +98,7 @@ class Controller {
       },
       returning: true
     })
-      .then(rows => res.status(200).json(rows))
+      .then(row => res.status(200).json({ row }))
       .catch(error => res.status(422).send(error));
   }
   /**

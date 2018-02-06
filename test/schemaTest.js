@@ -1,7 +1,7 @@
 import {
   assert
 } from 'chai';
-import schema from '../server/validators/schemas.js';
+import schema from '../server/middleware/validationSchemas.js';
 
 context('Validation with Joi schemas', () => {
   describe('for POST requests on /api/v1/centers, validation', () => {
@@ -56,18 +56,18 @@ context('Validation with Joi schemas', () => {
     const postEventData = {
       name: "Jason's Birthday",
       type: ['Cocktail', 'Birthday', 'Wedding'],
-      centerId: '100',
-      duration: '1',
-      startDate: '2017-12-15',
+      centerId: 'c848bf5c-27ab-4882-9e43-ffe178c82602',
+      numOfDays: '1',
+      startDate: '2018-02-15',
       estimatedAttendance: '1000',
     };
     const validatedPostEventData = {
       name: "Jason's Birthday",
       type: ['Cocktail', 'Birthday', 'Wedding'],
-      centerId: 100,
-      duration: 1,
+      centerId: 'c848bf5c-27ab-4882-9e43-ffe178c82602',
+      numOfDays: 1,
       // use Date.UTC to avoid problems due to different timezones on  local machines
-      startDate: new Date(new Date(Date.UTC(2017, 11, 15))),
+      startDate: new Date(new Date(Date.UTC(2018, 1, 15))),
       estimatedAttendance: 1000,
     };
     it('throws error when some required fields are not in request body', () => {
@@ -135,14 +135,14 @@ context('Validation with Joi schemas', () => {
     const updateEventData = {
       name: "Jason's Birthday",
       type: ['Birthday', 'Wedding'],
-      centerId: '100',
-      startDate: '2017-12-16'
+      centerId: 'c848bf5c-27ab-4882-9e43-ffe178c82602',
+      startDate: '2018-02-16'
     };
     const validatedUpdateEventData = {
       name: "Jason's Birthday",
       type: ['Birthday', 'Wedding'],
-      centerId: 100,
-      startDate: new Date(Date.UTC(2017, 11, 16))
+      centerId: 'c848bf5c-27ab-4882-9e43-ffe178c82602',
+      startDate: new Date(Date.UTC(2018, 1, 16))
     };
 
     it('does not throw error when request body is empty', () => {
@@ -176,22 +176,50 @@ context('Validation with Joi schemas', () => {
     }, {
       id: 3.5
     }];
-    const test2 = [{
-      id: 3
-    }, {
-      id: '3'
-    }];
+    const item = {
+      id: 'c848bf5c-27ab-4882-9e43-ffe178c82602'
+    };
+
     test.forEach((item) => {
-      it(`throws error for non-integer ${typeof item.id} parameter: ${item.id}`, () => {
+      it(`throws error for non-uuid ${typeof item.id} parameter: ${item.id}`, () => {
         const result = schema.param.validate(item);
         assert.notEqual(result.error, null, `Joi output: ${result.error}`);
       });
     });
-    test2.forEach((item) => {
-      it(`does not throw error for integer ${typeof item.id} parameter: ${item.id}`, () => {
-        const result = schema.param.validate(item);
-        assert.equal(result.error, null, `Joi output: ${result.error}`);
-      });
+
+    it('does not throw error for uuid string parameter c848bf5c-27ab-4882-9e43-ffe178c82602', () => {
+      const result = schema.param.validate(item);
+      assert.equal(result.error, null, `Joi output: ${result.error}`);
+    });
+  });
+  describe('for POST requests on /api/v1/users, validation', () => {
+    // sample request body data
+    const postUserData = {
+      id: 'c848bf5c-27ab-4882-9e43-ffe178c82602',
+      userName: 'admin',
+      firstName: 'Tovieye',
+      lastName: 'Ozi',
+      email: 'ad.min@gmail.com',
+      password: 'abc123',
+      confirmPassword: 'abc123',
+      isAdmin: true
+    };
+
+    it('throws error when some required fields are not in request body', () => {
+      const modified = Object.assign({}, postUserData);
+      delete modified.firstName;
+      const result = schema.postUsers.validate(modified);
+      assert.notEqual(result.error, null, `Joi output: ${result.error}`);
+    });
+    it('throws error when unknown fields are in request body', () => {
+      const modified = Object.assign({}, postUserData);
+      modified.volume = 'high';
+      const result = schema.postUsers.validate(modified);
+      assert.notEqual(result.error, null, `Joi output: ${result.error}`);
+    });
+    it('does not throw error when all required fields are in request body', () => {
+      const result = schema.postUsers.validate(postUserData);
+      assert.equal(result.error, null, `Joi output: ${result.error}`);
     });
   });
 });

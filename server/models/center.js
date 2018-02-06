@@ -45,7 +45,6 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: false,
     },
-
   });
 
   // Relations

@@ -8,6 +8,7 @@ import supertest from 'supertest';
 import dotenv from 'dotenv';
 import app from '../server/app.js';
 
+
 dotenv.config();
 
 const PORT = process.env.PORT || 3000;
@@ -19,7 +20,7 @@ const rootURL = '/api/v1';
 const centersUrl = `${rootURL}/centers`;
 const centerIdUrl = `${rootURL}/centers/c848bf5c-27ab-4882-9e43-ffe178c82602`;
 const eventsUrl = `${rootURL}/events`;
-const eventsIdUrl = `${rootURL}/events/c848bf5c-27ab-4882-9e43-ffe178c82602`;
+const eventsIdUrl = `${rootURL}/events/db5e4fa9-d4df-4352-a2e4-bc57f6b68e9b`;
 // sample data for test
 const user = {
   id: 'c848bf5c-27ab-4882-9e43-ffe178c82602',
@@ -45,6 +46,7 @@ const changeCenter = {
   state: 'Abuja',
 };
 const newCenter = {
+  id: 'c848bf5c-27ab-4882-9e43-ffe178c82602',
   name: 'Baranduil',
   description: 'a  dark and dank castle shrouded in gloom',
   cost: 50000,
@@ -63,6 +65,7 @@ const changeEvent = {
 };
 
 const newEvent = {
+  id: 'db5e4fa9-d4df-4352-a2e4-bc57f6b68e9b',
   name: 'ZAL',
   type: ['Cocktail', 'Dinner'],
   centerId: 'c848bf5c-27ab-4882-9e43-ffe178c82602',
@@ -83,67 +86,92 @@ before(async () => {
 
 
 describe('create admin user', () => {
-  it('issues a token', () => response1.then(res => expect(res.status).to.equal(200)));
-  it('returns signUp message', () => response1.then(res => expect(res.body.message.signUp).to.equal('Signup Successful')));
-  it('returns login Message', () => response1.then(res => expect(res.body.message.logIn).to.equal('Login Successful')));
+  it('issues a token', () => expect(response1.status).to.equal(200));
+  it('returns signUp message', () => expect(response1.body.message.signUp).to.equal('Signup Successful'));
+  it('returns login Message', () => expect(response1.body.message.logIn).to.equal('Login Successful'));
 });
 
 describe('create normal user', () => {
-  it('issues a token', () => response2.then(res => expect(res.status).to.equal(200)));
-  it('returns signUp message', () => response2.then(res => expect(res.body.message.signUp).to.equal('Signup Successful')));
-  it('returns login Message', () => response2.then(res => expect(res.body.message.logIn).to.equal('Login Successful')));
+  it('issues a token', () => expect(response2.status).to.equal(200));
+  it('returns signUp message', () => expect(response2.body.message.signUp).to.equal('Signup Successful'));
+  it('returns login Message', () => expect(response2.body.message.logIn).to.equal('Login Successful'));
 });
 
-/**
- * Generates new tests with a template
- * @param {string} title    - Title of the test
- * @param {string} method   - HTTP verb in lowercase e.g. get
- * @param {string} url      - Request URL
- * @param {object} payload  - Data to be sent to server
- * @param {string} key      - key for requested data in res.body
- * @param {string} type     - type of value for key above
- *  @returns {function} mocha test suite
- */
 
-const templateTest = function generateTest(title, method, url, payload, key, type) {
-  const token = response1.then(res => res.body.token);
-  let packet;
-  before(async () => {
-    try {
-      packet = await request[method].bind(request, url)
-        .set('authorization', `JWT ${token}`).send(payload);
-    } catch (err) {
-      debug(err);
-    }
-  });
-  describe(title, () => {
+describe('API Integration Tests', () => {
+  /**
+   * Generates new tests with a template
+   * @param {string} title    - Title of the test
+   * @param {string} method   - HTTP verb in lowercase e.g. get
+   * @param {string} url      - Request URL
+   * @param {object} payload  - Data to be sent to server
+   * @param {string} key      - key for requested data in res.body
+   * @param {string} type     - type of value for key above
+   *  @returns {function} mocha test suite
+   */
+
+  const templateTest = (title, method, url, payload, key, type) => describe(title, () => {
+    let packet;
+    before(async () => {
+      try {
+        const promise = await new Promise((res) => {
+          setTimeout(() => res(response1), 3000);
+        });
+        const Request = request[method].bind(request, url);
+        packet = await Request()
+          .set('authorization', `JWT ${promise.body.token}`).send(payload);
+      } catch (err) {
+        debug(err);
+      }
+    });
     it('return 200 for successful', () => {
       expect(packet.status).to.equal(200);
     });
     it('response should be json', () => {
-      expect(packet.header['content-type']).to.equal(/json/);
+      expect(packet.header['content-type']).to.match(/json/);
     });
-    it('response.body should have required keys', () => {
-      expect(packet.body).to.include.all.keys('message', key, 'error');
+    it(`response.body[key] should be an ${type}`, () => {
+      expect(packet.body.row).to.be.a(type);
     });
-    it('response.body.key should be an object', () => {
-      expect(packet.body[key]).to.be.a(type);
+    it('response.body[key] should include expected values', () => {
+      expect(packet.body.row).to.include(payload);
     });
   });
-};
 
-describe('API Integration Tests', () => {
-  // describe('Centers Endpoint Tests', () => {
-  //   templateTest('Add Center', 'post', centersUrl, newCenter, 'center', 'object');
-  //   templateTest('Modify Center Details', 'put', centerIdUrl, changeCenter, 'center', 'object');
-  //   templateTest('Get All Centers', 'get', centersUrl, null, 'centers', 'array');
-  //   templateTest('Get Center Details', 'get', centerIdUrl, null, 'center', 'object');
-  // });
+  const templateTest2 = (title, method, url, payload, key, type) => describe(title, () => {
+    let packet;
+    before(async () => {
+      try {
+        packet = await request[method].bind(request, url)();
+      } catch (err) {
+        debug(err);
+      }
+    });
+    it('return 200 for successful', () => {
+      expect(packet.status).to.equal(200);
+    });
+    it('response should be json', () => {
+      expect(packet.header['content-type']).to.match(/json/);
+    });
+    it(`response.body[key] should be an ${type}`, () => {
+      expect(packet.body.row).to.be.a(type);
+    });
+    it('response.body[key] should include expected values', () => {
+      expect(packet.body.row).to.include(payload);
+    });
+  });
 
-  // describe('Events Endpoint Tests', () => {
-  //   templateTest('Add Event', 'post', eventsUrl, newEvent, 'event', 'object');
-  //   templateTest('Modify Event Details', 'put', eventsIdUrl, changeEvent, 'event', 'object');
-  //   templateTest('Get All Events', 'get', eventsUrl, null, 'events', 'array');
-  //   templateTest('Get Event Details', 'get', eventsIdUrl, null, 'event', 'object');
-  // });
+  describe('Centers Endpoint Tests', async () => {
+    await templateTest('Add Center', 'post', centersUrl, newCenter, 'row', 'object');
+    await templateTest('Modify Center Details', 'put', centerIdUrl, changeCenter, 'row[1][0]', 'object');
+    templateTest2('Get Center Details', 'get', centerIdUrl, changeCenter, 'row', 'object');
+    templateTest2('Get All Centers', 'get', centersUrl, changeCenter, 'row[0]', 'array');
+  });
+
+  describe('Events Endpoint Tests', async () => {
+    await templateTest('Add Event', 'post', eventsUrl, newEvent, 'row', 'object');
+    await templateTest('Modify Event Details', 'put', eventsIdUrl, changeEvent, 'row[1][0]', 'object');
+    templateTest2('Get Event Details', 'get', eventsIdUrl, changeEvent, 'row', 'object');
+    templateTest2('Get All Events', 'get', eventsUrl, changeEvent, 'row[0]', 'array');
+  });
 });

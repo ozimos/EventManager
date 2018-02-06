@@ -14,8 +14,10 @@
     "start-babel": "nodemon --watch server --exec node_modules/.bin/babel-node server/bin/www.js",
     "build": "babel server -d dist",
     "postbuild": "nodemon --watch dist dist/bin/www.js",
-    "test": "cross-env NODE_ENV=test && nyc --reporter=html --reporter=text mocha",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "test": "cross-env NODE_ENV=test nyc mocha",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "report": "nyc report --reporter=text-lcov",
+    "pretest": "cross-env NODE_ENV=test sequelize db:migrate:undo:all && cross-env NODE_ENV=test sequelize db:migrate"
   },
   "repository": {
     "type": "git",
@@ -50,7 +52,7 @@
     "pg-hstore": "^2.3.2",
     "sequelize": "^4.31.2",
     "sequelize-cli": "^3.2.0",
-    "supertest": "^3.0.0"
+    "umzug": "^2.1.0"
   },
   "devDependencies": {
     "chai": "^4.1.2",
@@ -61,6 +63,7 @@
     "eslint-plugin-import": "^2.8.0",
     "mocha": "^5.0.0",
     "nodemon": "^1.14.11",
-    "nyc": "^11.4.1"
+    "nyc": "^11.4.1",
+    "supertest": "^3.0.0"
   }
 }

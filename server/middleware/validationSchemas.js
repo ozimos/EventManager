@@ -31,6 +31,11 @@ const login = Joi.object({
   password: Joi.string().required()
 }).xor('userName', 'email:');
 const postUsers = Joi.object({
+  id: Joi.string().guid({
+    version: [
+      'uuidv4'
+    ]
+  }),
   userName: Joi.string().required(),
   firstName: Joi.string().required(),
   lastName: Joi.string().required(),
