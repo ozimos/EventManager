@@ -120,11 +120,11 @@ class UserController extends Controller {
 
     const message = {};
     message.signUp = extraMessage;
-    const payloader = {
+    const payload = {
       isAdmin: row.isAdmin,
       id: row.id,
     };
-    const token = jwt.sign(payloader, process.env.TOKEN_PASSWORD, {
+    const token = jwt.sign(payload, process.env.TOKEN_PASSWORD, {
       expiresIn: '1h'
     });
     if (token) {

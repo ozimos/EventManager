@@ -1,12 +1,11 @@
 import {
   expect
 } from 'chai';
-import {
-  debug
-} from 'util';
+
 import supertest from 'supertest';
 import dotenv from 'dotenv';
-import app from '../server/app.js';
+import logger from '../../logger.js';
+import app from '../../app.js';
 
 
 dotenv.config();
@@ -80,7 +79,7 @@ before(async () => {
     response1 = await request.post(`${rootURL}/users`).send(adminUser);
     response2 = await request.post(`${rootURL}/users`).send(user);
   } catch (error) {
-    debug(error);
+    logger.debug(error);
   }
 });
 
@@ -121,11 +120,11 @@ describe('API Integration Tests', () => {
         packet = await Request()
           .set('authorization', `JWT ${promise.body.token}`).send(payload);
       } catch (err) {
-        debug(err);
+        logger.debug(err);
       }
     });
     it('return 200 for successful', () => {
-      expect(packet.status).to.equal(200);
+      expect(packet.statusCode).to.equal(200);
     });
     it('response should be json', () => {
       expect(packet.header['content-type']).to.match(/json/);
@@ -144,11 +143,11 @@ describe('API Integration Tests', () => {
       try {
         packet = await request[method].bind(request, url)();
       } catch (err) {
-        debug(err);
+        logger.debug(err);
       }
     });
     it('return 200 for successful', () => {
-      expect(packet.status).to.equal(200);
+      expect(packet.statusCode).to.equal(200);
     });
     it('response should be json', () => {
       expect(packet.header['content-type']).to.match(/json/);

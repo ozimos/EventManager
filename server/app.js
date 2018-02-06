@@ -1,12 +1,25 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import logger from 'morgan';
+import morgan from 'morgan';
 import apiRoutes from './routes/apiRoutes.js';
 
 
 const app = express();
 
-app.use(logger('dev'));
+app.use(morgan('combined', {
+  skip(req, res) {
+    return res.statusCode < 400;
+  },
+  stream: process.stderr
+}));
+
+app.use(morgan('combined', {
+  skip(req, res) {
+    return res.statusCode >= 400;
+  },
+  stream: process.stdout
+}));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true

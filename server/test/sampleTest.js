@@ -2,7 +2,7 @@ import supertest from 'supertest';
 import {
   expect
 } from 'chai';
-import app from '../server/app.js';
+import app from '../app.js';
 
 
 // Get port from environment and store in Express.

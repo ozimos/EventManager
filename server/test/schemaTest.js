@@ -1,7 +1,7 @@
 import {
   assert
 } from 'chai';
-import schema from '../server/middleware/validationSchemas.js';
+import schema from '../middleware/validationSchemas.js';
 
 context('Validation with Joi schemas', () => {
   describe('for POST requests on /api/v1/centers, validation', () => {
@@ -180,8 +180,8 @@ context('Validation with Joi schemas', () => {
       id: 'c848bf5c-27ab-4882-9e43-ffe178c82602'
     };
 
-    test.forEach((item) => {
-      it(`throws error for non-uuid ${typeof item.id} parameter: ${item.id}`, () => {
+    test.forEach((elem) => {
+      it(`throws error for non-uuid ${typeof elem.id} parameter: ${elem.id}`, () => {
         const result = schema.param.validate(item);
         assert.notEqual(result.error, null, `Joi output: ${result.error}`);
       });
