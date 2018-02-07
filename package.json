@@ -14,10 +14,10 @@
     "start-babel": "nodemon --watch server --exec node_modules/.bin/babel-node server/bin/www.js",
     "build": "babel server -d dist",
     "postbuild": "nodemon --watch dist dist/bin/www.js",
-    "test": "cross-env NODE_ENV=test nyc mocha",
+    "test": "cross-env NODE_ENV=test nyc mocha --opts server/test/integration/mocha.opts",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "report": "nyc report --reporter=text-lcov",
-    "pretest": "cross-env NODE_ENV=test sequelize db:migrate:undo:all && cross-env NODE_ENV=test sequelize db:migrate"
+    "migrate": "cross-env NODE_ENV=test sequelize db:migrate:undo:all && cross-env NODE_ENV=test sequelize db:migrate"
   },
   "repository": {
     "type": "git",

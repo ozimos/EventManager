@@ -45,7 +45,6 @@ const changeCenter = {
   state: 'Abuja',
 };
 const newCenter = {
-  id: 'c848bf5c-27ab-4882-9e43-ffe178c82602',
   name: 'Baranduil',
   description: 'a  dark and dank castle shrouded in gloom',
   cost: 50000,
@@ -64,7 +63,6 @@ const changeEvent = {
 };
 
 const newEvent = {
-  id: 'db5e4fa9-d4df-4352-a2e4-bc57f6b68e9b',
   name: 'ZAL',
   type: ['Cocktail', 'Dinner'],
   centerId: 'c848bf5c-27ab-4882-9e43-ffe178c82602',

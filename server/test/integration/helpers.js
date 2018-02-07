@@ -10,7 +10,8 @@ dotenv.config();
 export const app = exp;
 export const request = supertest(app);
 export const { expect } = chai;
-export const { Centers } = db;
-export const { Users } = db;
+export const { Center } = db;
+export const { User } = db;
+export const { Event } = db;
 export const jwt = token;
 

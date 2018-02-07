@@ -33,6 +33,7 @@ export default class IsUser {
           });
         } else {
           req.decoded = decoded;
+          // add userId field to request body
           req.body.userId = decoded.id;
         }
       });
