@@ -5,7 +5,11 @@ import {
   Event,
   jwt,
   expect,
-  request
+  request,
+  defaultUser,
+  defaultCenter,
+  payload,
+  rootURL
 } from './helpers';
 
 /**
@@ -29,28 +33,6 @@ finishDate.setUTCDate(finishDate.getUTCDate() + initDays);
 const dates = [initDate, finishDate];
 
 describe('Routes Events', () => {
-  const defaultUser = {
-    id: 'db5e4fa9-d4df-4352-a2e4-bc57f6b68e9b',
-    userName: 'admin',
-    firstName: 'Tovieye',
-    lastName: 'Ozi',
-    email: 'ad.min@gmail.com',
-    passwordHash: 'abc123',
-    isAdmin: true
-  };
-  const defaultCenter = {
-    id: 'c848bf5c-27ab-4882-9e43-ffe178c82602',
-    name: 'Baranduil',
-    description: 'a  dark and dank castle shrouded in gloom',
-    cost: 50000,
-    capacity: 5000,
-    country: 'Algeria',
-    state: 'Lagos',
-    lga: 'Oshodi',
-    amenities: ['Pool', 'Bar'],
-    eventType: ['Cocktail', 'Birthday'],
-    userId: defaultUser.id
-  };
   const defaultEvent = {
     id: 'db5e4fa9-d4df-4352-a2e4-bc57f6b68e9b',
     name: 'ZAL',
@@ -62,19 +44,6 @@ describe('Routes Events', () => {
     dates,
     estimatedAttendance: 5000,
   };
-  const payload = {
-    isAdmin: defaultUser.isAdmin,
-    id: defaultUser.id
-  };
-  const options = {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    timeZone: 'UTC',
-    timeZoneName: 'short'
-  };
-  const rootURL = '/api/v1';
   const eventsUrl = `${rootURL}/events`;
   const eventIdUrl = `${rootURL}/events/${defaultEvent.id}`;
 
