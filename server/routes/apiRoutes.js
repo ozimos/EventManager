@@ -21,29 +21,29 @@ router.param('id', validator.params(schemas.param));
 // Center Routes
 router.route('/centers')
   .get(Controller.select(centerController, 'getAllRows'))
-  .post(validator.body(schemas.postCenter), IsUser.verify, IsUser.admin, Controller.select(centerController, 'createRow'));
+  .post(IsUser.verify, IsUser.admin, validator.body(schemas.postCenter), Controller.select(centerController, 'createRow'));
 
 router.route('/centers/:id')
   .get(Controller.select(centerController, 'getRowById'))
-  .put(validator.body(schemas.updateCenter), IsUser.verify, IsUser.admin, Controller.select(centerController, 'updateRow'));
+  .put(IsUser.verify, IsUser.admin, validator.body(schemas.updateCenter), Controller.select(centerController, 'updateRow'));
 
 // Event Routes
 router.route('/events')
-  .get(Controller.select(eventController, 'getAllRows'))
-  .post(validator.body(schemas.postEvent), IsUser.verify, Controller.select(eventController, 'createRow'));
+  .get(EventController.select(eventController, 'getAllRows'))
+  .post(IsUser.verify, validator.body(schemas.postEvent), EventController.select(eventController, 'createRow'));
 
 router.route('/events/:id')
-  .get(Controller.select(eventController, 'getRowById'))
-  .put(validator.body(schemas.updateEvent), IsUser.verify, Controller.select(eventController, 'updateRow'))
-  .delete(IsUser.verify, Controller.select(eventController, 'deleteRow'));
+  .get(EventController.select(eventController, 'getRowById'))
+  .put(IsUser.verify, validator.body(schemas.updateEvent), EventController.select(eventController, 'updateRow'))
+  .delete(IsUser.verify, EventController.select(eventController, 'deleteRow'));
 
 // User Routes
 router.post(
   '/users', validator.body(schemas.postUsers),
-  Controller.select(userController, 'signUp')
+  UserController.select(userController, 'signUp')
 );
 
-router.post('/users/login', Controller.select(userController, 'login'));
+router.post('/users/login', UserController.select(userController, 'login'));
 
 // Return router
 export default router;

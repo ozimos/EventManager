@@ -17,13 +17,12 @@ class UserController extends Controller {
    *
    *
    * @param {any} req
-   * @param {any} res
    * @returns {obj} HTTP Response
    * @memberof UserController
    */
-  login(req, res) {
+  login(req) {
     // get user details from db
-    this.Model
+    return this.Model
       .findOne({
         where: {
           [Op.or]: [{
@@ -36,38 +35,28 @@ class UserController extends Controller {
         },
       }).then((response) => {
         if (!response) {
-          res.status(404).send({
-            message: 'Account does not exist! Visit /api/v1/users/signup and register.',
-          });
-        } else {
-          // check if password is correct
-          const isCorrectPassword = bcrypt.compareSync(req.body.password, response.passwordHash);
-
-          if (isCorrectPassword) {
-            UserController.sendResponseWIthToken(response, res);
-          } else {
-            res.status(406).send({
-              message: 'Incorrect password',
-            });
-          }
+          return UserController.errorResponse('Account does not exist! Visit /api/v1/users/signup and register.', 404);
         }
-      }).catch(error => res.status(400).send({
-        message: error,
-      }));
+        // check if password is correct
+        const isCorrectPassword = bcrypt.compareSync(req.body.password, response.passwordHash);
+
+        if (isCorrectPassword) {
+          return UserController.sendResponseWIthToken(response);
+        }
+        return UserController.errorResponse('Incorrect password', 406);
+      }).catch(error => UserController.errorResponse(error.message));
   }
 
   /**
    *
    *
    * @param {any} req
-   * @param {any} res
-   * @param {any} next
    * @returns {obj} HTTP Response
    * @memberof UserController
    */
-  signUp(req, res) {
+  signUp(req) {
     // check if email is available
-    this.Model.findOne({
+    return this.Model.findOne({
       where: {
         [Op.or]: [{
           email: req.body.email
@@ -80,41 +69,30 @@ class UserController extends Controller {
     }).then((response) => {
       if (response) {
         const duplicate = response.userName === req.body.userName ? 'userName' : 'email';
-        res.status(406).send({
-          message: `${duplicate} has been used`,
-        });
-      } else {
-        // create hash of password
-        const salt = bcrypt.genSaltSync(10);
-        req.body.passwordHash = bcrypt.hashSync(req.body.password, salt);
-        // remove plaintext password from record to write to db
-        delete req.body.password;
-        // create user in db
-        this.Model.create(req.body).then(row =>
-          // send response with token to client
-          UserController.sendResponseWIthToken(row, res, 'Signup Successful'))
-          .catch(error => res.status(400).send({
-            message: {
-              signUp: 'this is where the error happens',
-              logIn: error.message
-            }
-          }));
+        return UserController.errorResponse(`${duplicate} has been used`, 406);
       }
-    }).catch(error => res.status(400).send({
-      message: error,
-    }));
+      // create hash of password
+      const salt = bcrypt.genSaltSync(10);
+      req.body.passwordHash = bcrypt.hashSync(req.body.password, salt);
+      // remove plaintext password from record to write to db
+      delete req.body.password;
+      // create user in db
+      return this.Model.create(req.body).then(row =>
+        // send response with token to client
+        UserController.sendResponseWIthToken(row, 'Signup Successful'))
+        .catch(error => UserController.errorResponse(error.message));
+    }).catch(error => UserController.errorResponse(error.message));
   }
 
   /**
    *
    *
    * @param {Sequelize<Model<Instance>>} row
-   * @param {Express} res
    * @param {String} extraMessage
    * @returns {obj} HTTP Response
    * @memberof UserController
    */
-  static sendResponseWIthToken(row, res, extraMessage) {
+  static sendResponseWIthToken(row, extraMessage) {
     // remove password info
     row.passwordHash = 'censored';
 
@@ -129,17 +107,13 @@ class UserController extends Controller {
     });
     if (token) {
       message.logIn = 'Login Successful';
-      res.status(200).send({
-        row,
-        message,
-        token,
-      });
-    } else {
-      message.push('No token found');
-      res.status(406).send({
-        message
-      });
+      return UserController.defaultResponse(
+        row, 200, message,
+        token
+      );
     }
+    message.logIn = 'No token found';
+    return UserController.errorResponse(message, 406);
   }
 }
 
