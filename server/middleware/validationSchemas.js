@@ -5,6 +5,11 @@ const arraySchema = Joi.array().items(Joi.string().required()).unique();
 const updateEvent = Joi.object({
   name: Joi.string(),
   type: Joi.alternatives().try(arraySchema, Joi.string()),
+  userId: Joi.string().guid({
+    version: [
+      'uuidv4'
+    ]
+  }),
   centerId: Joi.string().guid({
     version: [
       'uuidv4'
@@ -16,6 +21,11 @@ const updateEvent = Joi.object({
 });
 const updateCenter = Joi.object({
   name: Joi.string(),
+  userId: Joi.string().guid({
+    version: [
+      'uuidv4'
+    ]
+  }),
   description: Joi.string(),
   cost: Joi.number().integer(),
   capacity: Joi.number().integer(),

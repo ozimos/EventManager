@@ -65,7 +65,6 @@ describe('Routes Centers', () => {
 
     it('should update a center', () => request.put(centerIdUrl)
       .set('authorization', `JWT ${token}`).send(updatedCenter).then((res) => {
-        console.log(res);
         expect(res.body).to.be.an('array');
         expect(res.body[1][0].name).to.equal(updatedCenter.name);
         expect(res.body[1][0].state).to.equal(updatedCenter.state);
