@@ -17,14 +17,9 @@ export const {
   expect
 } = chai;
 export const {
-  Center
+  User, Center, Event
 } = db;
-export const {
-  User
-} = db;
-export const {
-  Event
-} = db;
+
 export const jwt = token;
 
 export const defaultUser = {

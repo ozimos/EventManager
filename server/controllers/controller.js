@@ -24,23 +24,60 @@ class Controller {
    */
   static select(instance, method) {
     return (req, res) => {
-      instance[method](req, res);
+      instance[method](req).then((response) => {
+        res.status(response.statusCode);
+        res.json(response.data);
+      });
     };
   }
+  /**
+   *
+   *
+   * @static
+   * @param {any} data a table instance
+   * @param {number} [statusCode=200]
+   * @param {string} message optional
+   * @param {string} token optional
+   * @returns {object} object
+   * @memberof Controller
+   */
+  static defaultResponse(data, statusCode = 200, message, token) {
+    return {
+      data,
+      statusCode,
+      message,
+      token
+    };
+  }
+  /**
+   *
+   *
+   * @static
+   * @param {any} message
+   * @param {number} [statusCode=400]
+   * @returns {object} object
+   * @memberof Controller
+   */
+  static errorResponse(message, statusCode = 400) {
+    return this.defaultResponse({
+      error: message,
+      status: statusCode,
+    }, statusCode);
+  }
+
 
   /**
    *
    *
    * @param {any} req
-   * @param {any} res
    * @returns {obj} HTTP Response
    * @memberof Controller
    */
-  createRow(req, res) {
-    this.Model
+  createRow(req) {
+    return this.Model
       .create(req.body)
-      .then(row => res.status(200).json(row))
-      .catch(error => res.status(400).send(error));
+      .then(result => Controller.defaultResponse(result, 201))
+      .catch(error => Controller.errorResponse(error.message));
   }
   /**
    *
@@ -50,17 +87,16 @@ class Controller {
    * @returns {obj} Model
    * @memberof Controller
    */
-  getAllRows(req, res) {
-    this.Model
+  getAllRows() {
+    return this.Model
       .findAll()
-      .then((rows) => {
-        if (rows.length > 0) {
-          res.status(200).json(rows);
-        } else {
-          res.status(404).send('no records available');
+      .then((result) => {
+        if (result.length > 0) {
+          return Controller.defaultResponse(result);
         }
+        return Controller.errorResponse('no records available', 404);
       })
-      .catch(error => res.status(400).send(error));
+      .catch(error => Controller.errorResponse(error.message));
   }
   /**
    *
@@ -70,16 +106,15 @@ class Controller {
    * @returns {obj} Model
    * @memberof Controller
    */
-  getRowById(req, res) {
-    this.Model.findById(req.params.id)
-      .then((row) => {
-        if (!row) {
-          res.status(404).send('Event not found');
-        } else {
-          res.status(200).json(row);
+  getRowById(req) {
+    return this.Model.findById(req.params.id)
+      .then((result) => {
+        if (!result) {
+          return Controller.errorResponse('no records available', 404);
         }
+        return Controller.defaultResponse(result);
       })
-      .catch(error => res.status(400).send(error));
+      .catch(error => Controller.errorResponse(error.message));
   }
   /**
    *
@@ -89,15 +124,14 @@ class Controller {
    * @returns {obj} Model
    * @memberof Controller
    */
-  updateRow(req, res) {
-    this.Model.update(req.body, {
+  updateRow(req) {
+    return this.Model.update(req.body, {
       where: {
         id: req.params.id
       },
       returning: true
-    })
-      .then(row => res.status(200).json(row))
-      .catch(error => res.status(422).send(error));
+    }).then(result => Controller.defaultResponse(result))
+      .catch(error => Controller.errorResponse(error.message, 422));
   }
   /**
    *
@@ -107,15 +141,15 @@ class Controller {
    * @returns {obj} Model
    * @memberof Controller
    */
-  deleteRow(req, res) {
-    this.Model
+  deleteRow(req) {
+    return this.Model
       .destroy({
         where: {
           id: req.params.id
         },
       })
-      .then(result => res.status(200).send(`${result} record deleted`))
-      .catch(error => res.status(422).send(error));
+      .then(result => Controller.defaultResponse(result))
+      .catch(error => Controller.errorResponse(error.message, 422));
   }
 }
 
