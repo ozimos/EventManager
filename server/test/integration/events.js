@@ -47,10 +47,17 @@ describe('Routes Events', () => {
   const eventsUrl = `${rootURL}/events`;
   const eventIdUrl = `${rootURL}/events/${defaultEvent.id}`;
 
-  // truncates Event, Center, User and creates new row entries before test
   // Creates JWT before test
   let token;
-  before(async () => {
+  before('create JWT', () => {
+    token = jwt.sign(payload, process.env.TOKEN_PASSWORD, {
+      expiresIn: '1h'
+    });
+  });
+
+  // truncates Event, Center, User and creates new row entries before test
+
+  before('setup db', async () => {
     try {
       await Event.truncate({
         cascade: true
@@ -64,9 +71,6 @@ describe('Routes Events', () => {
       await User.create(defaultUser);
       await Center.create(defaultCenter);
       await Event.create(defaultEvent);
-      token = jwt.sign(payload, process.env.TOKEN_PASSWORD, {
-        expiresIn: '1h'
-      });
     } catch (error) {
       console.log(error);
     }
@@ -108,7 +112,7 @@ describe('Routes Events', () => {
           expect(defaultEvent.startDate.toISOString()).to.have.string(res.body.data.startDate);
         }));
   });
-  // Update A Event
+  // Update An Event
   describe('PUT /events/:id', () => {
     const updatedEvent = {
       name: 'Updated event',
@@ -120,6 +124,34 @@ describe('Routes Events', () => {
         expect(res.body.data).to.be.an('array');
         expect(res.body.data[1][0].name).to.equal(updatedEvent.name);
         expect(updatedEvent.startDate.toISOString()).to.have.string(res.body.data[1][0].startDate);
+      }));
+  });
+  // Delete An Event
+  describe('DELETE /events/:id', () => {
+    // truncates Event, Center, User and creates new row entries before test
+
+    before('setup db', async () => {
+      try {
+        await Event.truncate({
+          cascade: true
+        });
+        await Center.truncate({
+          cascade: true
+        });
+        await User.truncate({
+          cascade: true
+        });
+        await User.create(defaultUser);
+        await Center.create(defaultCenter);
+        await Event.create(defaultEvent);
+      } catch (error) {
+        console.log(error);
+      }
+    });
+
+    it('should update an event', () => request.delete(eventIdUrl)
+      .set('authorization', `JWT ${token}`).then((res) => {
+        expect(res.body.data).to.equal(1);
       }));
   });
 });
