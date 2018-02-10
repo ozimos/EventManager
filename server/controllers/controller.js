@@ -25,8 +25,11 @@ class Controller {
   static select(instance, method) {
     return (req, res) => {
       instance[method](req).then((response) => {
-        res.status(response.statusCode);
-        res.json(response.data);
+        const {
+          statusCode,
+          ...rest
+        } = response;
+        res.status(statusCode).json(rest);
       });
     };
   }
@@ -59,10 +62,10 @@ class Controller {
    * @memberof Controller
    */
   static errorResponse(message, statusCode = 400) {
-    return this.defaultResponse({
-      error: message,
-      status: statusCode,
-    }, statusCode);
+    return {
+      message,
+      statusCode,
+    };
   }
 
 

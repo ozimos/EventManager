@@ -77,9 +77,9 @@ class UserController extends Controller {
       // remove plaintext password from record to write to db
       delete req.body.password;
       // create user in db
-      return this.Model.create(req.body).then(row =>
+      return this.Model.create(req.body).then(data =>
         // send response with token to client
-        UserController.sendResponseWIthToken(row, 'Signup Successful'))
+        UserController.sendResponseWIthToken(data, 'Signup Successful'))
         .catch(error => UserController.errorResponse(error.message));
     }).catch(error => UserController.errorResponse(error.message));
   }
@@ -87,20 +87,20 @@ class UserController extends Controller {
   /**
    *
    *
-   * @param {Sequelize<Model<Instance>>} row
+   * @param {Sequelize<Model<Instance>>} data
    * @param {String} extraMessage
    * @returns {obj} HTTP Response
    * @memberof UserController
    */
-  static sendResponseWIthToken(row, extraMessage) {
+  static sendResponseWIthToken(data, extraMessage) {
     // remove password info
-    row.passwordHash = 'censored';
+    data.passwordHash = 'censored';
 
     const message = {};
     message.signUp = extraMessage;
     const payload = {
-      isAdmin: row.isAdmin,
-      id: row.id,
+      isAdmin: data.isAdmin,
+      id: data.id,
     };
     const token = jwt.sign(payload, process.env.TOKEN_PASSWORD, {
       expiresIn: '1h'
@@ -108,7 +108,7 @@ class UserController extends Controller {
     if (token) {
       message.logIn = 'Login Successful';
       return UserController.defaultResponse(
-        row, 200, message,
+        data, 200, message,
         token
       );
     }

@@ -35,8 +35,8 @@ describe('Routes Users', () => {
     };
     it('should signup new user', () => request.post(signUpUrl)
       .send(newUser).then((res) => {
-        expect(res.body.row.userName).to.equal(newUser.userName);
-        expect(res.body.row.email).to.equal(newUser.email);
+        expect(res.body.data.userName).to.equal(newUser.userName);
+        expect(res.body.data.email).to.equal(newUser.email);
         // eslint-disable-next-line
         expect(res.body.token).to.exist;
       }));
@@ -49,8 +49,8 @@ describe('Routes Users', () => {
       password: defaultPassword,
     };
     it('should login new user', () => request.post(logInUrl).send(credentials).then((res) => {
-      expect(res.body.row.userName).to.equal(defaultUser.userName);
-      expect(res.body.row.email).to.equal(defaultUser.email);
+      expect(res.body.data.userName).to.equal(defaultUser.userName);
+      expect(res.body.data.email).to.equal(defaultUser.email);
       // eslint-disable-next-line
       expect(res.body.token).to.exist;
     }));

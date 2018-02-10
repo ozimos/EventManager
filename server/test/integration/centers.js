@@ -42,9 +42,9 @@ describe('Routes Centers', () => {
   describe('GET /centers', () => {
     it('should return a list of centers', () => request.get(centersUrl)
       .then((res) => {
-        expect(res.body).to.an('array');
-        expect(res.body[0].name).to.equal(defaultCenter.name);
-        expect(res.body[0].country).to.equal(defaultCenter.country);
+        expect(res.body.data).to.an('array');
+        expect(res.body.data[0].name).to.equal(defaultCenter.name);
+        expect(res.body.data[0].country).to.equal(defaultCenter.country);
       }));
   });
   // Get One Center
@@ -52,8 +52,8 @@ describe('Routes Centers', () => {
     it('should return a center', () =>
       request.get(centerIdUrl)
         .then((res) => {
-          expect(res.body.name).to.equal(defaultCenter.name);
-          expect(res.body.country).to.equal(defaultCenter.country);
+          expect(res.body.data.name).to.equal(defaultCenter.name);
+          expect(res.body.data.country).to.equal(defaultCenter.country);
         }));
   });
   // Update A Center
@@ -65,9 +65,9 @@ describe('Routes Centers', () => {
 
     it('should update a center', () => request.put(centerIdUrl)
       .set('authorization', `JWT ${token}`).send(updatedCenter).then((res) => {
-        expect(res.body).to.be.an('array');
-        expect(res.body[1][0].name).to.equal(updatedCenter.name);
-        expect(res.body[1][0].state).to.equal(updatedCenter.state);
+        expect(res.body.data).to.be.an('array');
+        expect(res.body.data[1][0].name).to.equal(updatedCenter.name);
+        expect(res.body.data[1][0].state).to.equal(updatedCenter.state);
       }));
   });
 
@@ -88,8 +88,8 @@ describe('Routes Centers', () => {
 
     it('should create a center', () => request.post(centersUrl).set('authorization', `JWT ${token}`)
       .send(newCenter).then((res) => {
-        expect(res.body.name).to.equal(newCenter.name);
-        expect(res.body.userId).to.equal(payload.id);
+        expect(res.body.data.name).to.equal(newCenter.name);
+        expect(res.body.data.userId).to.equal(payload.id);
       }));
   });
 });

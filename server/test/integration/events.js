@@ -73,7 +73,7 @@ describe('Routes Events', () => {
   });
 
 
-  // Create A Event
+  // Create An Event
   describe('POST /events', () => {
     const newEvent = {
       name: 'ZAL',
@@ -85,18 +85,18 @@ describe('Routes Events', () => {
     };
     it('should create an event if the event date(s) has not been booked', () => request.post(eventsUrl).set('authorization', `JWT ${token}`)
       .send(newEvent).then((res) => {
-        expect(res.body.name).to.equal(newEvent.name);
-        expect(newEvent.startDate.toISOString()).to.have.string(res.body.startDate);
-        expect(res.body.userId).to.equal(payload.id);
+        expect(res.body.data.name).to.equal(newEvent.name);
+        expect(newEvent.startDate.toISOString()).to.have.string(res.body.data.startDate);
+        expect(res.body.data.userId).to.equal(payload.id);
       }));
   });
   // Get All Events
   describe('GET /events', () => {
     it('should return a list of events', () => request.get(eventsUrl)
       .then((res) => {
-        expect(res.body).to.an('array');
-        expect(res.body[0].name).to.equal(defaultEvent.name);
-        expect(defaultEvent.startDate.toISOString()).to.have.string(res.body[0].startDate);
+        expect(res.body.data).to.an('array');
+        expect(res.body.data[0].name).to.equal(defaultEvent.name);
+        expect(defaultEvent.startDate.toISOString()).to.have.string(res.body.data[0].startDate);
       }));
   });
   // Get One Event
@@ -104,8 +104,8 @@ describe('Routes Events', () => {
     it('should return an event', () =>
       request.get(eventIdUrl)
         .then((res) => {
-          expect(res.body.name).to.equal(defaultEvent.name);
-          expect(defaultEvent.startDate.toISOString()).to.have.string(res.body.startDate);
+          expect(res.body.data.name).to.equal(defaultEvent.name);
+          expect(defaultEvent.startDate.toISOString()).to.have.string(res.body.data.startDate);
         }));
   });
   // Update A Event
@@ -117,9 +117,9 @@ describe('Routes Events', () => {
 
     it('should update an event', () => request.put(eventIdUrl)
       .set('authorization', `JWT ${token}`).send(updatedEvent).then((res) => {
-        expect(res.body).to.be.an('array');
-        expect(res.body[1][0].name).to.equal(updatedEvent.name);
-        expect(updatedEvent.startDate.toISOString()).to.have.string(res.body[1][0].startDate);
+        expect(res.body.data).to.be.an('array');
+        expect(res.body.data[1][0].name).to.equal(updatedEvent.name);
+        expect(updatedEvent.startDate.toISOString()).to.have.string(res.body.data[1][0].startDate);
       }));
   });
 });
