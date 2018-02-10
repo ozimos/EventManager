@@ -9,7 +9,7 @@ import {
   defaultCenter,
   payload,
   rootURL
-} from './helpers';
+} from './helpers.js';
 
 describe('Routes Centers', () => {
   const centersUrl = `${rootURL}/centers`;

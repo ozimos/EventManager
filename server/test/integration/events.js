@@ -10,7 +10,7 @@ import {
   defaultCenter,
   payload,
   rootURL
-} from './helpers';
+} from './helpers.js';
 
 /**
  * function to generate valid dates for events

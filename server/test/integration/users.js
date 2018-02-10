@@ -6,7 +6,7 @@ import {
   defaultUser,
   defaultPassword,
   rootURL
-} from './helpers';
+} from './helpers.js';
 
 describe('Routes Users', () => {
   const signUpUrl = `${rootURL}/users`;
