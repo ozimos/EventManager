@@ -71,7 +71,7 @@ class EventController extends Controller {
         finishDate.setUTCDate(finishDate.getUTCDate() + numOfDays);
         const dates = [startDate, finishDate];
         req.body.dates = dates;
-        this.checkAvailability(dates, centerId, id)
+        return this.checkAvailability(dates, centerId, id)
           .then((result) => {
             if (result) {
               return EventController.errorResponse(`Center is already booked from ${result.dates[0].getUTCMonth()} ${result.dates[0].getUTCDate()}  to ${result.dates[1].getUTCMonth()} ${result.dates[1].getUTCDate()} . Please select a different range of day(s)`);
