@@ -39,9 +39,8 @@ describe('Center Controllers', () => {
 
     const controller = new Controller(Centers);
     const req = httpMocks.createRequest();
-    const res = httpMocks.createResponse();
-    it('should return a list of centers', () => controller.getAllRows(req, res)
-      .then(() => expect(res.body).to.eql(expectedResponse)));
+    it('should return a list of centers', () => controller.getAllRows(req)
+      .then(response => expect(response.data).to.eql(expectedResponse)));
   });
 
   describe('getRowById()', () => {
@@ -66,13 +65,12 @@ describe('Center Controllers', () => {
           id: 'c848bf5c-27ab-4882-9e43-ffe178c82602'
         }
       });
-      const res = httpMocks.createResponse();
       td.when(Centers.findById(req.params.id)).thenResolve(expectedResponse);
 
       const controller = new Controller(Centers);
 
-      return controller.getRowById(req, res)
-        .then(() => expect(res.body).to.eql(expectedResponse));
+      return controller.getRowById(req)
+        .then(response => expect(response.body).to.eql(expectedResponse));
     });
   });
 
@@ -95,15 +93,14 @@ describe('Center Controllers', () => {
           userId: 'db5e4fa9-d4df-4352-a2e4-bc57f6b68e9b',
         }
       };
-      const res = httpMocks.createResponse();
 
       td.when(Centers.create(req.body)).thenResolve(req.body);
 
       const controller = new Controller(Centers);
-      return controller.createRow(req, res)
-        .then(() => {
-          expect(res.status).to.eql(201);
-          expect(res.body).to.eql(req.body);
+      return controller.createRow(req)
+        .then((response) => {
+          expect(response.statusCode).to.eql(201);
+          expect(response.data).to.eql(req.body);
         });
     });
   });
@@ -127,7 +124,6 @@ describe('Center Controllers', () => {
           id: 'c848bf5c-27ab-4882-9e43-ffe178c82602'
         }
       };
-      const res = httpMocks.createResponse();
       td.when(Centers.update(req.body, {
         where: {
           id: req.params.id
@@ -136,9 +132,30 @@ describe('Center Controllers', () => {
       })).thenResolve(req.body);
 
       const controller = new Controller(Centers);
-      return controller.updateRow(req, res)
-        .then(() =>
-          expect(res.body).to.eql(req.body));
+      return controller.updateRow(req)
+        .then(response =>
+          expect(response.data).to.eql(req.body));
+    });
+  });
+  describe('deleteRow()', () => {
+    it('should delete an event', () => {
+      const Event = {
+        destroy: td.function(),
+      };
+      const req = {
+        params: {
+          id: 'c848bf5c-27ab-4882-9e43-ffe178c82602'
+        }
+      };
+      td.when(Event.destroy({
+        where: {
+          id: req.params.id
+        },
+      })).thenResolve(1);
+      const controller = new Controller(Event);
+      return controller.destroy(req)
+        .then(response =>
+          expect(response.data).to.eql(1));
     });
   });
 });
