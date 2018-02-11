@@ -4,3 +4,5 @@ dist
 coverage
 .nyc_output
 .vscode
+.env
+/npm-debug.log

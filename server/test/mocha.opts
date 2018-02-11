@@ -1,0 +1,3 @@
+-r @std/esm
+-t 10s
+--exit
