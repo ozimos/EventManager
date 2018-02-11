@@ -1,11 +1,10 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import Sequelize from 'sequelize';
+import {
+  Op
+} from 'sequelize';
 import Controller from './controller';
 
-const {
-  Op
-} = Sequelize;
 
 /**
  *
@@ -27,11 +26,9 @@ class UserController extends Controller {
         where: {
           [Op.or]: [{
             email: req.body.email
-          },
-          {
+          }, {
             userName: req.body.userName
-          }
-          ]
+          }]
         },
       }).then((response) => {
         if (!response) {
@@ -41,7 +38,7 @@ class UserController extends Controller {
         const isCorrectPassword = bcrypt.compareSync(req.body.password, response.passwordHash);
 
         if (isCorrectPassword) {
-          return UserController.sendResponseWIthToken(response);
+          return UserController.sendResponseWithToken(response);
         }
         return UserController.errorResponse('Incorrect password', 406);
       }).catch(error => UserController.errorResponse(error.message));
@@ -60,15 +57,13 @@ class UserController extends Controller {
       where: {
         [Op.or]: [{
           email: req.body.email
-        },
-        {
+        }, {
           userName: req.body.userName
-        }
-        ]
+        }]
       },
     }).then((response) => {
       if (response) {
-        const duplicate = response.userName === req.body.userName ? 'userName' : 'email';
+        const duplicate = response.userName === (req.body.userName || req.body.email) ? 'userName' : 'email';
         return UserController.errorResponse(`${duplicate} has been used`, 406);
       }
       // create hash of password
@@ -77,9 +72,9 @@ class UserController extends Controller {
       // remove plaintext password from record to write to db
       delete req.body.password;
       // create user in db
-      return this.Model.create(req.body).then(data =>
-        // send response with token to client
-        UserController.sendResponseWIthToken(data, 'Signup Successful'))
+      return this.Model.create(req.body)
+        .then(data => UserController
+          .sendResponseWithToken(data, 'Signup Successful '))
         .catch(error => UserController.errorResponse(error.message));
     }).catch(error => UserController.errorResponse(error.message));
   }
@@ -92,12 +87,11 @@ class UserController extends Controller {
    * @returns {obj} HTTP Response
    * @memberof UserController
    */
-  static sendResponseWIthToken(data, extraMessage) {
+  static sendResponseWithToken(data, extraMessage = '') {
     // remove password info
     data.passwordHash = 'censored';
 
-    const message = {};
-    message.signUp = extraMessage;
+    let message = extraMessage;
     const payload = {
       isAdmin: data.isAdmin,
       id: data.id,
@@ -106,13 +100,13 @@ class UserController extends Controller {
       expiresIn: '1h'
     });
     if (token) {
-      message.logIn = 'Login Successful';
+      message = `${message}Login Successful`;
       return UserController.defaultResponse(
         data, 200, message,
         token
       );
     }
-    message.logIn = 'No token found';
+    message = `${message}No token found`;
     return UserController.errorResponse(message, 406);
   }
 }

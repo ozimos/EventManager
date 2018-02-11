@@ -108,7 +108,7 @@ describe('Center Controllers', () => {
           country: 'Nigeria',
         }
       };
-      const res = {
+      const returnValue = {
         body: {
           state: 'Lagos',
           lga: 'Oshodi',
@@ -117,11 +117,11 @@ describe('Center Controllers', () => {
           userId: 'db5e4fa9-d4df-4352-a2e4-bc57f6b68e9b',
         }
       };
-      td.when(Table.create(req.body)).thenResolve(res.body);
+      td.when(Table.create(req.body)).thenResolve(returnValue.body);
       controller.createRow(req)
         .then((response) => {
           expect(response.statusCode).to.equal(201);
-          expect(response.data).to.eql(res.body);
+          expect(response.data).to.eql(returnValue.body);
         });
     });
     it('should return an error message if error occurs when accessing database', () => {
