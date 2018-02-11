@@ -8,8 +8,8 @@ export default {
   },
   test: {
     username: 'postgres',
-    password: '',
-    database: 'travis_ci_test',
+    password: 'l7bz4ZJRmZNPicPIHYpo',
+    database: 'events_manager_test',
     host: '127.0.0.1',
     dialect: 'postgres'
   },

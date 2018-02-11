@@ -1,13 +1,18 @@
 language: node_js
 node_js:
   - "lts/*"
+env:
+  - NODE_ENV=test
 services:
   - postgresql
 before_script:
-  - psql -c 'create database travis_ci_test;' -U postgres
+  - cp config/database.yml.travis config/database.yml
+  - npm run migration
 cache:
   directories:
     - "node_modules"
 install:
   - npm install
+script:
+  - npm test
 after_success: npm run coverage
