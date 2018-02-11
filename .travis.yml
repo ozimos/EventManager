@@ -7,8 +7,7 @@ services:
   - postgresql
 before_script:
   - psql -c 'create database events_manager_test;' -U postgres
-  - psql -c 'create user ozimos;' -U postgres
-  - psql -c \"alter user ozimos with encrypted password 'l7bz4ZJRmZNPicPIHYpo';\" -U postgres
+  - psql -c \"create user ozimos with encrypted password 'l7bz4ZJRmZNPicPIHYpo;\" -U postgres
   - psql -c 'grant all privileges on database events_manager_test to ozimos;' -U postgres
   - cp server/config/database.yml.travis server/config/database.yml
   - npm run migrate
