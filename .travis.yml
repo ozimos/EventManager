@@ -1,11 +1,13 @@
 language: node_js
 node_js:
-  - "node"
+  - "lts/*"
 services:
   - postgresql
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
-  cache:
+cache:
   directories:
     - "node_modules"
+install:
+  - npm install
 after_success: npm run coverage
