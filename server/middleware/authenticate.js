@@ -20,25 +20,23 @@ export default class IsUser {
   static verify(req, res, next) {
     const bearerHeader = req.headers.authorization;
     if (typeof bearerHeader === 'undefined') {
-      res.status(401).send({
+      return res.status(401).send({
         message: 'No token provided.'
       });
-    } else {
-      const bearer = bearerHeader.split(' ');
-      const token = bearer[1];
-      jwt.verify(token, process.env.TOKEN_PASSWORD, (err, decoded) => {
-        if (err) {
-          res.status(403).json({
-            message: err.message
-          });
-        } else {
-          req.decoded = decoded;
-          // add userId field to request body
-          req.body.userId = decoded.id;
-        }
-      });
-      next();
     }
+    const bearer = bearerHeader.split(' ');
+    const token = bearer[1];
+    jwt.verify(token, process.env.TOKEN_PASSWORD, (err, decoded) => {
+      if (err) {
+        return res.status(403).json({
+          message: err.message
+        });
+      }
+      req.decoded = decoded;
+      // add userId field to request body
+      req.body.userId = decoded.id;
+    });
+    return next();
   }
 
   /**
@@ -53,11 +51,10 @@ export default class IsUser {
    */
   static admin(req, res, next) {
     if (req.decoded && req.decoded.isAdmin) {
-      next();
-    } else {
-      res.status(401).send({
-        message: 'You Are not Authorized to access this page!'
-      });
+      return next();
     }
+    return res.status(401).send({
+      message: 'You Are not Authorized to access this page!'
+    });
   }
 }
