@@ -7,9 +7,9 @@ export default {
     dialect: 'postgres'
   },
   test: {
-    username: 'ozimos',
-    password: 'l7bz4ZJRmZNPicPIHYpo',
-    database: 'events_manager_test',
+    username: 'postgres',
+    password: '',
+    database: 'travis_ci_test',
     host: '127.0.0.1',
     dialect: 'postgres'
   },
