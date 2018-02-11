@@ -149,7 +149,7 @@ describe('Routes Events', () => {
       }
     });
 
-    it('should update an event', () => request.delete(eventIdUrl)
+    it('should delete an event', () => request.delete(eventIdUrl)
       .set('authorization', `JWT ${token}`).then((res) => {
         expect(res.body.data).to.equal(1);
       }));
