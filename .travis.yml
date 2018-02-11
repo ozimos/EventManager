@@ -7,7 +7,7 @@ services:
   - postgresql
 before_script:
   - cp server/config/database.yml.travis server/config/database.yml
-  - npm run migration
+  - npm run migrate
 cache:
   directories:
     - "node_modules"
