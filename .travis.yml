@@ -6,7 +6,7 @@ env:
 services:
   - postgresql
 before_script:
-  - cp config/database.yml.travis config/database.yml
+  - cp server/config/database.yml.travis server/config/database.yml
   - npm run migration
 cache:
   directories:
