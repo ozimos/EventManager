@@ -14,7 +14,7 @@
     "start-babel": "nodemon --watch server --exec node_modules/.bin/babel-node server/bin/www.js",
     "build": "babel server -d dist",
     "postbuild": "nodemon --watch dist dist/bin/www.js",
-    "test": "cross-env NODE_ENV=test nyc mocha --opts server/test/mocha.opts --recursive server/test",
+    "test": "cross-env NODE_ENV=test nyc mocha --opts server/test/mocha.opts --recursive server/test/$TESTFOLDER",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "report": "nyc report --reporter=text-lcov",
     "migrate": "sequelize db:migrate:undo:all && sequelize db:migrate"
