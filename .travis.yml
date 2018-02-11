@@ -1,11 +1,28 @@
 language: node_js
 node_js:
-  - "node"
+  - "lts/*"
+env:
+  global:
+    - NODE_ENV=test
+    - TOKEN_PASSWORD=abcd1234
+  matrix:
+    - TESTFOLDER=integration/users.js
+    - TESTFOLDER=integration/events.js
+    - TESTFOLDER=integration/centers.js
+    - TESTFOLDER=unit
 services:
   - postgresql
 before_script:
-  - psql -c 'create database travis_ci_test;' -U postgres
-  cache:
+  - psql -c 'create database events_manager_test;' -U postgres
+  - psql -c "create user ozimos with password 'l7bz4ZJRmZNPicPIHYpo';" -U postgres
+  - psql -c 'grant all privileges on database events_manager_test to ozimos;' -U postgres
+  - cp server/config/database.yml.travis server/config/database.yml
+  - npm run migrate
+cache:
   directories:
     - "node_modules"
+install:
+  - npm install
+script:
+  - npm test
 after_success: npm run coverage
