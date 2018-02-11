@@ -1,3 +1,3 @@
-// Provide options as a parameter or options file.
+/* eslint no-global-assign: off */
 require = require('@std/esm')(module);
-module.exports = require('./server/app.js').default;
+module.exports = require('./server/bin/www.js').default;
