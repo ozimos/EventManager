@@ -1,11 +1,14 @@
+html,
 body {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
+  height: 100%
 }
 
-main {
-  flex: 1 0 auto;
+.wrapper {
+  position: relative;
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  padding-bottom: 4rem
 }
 
 .material-icons.orange600 {
@@ -33,13 +36,21 @@ textarea {
   height: 300px;
 }
 
-button.btn, a.btn, div.btn {
+button.btn,
+a.btn,
+div.btn {
   font-size: 10px;
   height: 30px;
   width: auto;
   align-content: center
 }
 
- div p {
+div p {
   text-align: center
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
