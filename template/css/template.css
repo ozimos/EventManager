@@ -6,8 +6,10 @@ body {
 .wrapper {
   position: relative;
   min-height: 100%;
-  height: auto !important;
-  height: 100%;
+  max-width: 760px;
+  margin: auto;
+  border-style: solid;
+  border-color: lightcoral;
   padding-bottom: 4rem
 }
 
@@ -53,4 +55,9 @@ footer {
   position: absolute;
   bottom: 0;
   width: 100%;
+}
+
+nav {
+  max-width: 760px;
+  margin: auto;
 }
