@@ -15,7 +15,8 @@
 </head>
 
 <body>
-   <div class="wrapper">     <header class="navbar-fixed">
+  <div class="wrapper">
+    <header>
 
       <div>
         <ul id="dropdown-user" class="dropdown-content">
@@ -85,110 +86,114 @@
             <a href="search_center.html">Search Centers</a>
           </li>
         </ul>
+        <ul class="side-nav" id="mobile-demo">
+          <li>
+            <a href="#" class="dropdown-button" data-activates="dropdown-user2">SignIn/SignUp
+              <i class="material-icons right">arrow_drop_down</i>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="dropdown-button" data-activates="dropdown-event2">Events
+              <i class="material-icons right">arrow_drop_down</i>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="dropdown-button" data-activates="dropdown-center2">Centers
+              <i class="material-icons right">arrow_drop_down</i>
+            </a>
+          </li>
+          <li>
+            <a href="#">Guest</a>
+          </li>
+        </ul>
       </div>
-      <nav>
-        <div class="nav-wrapper">
-          <a href="index.html" class="brand-logo">
-            <i class="material-icons md-36 orange600">event</i>Event Manager</a>
-          <a href="#" data-activates="mobile-demo" class="button-collapse right">
-            <i class="material-icons">menu</i>
-          </a>
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li>
-              <a href="#" class="dropdown-button" data-activates="dropdown-user">SignIn/SignUp
-                <i class="material-icons right">arrow_drop_down</i>
-              </a>
-            </li>
-            <li >
-              <a href="#" class="dropdown-button" data-activates="dropdown-event">Events
-                <i class="material-icons right">arrow_drop_down</i>
-              </a>
-            </li>
-            <li class="active">
-              <a href="#" class="dropdown-button" data-activates="dropdown-center">Centers
-                <i class="material-icons right">arrow_drop_down</i>
-              </a>
-            </li>
-            <li>
-              <a href="#">Guest</a>
-            </li>
-          </ul>
-          <ul class="side-nav" id="mobile-demo">
-            <li>
-              <a href="#" class="dropdown-button" data-activates="dropdown-user2">SignIn/SignUp
-                <i class="material-icons right">arrow_drop_down</i>
-              </a>
-            </li>
-            <li class="active">
-              <a href="#" class="dropdown-button" data-activates="dropdown-event2">Events
-                <i class="material-icons right">arrow_drop_down</i>
-              </a>
-            </li>
-            <li class="active">
-              <a href="#" class="dropdown-button" data-activates="dropdown-center2">Centers
-                <i class="material-icons right">arrow_drop_down</i>
-              </a>
-            </li>
-            <li>
-              <a href="#">Guest</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-  </header>
-  <main>
-    <div id="event_action" class="row">
-      <h5 style="text-align: center;" class="">Search Centers</h5>
-    </div>
+      <div class="navbar-fixed">
+        <nav>
+          <div class="nav-wrapper">
+            <a href="index.html" class="brand-logo">
+              <i class="material-icons md-36 orange600">event</i>Event Manager</a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse right">
+              <i class="material-icons">menu</i>
+            </a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+              <li>
+                <a href="#" class="dropdown-button" data-activates="dropdown-user">SignIn/SignUp
+                  <i class="material-icons right">arrow_drop_down</i>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="dropdown-button" data-activates="dropdown-event">Events
+                  <i class="material-icons right">arrow_drop_down</i>
+                </a>
+              </li>
+              <li class="active">
+                <a href="#" class="dropdown-button" data-activates="dropdown-center">Centers
+                  <i class="material-icons right">arrow_drop_down</i>
+                </a>
+              </li>
+              <li>
+                <a href="#">Guest</a>
+              </li>
+            </ul>
 
-    <div class="row">
+          </div>
+        </nav>
+      </div>
 
-      <form id="main_form" class="col l6 offset-l3 s12">
-        <fieldset>
+    </header>
+    <main>
+      <div id="event_action" class="row">
+        <h5 style="text-align: center;" class="">Search Centers</h5>
+      </div>
 
-          <div class="row valign-wrapper">
+      <div class="row">
 
-            <div class="input-field col l5 s12 left">
-              <input type="text" placeholder="Center ID" id="center_list_input" name="center_list_input" type="text">
+        <form id="main_form" class="col s12">
+          <fieldset>
+
+            <div class="row valign-wrapper">
+
+              <div class="input-field col l5 s12 left">
+                <input type="text" placeholder="Center ID" id="center_list_input" name="center_list_input" type="text">
+
+              </div>
+              <div class="col s4 left valign-wrapper ">
+                <button class="btn waves-effect waves-light" id="submit2" type="submit">
+                  Submit
+                </button>
+              </div>
 
             </div>
-            <div class="col s4 left valign-wrapper ">
-              <button class="btn waves-effect waves-light" id="submit2" type="submit">
-                Submit
-              </button>
+
+          </fieldset>
+
+          <!-- location section -->
+
+
+        </form>
+
+
+      </div>
+      <div class="row">
+        <div class="col s12">
+          <div class="card">
+            <div class="card-image">
+              <img src="images/2fb443_b38a041c293935f52ecb9305df3069c5.webp" alt="Event Image">
+              <span class="card-title">Center Details</span>
+            </div>
+            <div class="card-content">
+              <h6>Center ID: 012346</h6>
+              <h6>Center Name: Twin Towers</h6>
+              <h6>Center Types: Wedding, Birthday</h6>
+              <h6>Center Cost: 100000</h6>
+              <h6>Center Capacity: 1000</h6>
+              <h6>Center Amenities: Bar, Pool</h6>
+              <h6>Center ID: 012346</h6>
+              <h6>Center Location: Ajegunle</h6>
             </div>
 
           </div>
-
-        </fieldset>
-
-        <!-- location section -->
-
-
-      </form>
-
-
-    </div>
-    <div class="row">
-      <div class="col l6 offset-l3 s12">
-        <div class="card">
-          <div class="card-image">
-            <img src="images/2fb443_b38a041c293935f52ecb9305df3069c5.webp" alt="Event Image">
-            <span class="card-title">Center Details</span>
-          </div>
-          <div class="card-content">
-            <h6>Center ID: 012346</h6>
-            <h6>Center Name: Twin Towers</h6>
-            <h6>Center Types: Wedding, Birthday</h6>
-            <h6>Center Cost: 100000</h6>
-            <h6>Center Capacity: 1000</h6>
-            <h6>Center Amenities: Bar, Pool</h6>
-            <h6>Center ID: 012346</h6>
-            <h6>Center Location: Ajegunle</h6>
-          </div>
-
-        </div>
-        <div class="row">
+          <div class="row">
             <div class="col s4 left">
               <a href="modify_center.html" class="btn waves-effect waves-light" id="modify">
 
@@ -196,16 +201,18 @@
               </a>
             </div>
             <div class="col s4 right">
-                <a href="center_events.html" class="btn waves-effect waves-light" id="view-events">
+              <a href="center_events.html" class="btn waves-effect waves-light" id="view-events">
 
-                  View Events
-                </a>
-              </div>
+                View Events
+              </a>
+            </div>
           </div>
-      </div>
+        </div>
 
-    </div>
-  </main>
+      </div>
+    </main>
+
+  </div>
   <footer class="page-footer">
 
     <div class="footer-copyright">
@@ -220,9 +227,8 @@
 
   <!--Import jQuery before materialize.js-->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/materialize.min.js"></script>
+  <script type="text/javascript" src="js/materialize.min.js"></script>
   <script type="text/javascript" src="js/template.js"></script>
-</div>
 </body>
 
 </html>

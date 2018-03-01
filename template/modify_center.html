@@ -15,7 +15,8 @@
 </head>
 
 <body>
-   <div class="wrapper">     <header class="navbar-fixed">
+  <div class="wrapper">
+    <header>
 
       <div>
         <ul id="dropdown-user" class="dropdown-content">
@@ -85,215 +86,221 @@
             <a href="search_center.html">Search Centers</a>
           </li>
         </ul>
+        <ul class="side-nav" id="mobile-demo">
+          <li>
+            <a href="#" class="dropdown-button" data-activates="dropdown-user2">SignIn/SignUp
+              <i class="material-icons right">arrow_drop_down</i>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="dropdown-button" data-activates="dropdown-event2">Events
+              <i class="material-icons right">arrow_drop_down</i>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="dropdown-button" data-activates="dropdown-center2">Centers
+              <i class="material-icons right">arrow_drop_down</i>
+            </a>
+          </li>
+          <li>
+            <a href="#">Guest</a>
+          </li>
+        </ul>
       </div>
-      <nav>
-        <div class="nav-wrapper">
-          <a href="index.html" class="brand-logo">
-            <i class="material-icons md-36 orange600">event</i>Event Manager</a>
-          <a href="#" data-activates="mobile-demo" class="button-collapse right">
-            <i class="material-icons">menu</i>
-          </a>
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li>
-              <a href="#" class="dropdown-button" data-activates="dropdown-user">SignIn/SignUp
-                <i class="material-icons right">arrow_drop_down</i>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="dropdown-button" data-activates="dropdown-event">Events
-                <i class="material-icons right">arrow_drop_down</i>
-              </a>
-            </li>
-            <li class="active">
-              <a href="#" class="dropdown-button" data-activates="dropdown-center">Centers
-                <i class="material-icons right">arrow_drop_down</i>
-              </a>
-            </li>
-            <li>
-              <a href="#">Guest</a>
-            </li>
-          </ul>
-          <ul class="side-nav" id="mobile-demo">
-            <li>
-              <a href="#" class="dropdown-button" data-activates="dropdown-user2">SignIn/SignUp
-                <i class="material-icons right">arrow_drop_down</i>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="dropdown-button" data-activates="dropdown-event2">Events
-                <i class="material-icons right">arrow_drop_down</i>
-              </a>
-            </li>
-            <li class="active">
-              <a href="#" class="dropdown-button" data-activates="dropdown-center2">Centers
-                <i class="material-icons right">arrow_drop_down</i>
-              </a>
-            </li>
-            <li>
-              <a href="#">Guest</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-  </header>
-  <main>
-    <div class="row" id="center_action">
-
-      <h5 style="text-align: center;" class="">Modify Center    -centerid 2</h5>
-
-    </div>
-
-    <div class="row">
-
-      <form action="http://localhost:3000/api/v1/centers/2" method="POST" id="main_form" class="col l6 offset-l3 s12">
-
-
-        <fieldset>
-          <div class="row">
-            <div class="input-field col l6 s12 left">
-              <input placeholder="Center Name" id="center_name" name="name" type="text" class="validate" minlength="2">
-
-            </div>
-            <div class="input-field col l5 s12 right">
-
-              <select name="eventType" id="eventType" class="validate icons" multiple>
-                <option value="" disabled selected class="">Event Type</option>
-                <option value="Wedding" data-icon="images/5.jpg" class="circle">Wedding</option>
-                <option value="Cocktail Party" data-icon="images/eko-convention-centre.jpg" class="circle">Cocktail Party</option>
-                <option value="Corporate Event" data-icon="images\ev2_1343827227102.jpg" class="circle">Corporate Event</option>
-                <option value="Engagement" data-icon="images\hi_lagososun01_6_675x359_FitToBoxSmallDimension_Center.jpg" class="circle">Engagement</option>
-                <option value="Birthday Party" data-icon="images/vllkytdc8qniludqc.3dab3474.jpg" class="circle">Birthday Party</option>
-                <option value="Other Occasion" data-icon="images/welcomecenter.jpg" class="circle">Other Occasion</option>
-              </select>
-
-            </div>
+      <div class="navbar-fixed">
+        <nav>
+          <div class="nav-wrapper">
+            <a href="index.html" class="brand-logo">
+              <i class="material-icons md-36 orange600">event</i>Event Manager</a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse right">
+              <i class="material-icons">menu</i>
+            </a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+              <li>
+                <a href="#" class="dropdown-button" data-activates="dropdown-user">SignIn/SignUp
+                  <i class="material-icons right">arrow_drop_down</i>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="dropdown-button" data-activates="dropdown-event">Events
+                  <i class="material-icons right">arrow_drop_down</i>
+                </a>
+              </li>
+              <li class="active">
+                <a href="#" class="dropdown-button" data-activates="dropdown-center">Centers
+                  <i class="material-icons right">arrow_drop_down</i>
+                </a>
+              </li>
+              <li>
+                <a href="#">Guest</a>
+              </li>
+            </ul>
 
           </div>
+        </nav>
+      </div>
 
 
-          <div class="row">
-            <div class="input-field col s3 left">
-              <input placeholder="Cost" id="center_cost" name="cost" type="number" class="validate" minlength="5">
+    </header>
+    <main>
+      <div class="row" id="center_action">
 
-            </div>
-            <div class="input-field col s3 right">
-              <input placeholder="Capacity" id="center_capacity" name="capacity" type="number" class="validate" required
-                minlength="3">
+        <h5 style="text-align: center;" class="">Modify Center -centerid 2</h5>
 
-            </div>
-            <div class="input-field col l5 s12 right">
+      </div>
 
-              <select name="amenities" class="validate icons" multiple>
-                <option value="" disabled selected class="">Amenities</option>
-                <option value="Bar" data-icon="images/5.jpg" class="circle">Bar</option>
-                <option value="Pool" data-icon="images/eko-convention-centre.jpg" class="circle">Pool</option>
-                <option value="Theater" data-icon="images\ev2_1343827227102.jpg" class="circle">Theater</option>
-                <option value="Landscaping" data-icon="images\hi_lagososun01_6_675x359_FitToBoxSmallDimension_Center.jpg" class="circle">Landscaping</option>
-                <option value="Projector" data-icon="images/vllkytdc8qniludqc.3dab3474.jpg" class="circle">Projector</option>
-              </select>
+      <div class="row">
 
-            </div>
-          </div>
-
-        </fieldset>
-
-        <fieldset>
-
-          <div class="row">
-            <div class="input-field col l4 s12">
-              <input type="text" placeholder="Country" name="country" id="location_country" list="country_list">
-
-              <datalist id="country_list">
-                <option value="Nigeria">
-                  <option value="Antigua">
-                    <option value="Barbados">
-                      <option value="Ghana">
-                        <option value="Cote D'Ivoire">
-                          <option value="Senegal">
-              </datalist>
-            </div>
-            <div class="input-field col l4 s12">
-              <input type="text" placeholder="State" name="state" id="location_region" list="region_list">
-
-              <datalist id="region_list">
-                <option value="Abia">
-                  <option value="Bayelsa">
-                    <option value="Cross River">
-                      <option value="Ebonyi">
-                        <option value="Gombe">
-                          <option value="Kaduna">
-              </datalist>
-            </div>
-            <div class="input-field col l4 s12">
-              <input type="text" placeholder="LGA" name="lga" id="location_sregion" list="sregion_list">
-
-              <datalist id="sregion_list">
-                <option value="Badagry">
-                  <option value="Epe">
-                    <option value="Ikeja">
-                      <option value="Alaba">
-                        <option value="Ajegunle">
-                          <option value="Ikorodu">
-              </datalist>
-            </div>
-          </div>
-
-          <div class="row valign-wrapper">
+        <form action="http://localhost:3000/api/v1/centers/2" method="POST" id="main_form" class="col s12">
 
 
-            <div class="file-field input-field col s12">
-              <div class="btn">
-                <span>Add</span>
-                <input type="file" accept="image/*">
+          <fieldset>
+            <div class="row">
+              <div class="input-field col l6 s12 left">
+                <input placeholder="Center Name" id="center_name" name="name" type="text" class="validate" minlength="2">
+
               </div>
-              <div class="file-path-wrapper">
-                <input class="file-path validate" type="text" placeholder="Upload Center Image">
+              <div class="input-field col l5 s12 right">
+
+                <select name="eventType" id="eventType" class="validate icons" multiple>
+                  <option value="" disabled selected class="">Event Type</option>
+                  <option value="Wedding" data-icon="images/5.jpg" class="circle">Wedding</option>
+                  <option value="Cocktail Party" data-icon="images/eko-convention-centre.jpg" class="circle">Cocktail Party</option>
+                  <option value="Corporate Event" data-icon="images\ev2_1343827227102.jpg" class="circle">Corporate Event</option>
+                  <option value="Engagement" data-icon="images\hi_lagososun01_6_675x359_FitToBoxSmallDimension_Center.jpg" class="circle">Engagement</option>
+                  <option value="Birthday Party" data-icon="images/vllkytdc8qniludqc.3dab3474.jpg" class="circle">Birthday Party</option>
+                  <option value="Other Occasion" data-icon="images/welcomecenter.jpg" class="circle">Other Occasion</option>
+                </select>
+
+              </div>
+
+            </div>
+
+
+            <div class="row">
+              <div class="input-field col s3 left">
+                <input placeholder="Cost" id="center_cost" name="cost" type="number" class="validate" minlength="5">
+
+              </div>
+              <div class="input-field col s3 right">
+                <input placeholder="Capacity" id="center_capacity" name="capacity" type="number" class="validate" required minlength="3">
+
+              </div>
+              <div class="input-field col l5 s12 right">
+
+                <select name="amenities" class="validate icons" multiple>
+                  <option value="" disabled selected class="">Amenities</option>
+                  <option value="Bar" data-icon="images/5.jpg" class="circle">Bar</option>
+                  <option value="Pool" data-icon="images/eko-convention-centre.jpg" class="circle">Pool</option>
+                  <option value="Theater" data-icon="images\ev2_1343827227102.jpg" class="circle">Theater</option>
+                  <option value="Landscaping" data-icon="images\hi_lagososun01_6_675x359_FitToBoxSmallDimension_Center.jpg" class="circle">Landscaping</option>
+                  <option value="Projector" data-icon="images/vllkytdc8qniludqc.3dab3474.jpg" class="circle">Projector</option>
+                </select>
+
               </div>
             </div>
 
+          </fieldset>
+
+          <fieldset>
+
+            <div class="row">
+              <div class="input-field col l4 s12">
+                <input type="text" placeholder="Country" name="country" id="location_country" list="country_list">
+
+                <datalist id="country_list">
+                  <option value="Nigeria">
+                    <option value="Antigua">
+                      <option value="Barbados">
+                        <option value="Ghana">
+                          <option value="Cote D'Ivoire">
+                            <option value="Senegal">
+                </datalist>
+              </div>
+              <div class="input-field col l4 s12">
+                <input type="text" placeholder="State" name="state" id="location_region" list="region_list">
+
+                <datalist id="region_list">
+                  <option value="Abia">
+                    <option value="Bayelsa">
+                      <option value="Cross River">
+                        <option value="Ebonyi">
+                          <option value="Gombe">
+                            <option value="Kaduna">
+                </datalist>
+              </div>
+              <div class="input-field col l4 s12">
+                <input type="text" placeholder="LGA" name="lga" id="location_sregion" list="sregion_list">
+
+                <datalist id="sregion_list">
+                  <option value="Badagry">
+                    <option value="Epe">
+                      <option value="Ikeja">
+                        <option value="Alaba">
+                          <option value="Ajegunle">
+                            <option value="Ikorodu">
+                </datalist>
+              </div>
+            </div>
+
+            <div class="row valign-wrapper">
+
+
+              <div class="file-field input-field col s12">
+                <div class="btn">
+                  <span>Add</span>
+                  <input type="file" accept="image/*">
+                </div>
+                <div class="file-path-wrapper">
+                  <input class="file-path validate" type="text" placeholder="Upload Center Image">
+                </div>
+              </div>
 
 
 
-          </div>
-          <!-- submit buttons -->
-          <div class="row">
 
-            <!-- <div class="col s4 left valign-wrapper ">
+            </div>
+            <!-- submit buttons -->
+            <div class="row">
+
+              <!-- <div class="col s4 left valign-wrapper ">
               <button data-target="modal1" class="btn waves-effect waves-light modal-trigger" id="submit2" type="submit">
 
                 Modify Center
               </button>
             </div> -->
-            <div class="col s4 left valign-wrapper ">
-              <button class="btn waves-effect waves-light " id="submit2" type="submit">
+              <div class="col s4 left valign-wrapper ">
+                <button class="btn waves-effect waves-light " id="submit2" type="submit">
 
-                Modify Center
-              </button>
+                  Modify Center
+                </button>
+              </div>
+
             </div>
 
-          </div>
-
-        </fieldset>
+          </fieldset>
 
 
 
-      </form>
+        </form>
 
 
-    </div>
-
-    </div>
-    </div>
-    <!-- Modal Structure -->
-    <div id="modal1" class="modal">
-      <div class="modal-content">
-        <h4>Your center has been modified</h4>
       </div>
-      <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
-      </div>
+
+  </div>
+  </div>
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Your center has been modified</h4>
     </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+  </div>
   </main>
+
+  </div>
   <footer class="page-footer">
 
     <div class="footer-copyright">
@@ -308,9 +315,8 @@
 
   <!--Import jQuery before materialize.js-->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/materialize.min.js"></script>
+  <script type="text/javascript" src="js/materialize.min.js"></script>
   <script type="text/javascript" src="js/template.js"></script>
-</div>
 </body>
 
 </html>

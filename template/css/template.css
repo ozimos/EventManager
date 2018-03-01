@@ -1,16 +1,8 @@
-html,
-body {
-  height: 100%
-}
 
 .wrapper {
-  position: relative;
-  min-height: 100%;
-  max-width: 760px;
-  margin: auto;
+  min-height: calc(100vh - 5rem);
   border-style: solid;
   border-color: lightcoral;
-  padding-bottom: 4rem
 }
 
 .material-icons.orange600 {
@@ -51,12 +43,7 @@ div p {
   text-align: center
 }
 
-footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-}
-
+.wrapper, footer,
 nav {
   max-width: 760px;
   margin: auto;

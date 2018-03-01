@@ -5,7 +5,7 @@
   <!--Import Google Icon Font-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!--Import materialize.css-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <link rel="stylesheet" href="css/materialize.min.css">
   <!--Import page stylesheets-->
   <link rel="stylesheet" href="css/template.css">
   <meta charset="UTF-8">
@@ -15,8 +15,9 @@
 </head>
 
 <body>
-  <header>
-    <div class="navbar-fixed">
+  <div class="wrapper">
+    <header>
+
       <div>
         <ul id="dropdown-user" class="dropdown-content">
 
@@ -85,94 +86,99 @@
             <a href="search_center.html">Search Centers</a>
           </li>
         </ul>
+        <ul class="side-nav" id="mobile-demo">
+          <li>
+            <a href="#" class="dropdown-button" data-activates="dropdown-user2">SignIn/SignUp
+              <i class="material-icons right">arrow_drop_down</i>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="dropdown-button" data-activates="dropdown-event2">Events
+              <i class="material-icons right">arrow_drop_down</i>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="dropdown-button" data-activates="dropdown-center2">Centers
+              <i class="material-icons right">arrow_drop_down</i>
+            </a>
+          </li>
+          <li>
+            <a href="#">Guest</a>
+          </li>
+        </ul>
       </div>
-      <nav>
-        <div class="nav-wrapper">
-          <a href="index.html" class="brand-logo">
-            <i class="material-icons md-36 orange600">event</i>Event Manager</a>
-          <a href="#" data-activates="mobile-demo" class="button-collapse right">
-            <i class="material-icons">menu</i>
-          </a>
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li class="active">
-              <a href="#" class="dropdown-button" data-activates="dropdown-user">SignIn/SignUp
-                <i class="material-icons right">arrow_drop_down</i>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="dropdown-button" data-activates="dropdown-event">Events
-                <i class="material-icons right">arrow_drop_down</i>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="dropdown-button" data-activates="dropdown-center">Centers
-                <i class="material-icons right">arrow_drop_down</i>
-              </a>
-            </li>
-            <li>
-              <a href="#">Guest</a>
-            </li>
-          </ul>
-          <ul class="side-nav" id="mobile-demo">
-            <li class="active">
-              <a href="#" class="dropdown-button" data-activates="dropdown-user2">SignIn/SignUp
-                <i class="material-icons right">arrow_drop_down</i>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="dropdown-button" data-activates="dropdown-event2">Events
-                <i class="material-icons right">arrow_drop_down</i>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="dropdown-button" data-activates="dropdown-center2">Centers
-                <i class="material-icons right">arrow_drop_down</i>
-              </a>
-            </li>
-            <li>
-              <a href="#">Guest</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </div>
-  </header>
-  <main>
-    <div class="container">
+      <div class="navbar-fixed">
+        <nav>
+          <div class="nav-wrapper">
+            <a href="index.html" class="brand-logo">
+              <i class="material-icons md-36 orange600">event</i>Event Manager</a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse right">
+              <i class="material-icons">menu</i>
+            </a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+              <li>
+                <a href="#" class="dropdown-button" data-activates="dropdown-user">SignIn/SignUp
+                  <i class="material-icons right">arrow_drop_down</i>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="dropdown-button" data-activates="dropdown-event">Events
+                  <i class="material-icons right">arrow_drop_down</i>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="dropdown-button" data-activates="dropdown-center">Centers
+                  <i class="material-icons right">arrow_drop_down</i>
+                </a>
+              </li>
+              <li>
+                <a href="#">Guest</a>
+              </li>
+            </ul>
 
-      <div id="center_text_view" class="row">
-        <div class="col l6 offset-l3 s12">
-          <div class="card">
-            <div class="card-image">
-              <img src="images/2fb443_b38a041c293935f52ecb9305df3069c5.webp" alt="Event Image">
+          </div>
+        </nav>
+      </div>
+
+    </header>
+    <main>
+      <div class="container">
+
+        <div id="center_text_view" class="row">
+          <div class="col s12">
+            <div class="card">
+              <div class="card-image">
+                <img src="images/2fb443_b38a041c293935f52ecb9305df3069c5.webp" alt="Event Image">
+
+              </div>
+              <div class="card-content">
+                <h6>Book Your Events</h6>
+                <h6>At the Best Centers</h6>
+                <h6>For the Best Prices</h6>
+              </div>
 
             </div>
-            <div class="card-content">
-              <h6>Book Your Events</h6>
-              <h6>At the Best Centers</h6>
-              <h6>For the Best Prices</h6>
-            </div>
-
           </div>
         </div>
       </div>
-    </div>
-  </main>
+    </main>
+
+  </div>
   <footer class="page-footer">
 
-    <div class="footer-copyright">
-      <div class="row">
-        <div class="col s12">
-          © 2017 Copyright Ozi Tovieye Moses
-        </div>
+      <div class="footer-copyright">
+        <div class="row">
+          <div class="col s12">
+            © 2017 Copyright Ozi Tovieye Moses
+          </div>
 
+        </div>
       </div>
-    </div>
-  </footer>
+    </footer>
 
   <!--Import jQuery before materialize.js-->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  <script type="text/javascript" src="js/materialize.min.js"></script>
   <script type="text/javascript" src="js/template.js"></script>
 </body>
 
