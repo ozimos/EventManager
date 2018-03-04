@@ -17,93 +17,17 @@
 <body>
   <div class="wrapper">
     <header>
-
       <div>
-        <ul id="dropdown-user" class="dropdown-content">
-
-          <li>
-            <a href="signin.html">Sign In</a>
-          </li>
-          <li class="divider"></li>
-          <li>
-            <a href="signup.html">Sign Up</a>
-          </li>
-
-        </ul>
-        <ul id="dropdown-user2" class="dropdown-content">
-
-          <li>
-            <a href="signin.html">Sign In</a>
-          </li>
-          <li class="divider"></li>
-          <li>
-            <a href="signup.html">Sign Up</a>
-          </li>
-
-        </ul>
-        <ul id="dropdown-event" class="dropdown-content">
-
-          <li>
-            <a href="add_event.html">Add Event</a>
-          </li>
-          <li class="divider"></li>
-          <li>
-            <a href="search_event.html">Search Events</a>
-          </li>
-
-
-
-        </ul>
-        <ul id="dropdown-event2" class="dropdown-content">
-
-          <li>
-            <a href="add_event.html">Add Event</a>
-
-          </li>
-          <li class="divider"></li>
-          <li>
-            <a href="search_event.html">Search Events</a>
-          </li>
-
-
-        </ul>
-        <ul id="dropdown-center" class="dropdown-content">
-
-          <li>
-            <a href="add_center.html">Add a Center</a>
-          </li>
-          <li class="divider"></li>
-          <li>
-            <a href="search_center.html">Search Centers</a>
-          </li>
-        </ul>
-        <ul id="dropdown-center2" class="dropdown-content">
-          <li>
-            <a href="add_center.html">Add a Center</a>
-          </li>
-          <li class="divider"></li>
-          <li>
-            <a href="search_center.html">Search Centers</a>
-          </li>
-        </ul>
         <ul class="side-nav" id="mobile-demo">
           <li>
-            <a href="#" class="dropdown-button" data-activates="dropdown-user2">SignIn/SignUp
+            <a href="signin.html" class="dropdown-button">Sign In
               <i class="material-icons right">arrow_drop_down</i>
             </a>
           </li>
           <li>
-            <a href="#" class="dropdown-button" data-activates="dropdown-event2">Events
+            <a href="signup.html" class="dropdown-button">Sign Up
               <i class="material-icons right">arrow_drop_down</i>
             </a>
-          </li>
-          <li>
-            <a href="#" class="dropdown-button" data-activates="dropdown-center2">Centers
-              <i class="material-icons right">arrow_drop_down</i>
-            </a>
-          </li>
-          <li>
-            <a href="#">Guest</a>
           </li>
         </ul>
       </div>
@@ -117,22 +41,14 @@
             </a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
               <li>
-                <a href="#" class="dropdown-button" data-activates="dropdown-user">SignIn/SignUp
+                <a href="signin.html" class="dropdown-button">Sign In
                   <i class="material-icons right">arrow_drop_down</i>
                 </a>
               </li>
               <li>
-                <a href="#" class="dropdown-button" data-activates="dropdown-event">Events
+                <a href="signup.html" class="dropdown-button">Sign Up
                   <i class="material-icons right">arrow_drop_down</i>
                 </a>
-              </li>
-              <li>
-                <a href="#" class="dropdown-button" data-activates="dropdown-center">Centers
-                  <i class="material-icons right">arrow_drop_down</i>
-                </a>
-              </li>
-              <li>
-                <a href="#">Guest</a>
               </li>
             </ul>
 
@@ -143,7 +59,20 @@
     </header>
     <main>
       <div class="container">
+        <form action="api/v1/centers" class="row">
+          <div class="col s10">
+            <input type="search" placeholder="Search for centers">
 
+          </div>
+          <div class="col s2">
+            <button class="btn waves-effect waves-light" id="search" type="submit">
+
+              <i class="material-icons ">search</i>
+            </button>
+
+          </div>
+        </form>
+        <div class="row"><a href="search_center.html">Or view all our centers</a></div>
         <div id="center_text_view" class="row">
           <div class="col s12">
             <div class="card">
@@ -166,15 +95,15 @@
   </div>
   <footer class="page-footer">
 
-      <div class="footer-copyright">
-        <div class="row">
-          <div class="col s12">
-            © 2017 Copyright Ozi Tovieye Moses
-          </div>
-
+    <div class="footer-copyright">
+      <div class="row">
+        <div class="col s12">
+          © 2017 Copyright Ozi Tovieye Moses
         </div>
+
       </div>
-    </footer>
+    </div>
+  </footer>
 
   <!--Import jQuery before materialize.js-->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
