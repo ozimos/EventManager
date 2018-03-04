@@ -8,7 +8,9 @@
 .material-icons.orange600 {
   color: #FB8C00;
 }
-
+.material-icons{
+  color: #e0cb0eea;
+}
 .material-icons.md-36 {
   font-size: 36px;
 }
