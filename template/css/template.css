@@ -36,7 +36,9 @@ div.btn {
   font-size: 10px;
   height: 30px;
   width: auto;
-  align-content: center
+  align-content: center;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 div p {

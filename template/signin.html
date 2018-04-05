@@ -16,7 +16,7 @@
 
 <body>
   <div class="wrapper">
-    <header>
+     <header id="not_signed_in">
 
       <div>
         <ul id="dropdown-user" class="dropdown-content">
@@ -87,11 +87,7 @@
           </li>
         </ul>
         <ul class="side-nav" id="mobile-demo">
-          <li>
-            <a href="#" class="dropdown-button" data-activates="dropdown-user2">SignIn/SignUp
-              <i class="material-icons right">arrow_drop_down</i>
-            </a>
-          </li>
+         
           <li>
             <a href="#" class="dropdown-button" data-activates="dropdown-event2">Events
               <i class="material-icons right">arrow_drop_down</i>
@@ -102,8 +98,10 @@
               <i class="material-icons right">arrow_drop_down</i>
             </a>
           </li>
-          <li>
-            <a href="#">Guest</a>
+         <li>
+            <a href="#" class="dropdown-button" data-activates="dropdown-user2">SignIn/SignUp
+              <i class="material-icons right">arrow_drop_down</i>
+            </a>
           </li>
         </ul>
       </div>
@@ -116,11 +114,7 @@
               <i class="material-icons">menu</i>
             </a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-              <li class="active">
-                <a href="#" class="dropdown-button" data-activates="dropdown-user">SignIn/SignUp
-                  <i class="material-icons right">arrow_drop_down</i>
-                </a>
-              </li>
+             
               <li>
                 <a href="#" class="dropdown-button" data-activates="dropdown-event">Events
                   <i class="material-icons right">arrow_drop_down</i>
@@ -131,8 +125,10 @@
                   <i class="material-icons right">arrow_drop_down</i>
                 </a>
               </li>
-              <li>
-                <a href="#">Guest</a>
+             <li>
+                <a href="#" class="dropdown-button" data-activates="dropdown-user">SignIn/SignUp
+                  <i class="material-icons right">arrow_drop_down</i>
+                </a>
               </li>
             </ul>
 
@@ -140,10 +136,8 @@
         </nav>
       </div>
 
-
     </header>
     <main>
-      <div class="container">
         <div class="row">
           <div class="col s12">
             <form>
@@ -193,7 +187,22 @@
 
 
         </div>
-      </div>
+        <div id="center_text_view" class="row">
+          <div class="col s12">
+            <div class="card">
+              <div class="card-image">
+                <img src="images/2fb443_b38a041c293935f52ecb9305df3069c5.webp" alt="Event Image">
+
+              </div>
+              <div class="card-content">
+                <h6>Book Your Events</h6>
+                <h6>At the Best Centers</h6>
+                <h6>For the Best Prices</h6>
+              </div>
+
+            </div>
+          </div>
+        </div>
     </main>
 
   </div>

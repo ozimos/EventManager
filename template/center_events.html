@@ -17,7 +17,8 @@
 
 <body>
   <div class="wrapper">
-    <header>
+    <header id="not_signed_in">
+
       <div>
         <ul id="dropdown-user" class="dropdown-content">
 
@@ -86,6 +87,24 @@
             <a href="search_center.html">Search Centers</a>
           </li>
         </ul>
+        <ul class="side-nav" id="mobile-demo">
+         
+          <li>
+            <a href="#" class="dropdown-button" data-activates="dropdown-event2">Events
+              <i class="material-icons right">arrow_drop_down</i>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="dropdown-button" data-activates="dropdown-center2">Centers
+              <i class="material-icons right">arrow_drop_down</i>
+            </a>
+          </li>
+         <li>
+            <a href="#" class="dropdown-button" data-activates="dropdown-user2">SignIn/SignUp
+              <i class="material-icons right">arrow_drop_down</i>
+            </a>
+          </li>
+        </ul>
       </div>
       <div class="navbar-fixed">
         <nav>
@@ -96,45 +115,24 @@
               <i class="material-icons">menu</i>
             </a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-              <li>
-                <a href="#" class="dropdown-button" data-activates="dropdown-user">SignIn/SignUp
-                  <i class="material-icons right">arrow_drop_down</i>
-                </a>
-              </li>
+             
               <li>
                 <a href="#" class="dropdown-button" data-activates="dropdown-event">Events
                   <i class="material-icons right">arrow_drop_down</i>
                 </a>
               </li>
-              <li class="active">
+              <li>
                 <a href="#" class="dropdown-button" data-activates="dropdown-center">Centers
                   <i class="material-icons right">arrow_drop_down</i>
                 </a>
               </li>
-              <li>
-                <a href="#">Guest</a>
+             <li>
+                <a href="#" class="dropdown-button" data-activates="dropdown-user">SignIn/SignUp
+                  <i class="material-icons right">arrow_drop_down</i>
+                </a>
               </li>
             </ul>
-            <ul class="side-nav" id="mobile-demo">
-              <li>
-                <a href="#" class="dropdown-button" data-activates="dropdown-user2">SignIn/SignUp
-                  <i class="material-icons right">arrow_drop_down</i>
-                </a>
-              </li>
-              <li>
-                <a href="#" class="dropdown-button" data-activates="dropdown-event2">Events
-                  <i class="material-icons right">arrow_drop_down</i>
-                </a>
-              </li>
-              <li class="active">
-                <a href="#" class="dropdown-button" data-activates="dropdown-center2">Centers
-                  <i class="material-icons right">arrow_drop_down</i>
-                </a>
-              </li>
-              <li>
-                <a href="#">Guest</a>
-              </li>
-            </ul>
+
           </div>
         </nav>
       </div>

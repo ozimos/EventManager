@@ -17,7 +17,7 @@ $(document).ready(() => {
     min: [true],
     closeOnSelect: false // Close upon selecting a date,
   });
-  $('.dropdown-button').dropdown({ hover: true });
+  $('.dropdown-button').dropdown();
   $('.modal').modal();
   $('#add_centers').click(() => {
     const center = $('#center_list_input').val();

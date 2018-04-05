@@ -16,28 +16,28 @@
 
 <body>
   <div class="wrapper">
-    <header>
+    <header id="signed_in">
 
       <div>
         <ul id="dropdown-user" class="dropdown-content">
 
           <li>
-            <a href="signin.html">Sign In</a>
+            <a href="signin.html">Profile</a>
           </li>
           <li class="divider"></li>
           <li>
-            <a href="signup.html">Sign Up</a>
+            <a href="signup.html">Sign Out</a>
           </li>
 
         </ul>
         <ul id="dropdown-user2" class="dropdown-content">
 
           <li>
-            <a href="signin.html">Sign In</a>
+            <a href="signin.html">Profile</a>
           </li>
           <li class="divider"></li>
           <li>
-            <a href="signup.html">Sign Up</a>
+            <a href="signup.html">Sign Out</a>
           </li>
 
         </ul>
@@ -87,11 +87,7 @@
           </li>
         </ul>
         <ul class="side-nav" id="mobile-demo">
-          <li>
-            <a href="#" class="dropdown-button" data-activates="dropdown-user2">SignIn/SignUp
-              <i class="material-icons right">arrow_drop_down</i>
-            </a>
-          </li>
+        
           <li>
             <a href="#" class="dropdown-button" data-activates="dropdown-event2">Events
               <i class="material-icons right">arrow_drop_down</i>
@@ -103,8 +99,10 @@
             </a>
           </li>
           <li>
-            <a href="#">Guest</a>
-          </li>
+                 <a href="#" class="dropdown-button" data-activates="dropdown-user2">Tovieye
+                  <i class="material-icons right"></i>
+                </a>
+              </li>
         </ul>
       </div>
       <div class="navbar-fixed">
@@ -116,12 +114,8 @@
               <i class="material-icons">menu</i>
             </a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
+              
               <li>
-                <a href="#" class="dropdown-button" data-activates="dropdown-user">SignIn/SignUp
-                  <i class="material-icons right">arrow_drop_down</i>
-                </a>
-              </li>
-              <li class="active">
                 <a href="#" class="dropdown-button" data-activates="dropdown-event">Events
                   <i class="material-icons right">arrow_drop_down</i>
                 </a>
@@ -132,7 +126,9 @@
                 </a>
               </li>
               <li>
-                <a href="#">Guest</a>
+                 <a href="#" class="dropdown-button" data-activates="dropdown-user">Tovieye
+                  <i class="material-icons right">arrow_drop_down</i>
+                </a>
               </li>
             </ul>
 
@@ -143,9 +139,30 @@
     </header>
     <main>
       <div id="event_action" class="row">
-        <h5 style="text-align: center;" class="">Modify Event ID #012346</h5>
+        <h5 style="text-align: center;" class="">Modify Event</h5>
       </div>
+  <div class="row">
 
+        <form id="center_search_form" role="search" class="col s12">
+          <fieldset>
+
+            <div class="row valign-wrapper">
+
+              <div class="input-field col l5 s12 left">
+                <input type="text" placeholder="Event ID" id="event_list_input" name="center_list_input" type="text">
+
+              </div>
+              <div class="col s4 left">
+                <button class="btn waves-effect waves-light" id="submit2" type="submit">
+                  <i class="material-icons">search</i>
+                </button>
+              </div>
+
+            </div>
+
+          </fieldset>
+        </form>
+      </div>
       <div class="row">
 
         <form id="main_form" class="col s12">
@@ -154,7 +171,7 @@
 
           <fieldset class="row">
             <div class="input-field col l6 s12 left">
-              <input placeholder="John's Wedding" id="event_name" name="event_name" type="text" class="validate" required minlength="2">
+              <input placeholder="Event Name" id="event_name" name="event_name" type="text" class="validate" required minlength="2">
 
             </div>
             <div class="input-field col l5 s12 right">
@@ -172,74 +189,27 @@
             </div>
           </fieldset>
           <fieldset class="row">
-
-            <div class="input-field col s5 left">
-              <select id="event_duration" class="validate" required>
-                <option value="" disabled selected>Number of days</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-              </select>
+            <div class="input-field col l6 s12 left">
+              <input type="text" placeholder="Center ID" id="center_list_input" name="center_list_input" type="text">
 
             </div>
-            <div class="input-field col s6 right">
-              <input id="start_date" type="text" class="datepicker">
-              <label for="start_date">Start Date</label>
+            <div class="input-field col l5 s12 right">
+              <input id="date" type="text" class="datepicker">
+              <label for="date">Date</label>
             </div>
 
           </fieldset>
 
-          <!-- location section -->
 
-          <fieldset class="row">
-            <div class="input-field col l4 s12">
-              <input type="text" placeholder="Nigeria" id="location_country" list="country_list">
-              <datalist id="country_list">
-                <option value="Nigeria">
-                  <option value="Antigua">
-                    <option value="Barbados">
-                      <option value="Ghana">
-                        <option value="Cote D'Ivoire">
-                          <option value="Senegal">
-              </datalist>
-            </div>
-            <div class="input-field col l4 s12">
-              <input type="text" placeholder="Lagos" id="location_region" list="region_list">
-
-              <datalist id="region_list">
-                <option value="Abia">
-                  <option value="Bayelsa">
-                    <option value="Cross River">
-                      <option value="Ebonyi">
-                        <option value="Gombe">
-                          <option value="Kaduna">
-              </datalist>
-            </div>
-            <div class="input-field col l4 s12">
-              <input type="text" placeholder="ikorodu" id="location_sregion" list="sregion_list">
-              <datalist id="sregion_list">
-                <option value="Badagry">
-                  <option value="Epe">
-                    <option value="Ikeja">
-                      <option value="Alaba">
-                        <option value="Ajegunle">
-                          <option value="Ikorodu">
-              </datalist>
-            </div>
-
-          </fieldset>
           <fieldset>
 
             <div class="row valign-wrapper">
 
-              <div class="input-field col l5 s12 left">
-                <input type="text" placeholder="Center ID" id="center_list_input" name="center_list_input" type="text">
 
-              </div>
               <div class="col s4 left valign-wrapper ">
                 <button class="btn waves-effect waves-light" id="submit2" type="submit">
 
-                  Check Availability
+                   Submit<i class="material-icons right">send</i>
                 </button>
               </div>
 
@@ -251,73 +221,64 @@
 
 
       </div>
-      <div class="row">
+     <div class="row">
         <div id="qeury_results" class="col s12">
           <div class="row">
             <div class="col s12">
               <table class="striped bordered highlight responsive-table">
-                <caption class="">Event Slots</caption>
+                <caption class="">Available Dates for April</caption>
                 <thead>
                   <tr>
-                    <td>SN</td>
-                    <td>Center</td>
-                    <td>Dates Available</td>
-                    <td>Location</td>
-                    <td>Modify Event</td>
+                    <td>Week</td>
+                    <td>Mon</td>
+                    <td>Tue</td>
+                    <td>Wed</td>
+                    <td>Thur</td>
+                    <td>Fri</td>
+                    <td>Sat</td>
+                    <td>Sun</td>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td>1</td>
-                    <td>Baelor's Sept</td>
-                    <td>12/17/2017</td>
-                    <td>Badagry</td>
-                    <td>
-                      <a href="#modal1" class="btn waves-effect waves-light left-align modal-trigger" id="Event1">
-
-                        Modify
-
-                      </a>
-                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td> </td>
+                    <td></td>
+                    <td></td>
+                    <td> </td>
                   </tr>
                   <tr>
                     <td>2</td>
-                    <td>Winterfell</td>
-                    <td>12/18/2017</td>
-                    <td>Ajegunle</td>
-                    <td>
-                      <a href="#modal1" class="btn waves-effect waves-light left-align modal-trigger" id="Event2">
-
-                        Modify
-
-                      </a>
-                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td> </td>
+                    <td></td>
+                    <td></td>
+                    <td> </td>
                   </tr>
                   <tr>
                     <td>3</td>
-                    <td>Casterly Rock</td>
-                    <td>12/19/2017</td>
-                    <td>Epe</td>
-                    <td>
-                      <a href="#modal1" class="btn waves-effect waves-light left-align modal-trigger" id="Event3">
-
-                        Modify
-
-                      </a>
-                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td> </td>
+                    <td></td>
+                    <td></td>
+                    <td> </td>
                   </tr>
                   <tr>
                     <td>4</td>
-                    <td>Dragonstone</td>
-                    <td>12/20/2017</td>
-                    <td>Ikorodu</td>
-                    <td>
-                      <a href="#modal1" class="btn waves-effect waves-light left-align modal-trigger" id="Event4">
-
-                        Modify
-
-                      </a>
-                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td> </td>
+                    <td></td>
+                    <td></td>
+                    <td> </td>
                   </tr>
                 </tbody>
               </table>
@@ -342,7 +303,27 @@
         </div>
 
       </div>
+  <div class="row" id="center-card">
+          <div class="col s12">
+            <div class="card">
+              <div class="card-image">
+                <img src="images/2fb443_b38a041c293935f52ecb9305df3069c5.webp" alt="Event Image">
+                <span class="card-title">Center Details</span>
+              </div>
+              <div class="card-content">
+                <h6>Center ID: 012346</h6>
+                <h6>Center Name: Twin Towers</h6>
+                <h6>Center Types: Wedding, Birthday</h6>
+                <h6>Center Cost: 100000</h6>
+                <h6>Center Capacity: 1000</h6>
+                <h6>Center Amenities: Bar, Pool</h6>
+                <h6>Center ID: 012346</h6>
+                <h6>Center Location: Ajegunle</h6>
+              </div>
 
+            </div>
+          </div>
+        </div>
       <!-- Modal Structure -->
       <div id="modal1" class="modal">
         <div class="modal-content">
@@ -356,7 +337,8 @@
 
     </main>
 
-  </div><footer class="page-footer">
+  </div>
+  <footer class="page-footer">
 
       <div class="footer-copyright">
         <div class="row">

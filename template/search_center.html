@@ -16,7 +16,7 @@
 
 <body>
   <div class="wrapper">
-    <header>
+    <header id="not_signed_in">
 
       <div>
         <ul id="dropdown-user" class="dropdown-content">
@@ -87,11 +87,7 @@
           </li>
         </ul>
         <ul class="side-nav" id="mobile-demo">
-          <li>
-            <a href="#" class="dropdown-button" data-activates="dropdown-user2">SignIn/SignUp
-              <i class="material-icons right">arrow_drop_down</i>
-            </a>
-          </li>
+
           <li>
             <a href="#" class="dropdown-button" data-activates="dropdown-event2">Events
               <i class="material-icons right">arrow_drop_down</i>
@@ -103,7 +99,9 @@
             </a>
           </li>
           <li>
-            <a href="#">Guest</a>
+            <a href="#" class="dropdown-button" data-activates="dropdown-user2">SignIn/SignUp
+              <i class="material-icons right">arrow_drop_down</i>
+            </a>
           </li>
         </ul>
       </div>
@@ -116,23 +114,21 @@
               <i class="material-icons">menu</i>
             </a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-              <li>
-                <a href="#" class="dropdown-button" data-activates="dropdown-user">SignIn/SignUp
-                  <i class="material-icons right">arrow_drop_down</i>
-                </a>
-              </li>
+
               <li>
                 <a href="#" class="dropdown-button" data-activates="dropdown-event">Events
                   <i class="material-icons right">arrow_drop_down</i>
                 </a>
               </li>
-              <li class="active">
+              <li>
                 <a href="#" class="dropdown-button" data-activates="dropdown-center">Centers
                   <i class="material-icons right">arrow_drop_down</i>
                 </a>
               </li>
               <li>
-                <a href="#">Guest</a>
+                <a href="#" class="dropdown-button" data-activates="dropdown-user">SignIn/SignUp
+                  <i class="material-icons right">arrow_drop_down</i>
+                </a>
               </li>
             </ul>
 
@@ -145,10 +141,9 @@
       <div id="event_action" class="row">
         <h5 style="text-align: center;" class="">Search Centers</h5>
       </div>
-
       <div class="row">
 
-        <form id="main_form" class="col s12">
+        <form id="center_search_form" role="search" class="col s12">
           <fieldset>
 
             <div class="row valign-wrapper">
@@ -159,20 +154,14 @@
               </div>
               <div class="col s4 left">
                 <button class="btn waves-effect waves-light" id="submit2" type="submit">
-                  <i class="material-icons">search</i>
+                  Search<i class="material-icons">search</i>
                 </button>
               </div>
 
             </div>
 
           </fieldset>
-
-          <!-- location section -->
-
-
         </form>
-
-
       </div>
       <div class="row">
         <div class="col s12">
@@ -193,22 +182,26 @@
             </div>
 
           </div>
-          <div class="row">
-            <div class="col s4 left">
-              <a href="modify_center.html" class="btn waves-effect waves-light" id="modify">
+        </div>
+        <div class="row">
+          <div class="col s4 left">
+            <a href="modify_center.html" class="btn waves-effect waves-light" id="modify">
 
-                Modify
-              </a>
-            </div>
-            <div class="col s4 right">
-              <a href="center_events.html" class="btn waves-effect waves-light" id="view-events">
+              Modify
+            </a>
+          </div>
+          <div class="col s4">
+            <a href="add_event.html" class="btn waves-effect waves-light" id="add_event_button">
+              Book Center<i class="material-icons orange600">event</i>
+            </a>
+          </div>
+          <div class="col s4 right">
+            <a href="center_events.html" class="btn waves-effect waves-light" id="view-events">
 
-                View Events
-              </a>
-            </div>
+              View Events
+            </a>
           </div>
         </div>
-
       </div>
     </main>
 
