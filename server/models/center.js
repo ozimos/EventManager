@@ -1,5 +1,5 @@
 export default (sequelize, DataTypes) => {
-  const Center = sequelize.define('Center', {
+  const Meals = sequelize.define('Meals', {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
@@ -48,14 +48,14 @@ export default (sequelize, DataTypes) => {
   });
 
   // Relations
-  Center.associate = (models) => {
-    Center.hasMany(models.Event, {
+  Meals.associate = (models) => {
+    Meals.hasMany(models.Event, {
       foreignKey: 'centerId',
     });
-    Center.belongsTo(models.User, {
+    Meals.belongsToMany(models.Menu, {
       foreignKey: 'userId',
     });
   };
 
-  return Center;
+  return Meals;
 };
